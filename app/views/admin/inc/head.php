@@ -2,6 +2,7 @@
 <html>
 <head>
 	<title><?=SITE_NAME;?></title>
+	<link rel="icon" type="image/x-icon" href="<?=URL_ROOT;?>/img/logo_icon/lab.ico">
 	<link href="https://fonts.googleapis.com/css?family=Quicksand:400,500&display=swap" rel="stylesheet"> 
 	<link rel="stylesheet" type="text/css" href="https://cdndevelopment.blob.core.windows.net/cdn/fa/css/all.min.css">
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -34,6 +35,7 @@
 		.tox-statusbar__branding {
 			display: none !important;
 		}
+
 	</style>
 	<script>
 		$( function() {
@@ -54,6 +56,11 @@
 		});
 	</script>
 	<!-- Base on the documentation, if multiple editors we need to initialize each -->
+	<script>
+		$( function() {
+			$( document ).tooltip();
+		});
+	</script>
 </head>
 <body style="position:relative;">
 	<!-- <img style="position:absolute;z-index:-1;" src="<?=URL_ROOT;?>/css/svg/header.svg" alt="" class="src"> -->
@@ -145,7 +152,7 @@
 				<h3>Note</h3>
 				<div class="ad-log">
 					<ul class="mCustomScrollbar content fluid light" data-mcs-theme="inset-2-dark" style="height: 300px;width: 100%;">
-						<?php for($i = 0; $i <= 10; $i++) :?>
+						<?php for($i = 0; $i <= 2; $i++) :?>
 						<li>							
 							<span class="tg-adverified cat_chemical">Salt</span>
 							<h3>Sodium Orthophosphate</h3>
@@ -266,31 +273,31 @@
 					</div>
 					<nav>
 						<ul id="menus-nav">
-							<li data-link="<?=URL_ROOT;?>/admin" class="menu-active">
+							<li data-link="<?=URL_ROOT;?>/admin" class="<?=($_SESSION['menu_active']=="home") ? 'menu-active' : ''; ?>">
 								<i class="fal fa-chart-bar"></i>
 								<a href="#"> Analytics</a>
 							</li>
-							<li data-link="<?=URL_ROOT;?>/admin/profile">
+							<li data-link="<?=URL_ROOT;?>/admin/profile" class="<?=($_SESSION['menu_active']=="profile") ? 'menu-active' : ''; ?>">
 								<i class="fal fa-cog"></i>
 								<a href="#"> Profile settings</a>
 							</li>
-							<li data-link="<?=URL_ROOT;?>/admin/posted">
+							<li data-link="<?=URL_ROOT;?>/admin/posted" class="<?=($_SESSION['menu_active']=="request") ? 'menu-active' : ''; ?>">
 								<i class="fal fa-cubes"></i>
 								<a href="#"> Requests</a>
 							</li>
-							<li data-link="<?=URL_ROOT;?>/admin/biddings">
+							<li data-link="<?=URL_ROOT;?>/admin/biddings" class="<?=($_SESSION['menu_active']=="messages") ? 'menu-active' : ''; ?>">
 								<i class="fal fa-envelope"></i>
 								<a href="#"> Messages</a>
 							</li>
-							<li data-link="<?=URL_ROOT;?>/admin/chemical">
+							<li data-link="<?=URL_ROOT;?>/admin/chemical" class="<?=($_SESSION['menu_active']=="chemicals") ? 'menu-active' : ''; ?>">
 								<i class="fal fa-flask"></i>
 								<a href="#"> Chemicals</a>
 							</li>
-							<li data-link="<?=URL_ROOT;?>/admin/student">
+							<li data-link="<?=URL_ROOT;?>/admin/student" class="<?=($_SESSION['menu_active']=="student") ? 'menu-active' : ''; ?>">
 								<i class="fal fa-users-class"></i>
 								<a href="#"> Students</a>
 							</li>
-							<li data-link="<?=URL_ROOT;?>/admin/privacy">
+							<li data-link="<?=URL_ROOT;?>/admin/privacy" class="<?=($_SESSION['menu_active']=="privacy") ? 'menu-active' : ''; ?>">
 								<i class="fal fa-shield-check"></i>
 								<a href="#"> Privacy settings</a>
 							</li>

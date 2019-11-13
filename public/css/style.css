@@ -2,6 +2,32 @@
 	padding: 0;
 	margin: 0;
 }
+
+.ui-tooltip {
+	font-size:12px;
+	padding: 5px;
+	background-color: #2B2F3E;
+	border-radius: 4px;
+	position: relative;
+	top: 5px;
+	color: #fff;
+	box-shadow: none;
+	border: var(--border);
+	font-family: "Quicksand";
+	width: max-content;
+	max-width: 200px;
+}
+.ui-tooltip:before {
+	content:"\f0d8";
+	position: absolute;
+	left: 5px;
+	font-weight: 900;
+	font-family: 'Font Awesome 5 Pro';
+	font-size: 19px;
+	color: #2B2F3E;
+	top: -12px;
+}
+
  a {
  	text-decoration: none;
  }
@@ -320,8 +346,18 @@ COlumns 4
 	background-color: #fff;
 	transition: all .5s;
 }
+.col-4 sup {
+	position: absolute;
+	right: 0;
+	margin: 5px;
+	font-size: 14px;
+	color: var(--green);
+}
 .col-4:hover {
 	box-shadow: var(--box-shadow);
+}
+.col-4:hover .col-content a {
+	color: var(--green);
 }
 .col-4 .col-wrap {	
 	padding: 30px 20px 40px;
@@ -353,6 +389,7 @@ COlumns 4
 	color: var(--dark-font);
 	text-transform: capitalize;
 	font: var(--font-quick-500-14);
+	transition: all .5s cubic-bezier(0.455, 0.03, 0.515, 0.955);
 }
 .pad-30 {
 	padding: 30px;

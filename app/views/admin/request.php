@@ -7,7 +7,7 @@
 	<section class="main-tbl-container">
 		<div class="tbl-wrap">
 			<div class="content-head">
-				<h2>Pending Request</h2>
+				<h2>Pending Request <sup><i class="fal fa-question-circle" style="font-size:12px;" title="This are the current request sent to the admin."></i></sup></h2>
 			</div>
 			<div class="filter-category">
 				<ul id="job-filters">

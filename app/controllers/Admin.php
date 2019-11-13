@@ -31,8 +31,12 @@ class Admin extends Controller
 		$data = [
 			"one" => $this->breadcrump('/')
 		];
+		// no other solution this is for the Left sidebar navigation
+		// the active state is dependent to this SESSION we are setting.
+		unset($_SESSION['menu_active']);
+		$_SESSION['menu_active'] = "home";
 
-			$this->view('admin/index',$data);
+		$this->view('admin/index',$data);
 	}
 
 	public function login(){
@@ -50,6 +54,12 @@ class Admin extends Controller
 	}
 
 	public function profile(){
+		
+		// no other solution this is for the Left sidebar navigation
+		// the active state is dependent to this SESSION we are setting.
+		unset($_SESSION['menu_active']);
+		$_SESSION['menu_active'] = "profile";
+
 		$this->view('admin/update-prof');
 	}
 
@@ -57,27 +67,61 @@ class Admin extends Controller
 		$data = [
 			"one" => $this->breadcrump()
 		];
+		// no other solution this is for the Left sidebar navigation
+		// the active state is dependent to this SESSION we are setting.
+		unset($_SESSION['menu_active']);
+		$_SESSION['menu_active'] = "request";
+
 		$this->view('admin/request',$data);
 	}
 
 	public function biddings(){
+		
+		// no other solution this is for the Left sidebar navigation
+		// the active state is dependent to this SESSION we are setting.
+		unset($_SESSION['menu_active']);
+		$_SESSION['menu_active'] = "messages";
+
 		$this->view('admin/messages');
 	}
 
 	public function chemical(){
+		
+		// no other solution this is for the Left sidebar navigation
+		// the active state is dependent to this SESSION we are setting.
+		unset($_SESSION['menu_active']);
+		$_SESSION['menu_active'] = "chemicals";
+
 		$this->view('admin/chemical');
 	}
 
 	public function student(){
 
+		
+		// no other solution this is for the Left sidebar navigation
+		// the active state is dependent to this SESSION we are setting.
+		unset($_SESSION['menu_active']);
+		$_SESSION['menu_active'] = "student";
+
 		$this->view('admin/student');
 	}
 
 	public function privacy(){
+		
+		// no other solution this is for the Left sidebar navigation
+		// the active state is dependent to this SESSION we are setting.
+		unset($_SESSION['menu_active']);
+		$_SESSION['menu_active'] = "privacy";
+
 		$this->view('admin/privacy');
 	}
 
 	public function logout(){
+		
+		// no other solution this is for the Left sidebar navigation
+		// the active state is dependent to this SESSION we are setting.
+		unset($_SESSION['menu_active']);
+
 		$this->view('admin/index');
 	}
 

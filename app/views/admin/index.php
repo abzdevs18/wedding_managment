@@ -7,6 +7,7 @@
 	<section class="main-section mar-30">
 		<div class="row">
 			<div class="col-4">
+				<sup><i class="fal fa-question-circle" style="font-size:12px;" title="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eligendi est eaque laborum eum sit? Ipsa earum dolor velit non praesentium architecto hic cupiditate fugiat sed. Maiores quod repellendus aliquam commodi."></i></sup>
 				<div class="col-wrap pad-30">
 					<figure>
 						<img src="<?=URL_ROOT;?>/img/icons/col-1.png">				
@@ -14,11 +15,12 @@
 					<div class="col-content">
 						<p>562</p>
 						<h3>Monthly Request</h3>
-						<a href="#">view details <i class="fal fa-angle-right"></i></a>
+						<a href="#">view details <i class="fal fa-angle-right"></i></a>						
 					</div>
 				</div>
 			</div>
 			<div class="col-4">
+				<sup><i class="fal fa-question-circle" style="font-size:12px;" title="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eligendi est eaque laborum eum sit? Ipsa earum dolor velit non praesentium architecto hic cupiditate fugiat sed. Maiores quod repellendus aliquam commodi."></i></sup>
 				<div class="col-wrap pad-30">
 					<figure>
 						<img src="<?=URL_ROOT;?>/img/icons/clock.png">				
@@ -31,6 +33,7 @@
 				</div>
 			</div>
 			<div class="col-4">
+				<sup><i class="fal fa-question-circle" style="font-size:12px;" title="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eligendi est eaque laborum eum sit? Ipsa earum dolor velit non praesentium architecto hic cupiditate fugiat sed. Maiores quod repellendus aliquam commodi."></i></sup>
 				<div class="col-wrap pad-30">
 					<figure>
 						<img src="<?=URL_ROOT;?>/img/icons/chemistry.png">				
@@ -43,6 +46,7 @@
 				</div>
 			</div>
 			<div class="col-4">
+				<sup><i class="fal fa-question-circle" style="font-size:12px;" title="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eligendi est eaque laborum eum sit? Ipsa earum dolor velit non praesentium architecto hic cupiditate fugiat sed. Maiores quod repellendus aliquam commodi."></i></sup>
 				<div class="col-wrap pad-30">
 					<figure>
 						<img src="<?=URL_ROOT;?>/img/icons/col-4.png">				
@@ -61,7 +65,7 @@
 		<div class="alerts-notif">
 			<div class="alert-content">
 				<div class="content-head">
-					<h2>System Logs</h2>
+					<h2>System Logs <sup><i class="fal fa-question-circle" style="font-size:12px;" title="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eligendi est eaque laborum eum sit? Ipsa earum dolor velit non praesentium architecto hic cupiditate fugiat sed. Maiores quod repellendus aliquam commodi."></i></sup></h2>
 				</div>
 				<div id="log">
 					<ul id="content-log-list" class="mCustomScrollbar content fluid light" data-mcs-theme="inset-2-dark" style="height: 400px;width: 100%;">
@@ -78,7 +82,7 @@
 		<div class="alerts-notif">
 			<div class="alert-content">
 				<div class="content-head">
-					<h2>Recent Activity</h2>
+					<h2>Recent Activity <sup><i class="fal fa-question-circle" style="font-size:12px;" title="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eligendi est eaque laborum eum sit? Ipsa earum dolor velit non praesentium architecto hic cupiditate fugiat sed. Maiores quod repellendus aliquam commodi."></i></sup></h2>
 				</div>
 				<div class="ad-log">
 					<ul class="mCustomScrollbar content fluid light" data-mcs-theme="inset-2-dark" style="height: 400px;width: 100%;">
@@ -96,7 +100,7 @@
 		<div class="alerts-notif">
 			<div class="alert-content">
 				<div class="content-head">
-					<h2 title="Request is categories by two user type, Department and student which will be shown in Tag icon">Request *</h2>
+					<h2>Request <sup><i class="fal fa-question-circle" style="font-size:12px;" title="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eligendi est eaque laborum eum sit? Ipsa earum dolor velit non praesentium architecto hic cupiditate fugiat sed. Maiores quod repellendus aliquam commodi."></i></sup></h2>
 				</div>
 				<div class="ad-log">
 					<ul class="mCustomScrollbar content fluid light" data-mcs-theme="inset-2-dark" style="height: 400px;width: 100%;">

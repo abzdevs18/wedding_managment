@@ -363,11 +363,12 @@ $(document).on('click','#notif-icon',function(){
 });
 $(document).on('click','#add_record',function(){
   $('.m_add_hidden').toggleClass('add_m');
-  Push.Permission.request(onGranted, onDenied);
+  // Push.Permission.request(onGranted, onDenied);
+  Push.Permission.DENIED; // 'denied'
 
 
   console.log(Push.Permission.has());
-  // demo();
+  demo();
   $('.m_notification').print();
   return false;
 });
@@ -375,11 +376,11 @@ $(document).on('click','#add_record',function(){
 
 var notif = new Audio(URL_ROOT + '/media/audio/notif.mp3');
 function demo() {
-  Push.create('Hello world!', {
-      body: 'How\'s it hangin\'?',
+  Push.create('New request received!', {
+      body: 'Some data show in here.',
       icon: URL_ROOT +'/img/icons/clock.png',
       link: '/#',
-      timeout: 4000,
+      // timeout: 4000,
       requireInteraction: true,
       onClick: function () {
           console.log("Fired!");

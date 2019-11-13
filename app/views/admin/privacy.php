@@ -6,44 +6,50 @@
 		<div class="alerts-notif privacy_settings">
 			<div class="alert-content no-fixed-height">
 				<div class="content-head">
-					<h2>Privacy configuration</h2>
+					<h2>Privacy configuration <sup><i class="fal fa-question-circle" style="font-size:12px;" title="Edit user privileges and give additional functionality."></i></sup></h2>
 				</div>
 				<div class="changepass-holder">     
                     <ul>
                         <li class="privacy_items">            
                             <div class="tg-checkbox">
-                                <input id="tg-privacysettingstwo" type="checkbox" name="privacy settings" value="yes" checked="">
-                                <label for="tg-privacysettingstwo" style="margin-left:30px;">Receive email notification each time some login as ADMIN.</label>
+                                <input id="tg-privacylogin" type="checkbox" name="privacy settings" value="yes" checked="">
+                                <label for="tg-privacylogin" style="margin-left:30px;">Receive email notification each time some login as ADMIN.</label>
                             </div>
                         </li>
                         <li class="privacy_items">            
                             <div class="tg-checkbox">
-                                <input id="tg-privacysettingstwo" type="checkbox" name="privacy settings" value="yes" checked="">
-                                <label for="tg-privacysettingstwo" style="margin-left:30px;">I want to receive e-mail alerts about new request</label>
+                                <input id="tg-privacyemail" type="checkbox" name="privacy settings" value="yes" checked="">
+                                <label for="tg-privacyemail" style="margin-left:30px;">I want to receive e-mail alerts about new request</label>
                             </div>
                         </li>
                         <li class="privacy_items">            
                             <div class="tg-checkbox">
-                                <input id="tg-privacysettingstwo" type="checkbox" name="privacy settings" value="yes" checked="">
-                                <label for="tg-privacysettingstwo" style="margin-left:30px;">I want to receive desktop notifications.</label>
+                                <input id="tg-privacydesktop" type="checkbox" name="privacy settings" value="yes" checked="">
+                                <label for="tg-privacydesktop" style="margin-left:30px;">I want to receive desktop notifications.</label>
                             </div>
                         </li>
                         <li class="privacy_items">            
                             <div class="tg-checkbox">
-                                <input id="tg-privacysettingstwo" type="checkbox" name="privacy settings" value="yes" checked="">
-                                <label for="tg-privacysettingstwo" style="margin-left:30px;">Allow messaging feature to Laboratory manager.</label>
+                                <input id="tg-privacymessaging" type="checkbox" name="privacy settings" value="yes" checked="">
+                                <label for="tg-privacymessaging" style="margin-left:30px;">Allow messaging feature to Laboratory manager.</label>
                             </div>
                         </li>
                         <li class="privacy_items">            
                             <div class="tg-checkbox">
-                                <input id="tg-privacysettingstwo" type="checkbox" name="privacy settings" value="yes" checked="">
-                                <label for="tg-privacysettingstwo" style="margin-left:30px;">Allow Laboratory manager to APPROVE CHEMICAL request.</label>
+                                <input id="tg-privacymanager" type="checkbox" name="privacy settings" value="yes" checked="">
+                                <label for="tg-privacymanager" style="margin-left:30px;">Allow Laboratory manager to APPROVE CHEMICAL request.</label>
                             </div>
                         </li>
                         <li class="privacy_items">            
                             <div class="tg-checkbox">
-                                <input id="tg-privacysettingstwo" type="checkbox" name="privacy settings" value="yes" checked="">
-                                <label for="tg-privacysettingstwo" style="margin-left:30px;">Allow Laboratory manager to add STUDENT.</label>
+                                <input id="tg-privacylab" type="checkbox" name="privacy settings" value="yes" checked="">
+                                <label for="tg-privacylab" style="margin-left:30px;">Allow Laboratory manager to add STUDENT.</label>
+                            </div>
+                        </li>
+                        <li class="privacy_items">            
+                            <div class="tg-checkbox">
+                                <input id="tg-privacychemical" type="checkbox" name="privacy settings" value="yes" checked="">
+                                <label for="tg-privacychemical" style="margin-left:30px;">Allow Laboratory manager to add CHEMICALS.</label>
                             </div>
                         </li>
                     </ul>
@@ -54,7 +60,7 @@
 		<div class="alerts-notif privacy_settings">
 			<div class="alert-content no-fixed-height" style="background:rgba(217,83,79,0.10);">
 				<div class="content-head">
-					<h2 style="color:#a94442;">Delete user</h2>
+					<h2 style="color:#a94442;">Delete user <sup><i class="fal fa-question-circle" style="font-size:12px;" title="Delete user for some reason."></i></sup></h2>
 				</div>
                 <form action="" method="POST" id="tinymce">
 				<div class="changepass-holder">
