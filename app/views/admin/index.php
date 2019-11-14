@@ -110,6 +110,7 @@
 							<div class="request_icon_wrapper">
 								<div class="req_icon" style="margin-top:13px;">
 									<span>IV</span>
+									<!-- <img src="<?=URL_ROOT;?>/img/icons/danger.png" alt="" style="width:100%;"> -->
 								</div>
 								<div style="margin:5px;" class="m_notif_content">
 									<b>Kate Saycon</b>

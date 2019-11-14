@@ -27,14 +27,16 @@
 					</div>
 					<div class="form-group half-form-group">
 						<!-- <input type="text" name="title" class="form-control"> -->
-						<select style="width: 100%;" name="label">
+						<select style="width: 100%;" name="label" id="pre_warning_label">
 							<optgroup>
-								<?php foreach ($data['label'] as $label) : ?>
-									<option value="<?=$label->id;?>"><?=$label->name;?></option>
-								<?php endforeach; ?>
+									<option>Choose precaution label</option>
+									<option value="1">Nature Friendly</option>
+									<option value="2">Proceed with Caution</option>
+									<option value="3">Dispose properly</option>
+									<option value="4">Biohazad</option>
 							</optgroup>
 						</select>
-						<label for="label">Precautionary Label</label>
+						<label for="label">Precautionary Label <sup style="position;absolute;right:0;"><i class="fal fa-question-circle" style="font-size:12px;" title="How dangerous is this chemical."></i></sup></label>
 					</div>
 				</div>
 				<div class="changepass-holder half-row">
@@ -102,25 +104,24 @@
 				<div class="content-head">
 					<h2>Disposal Guideles</h2>
 				</div>
-				<div class="changepass-holder">
+				<div class="changepass-holder" style="display:flex;flex-direction:column;">
 					<div class="form-group">
 						<!-- <input type="text" name="emFirst" placeholder="First Name*" class="form-control"> -->
 						<textarea name="note" id="note" cols="30" rows="40" class="form-control" style="resize: vertical;height: 200px;"></textarea>
 						<label for="note">Guidelines</label>
 					</div>
-			<!-- 		<div class="form-group">
-						<input type="text" name="emLast" placeholder="Last Name*" class="form-control">
+				</div>
+				<div class="request_icon_wrapper guide_icons caution_note_label" style="display:none;">
+					<div class="req_icon warning_icon">
+						<!-- <span>IV</span> -->
+						<img id="precaution_icon" src="<?=URL_ROOT;?>/img/icons/safety/precaution.png" alt="" style="width:100%;margin:10px;">
 					</div>
-					<div class="form-group">
-						<input type="text" name="emPhone" placeholder="Phone Number*" class="form-control">
+					<div class="m_notif_content warning_content">
+						<b id="precaution_label">Proceed with Caution</b>
+						<!-- <b>Warning</b> -->
+						<h3 id="precaution_content">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptas commodi incidunt similique corporis recusandae esse veritatis quam adipisci, molestias cupiditate earum placeat mollitia excepturi, error quidem odio fugiat quaerat quo.</h3>						
+						<!-- <time datetime="2017-08-08">01 Day Ago</time> -->
 					</div>
-					<div class="form-group">
-						<input type="text" name="emCity" placeholder="City" class="form-control">
-					</div>
-					<div class="form-group">
-						<input type="email" name="emEmail" placeholder="Email*" class="form-control">
-					</div> -->
-					<!-- <button class="tg-btn" type="button">Post Chemical</button> -->
 				</div>
 			</div>
 		</div>

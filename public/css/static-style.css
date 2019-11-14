@@ -6,6 +6,17 @@
 	--back-light-green: #00cc67;
 	--light-dark: #666666;
 	--light-blue: #55acee;
+	/* Precaution background Color */
+	--nature-friendly: #A5D6A7;
+	--proceed-with-caution: #FFAB91;
+	--dispose-properly: #80CBC4;
+	--biohazard: #ef9a9a;
+	/* Precaution label background Color */
+	--nature-friendly-label: #1B5E20;
+	--proceed-with-caution-label: #BF360C;
+	--dispose-properly-label: #004D40;
+	--biohazard-label: #b71c1c;
+
 	--box-shadow: 2px 0 15px 0 rgba(0,0,0,0.20);
 	--border: 1px solid #d5d5d5;
 	--border-2px: 2px solid #d5d5d5;

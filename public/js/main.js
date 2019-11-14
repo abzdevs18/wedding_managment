@@ -23,7 +23,7 @@ $(document).on('click', '.save-btn', function(e){
 		success: function(e){
 			console.log(e);
 		},
-		error: function(e){
+		error: function(_e){
 			console.log('l');
 		}
 
@@ -291,7 +291,7 @@ function login(){
 function animate(current, next){
   var left, opacity, scale;
   current.animate({opacity:0},{
-    step: function(now,mx){
+    step: function(now,_mx){
       scale = 1 - (1 - now)*0.2;
       left = (now * 50) + "%";
       opacity = 1 - now;
@@ -389,7 +389,7 @@ function demo() {
       },
       vibrate: [200, 100, 200, 100, 200, 100, 200]
   });
-  notif.play();
+  // notif.play();
   // playSound(URL_ROOT + '/media/audio/notif');
 }
 // callback For Push Notification if Granted
@@ -413,3 +413,30 @@ $('#tinymce').submit(function(e){
   
   console.log($('#chemicalFormula').val());
 });
+
+// Precaution Selection
+$(document).on('change','#pre_warning_label',function(){
+  var option = $(this).val();
+  var content = "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptas commodi incidunt similique";
+  $('.caution_note_label').show(100);
+  if(option == 1){
+    precaution('/img/icons/safety/sprout.png',"Nature Friendly","var(--nature-friendly-label)",content,"var(--nature-friendly-label)");
+  } else if (option == 2){
+    precaution('/img/icons/safety/precaution.png',"Proceed with caution","var(--proceed-with-caution-label)",content,"var(--proceed-with-caution-label)");
+  } else if (option == 3){
+    precaution('/img/icons/safety/biohazard.png',"Dispose properly","var(--dispose-properly-label)",content,"var(--dispose-properly)");
+  } else if (option == 4){
+    precaution('/img/icons/safety/danger.png',"Biohazard","var(--biohazard-label)",content,"var(--biohazard)");
+  } else {
+    $('.caution_note_label').hide(100);
+  }
+});
+
+function precaution(icon,label_text,label_background,content,content_background){
+  $("#precaution_icon").attr('src',URL_ROOT + icon);
+  $("#precaution_label").text(label_text);
+  $("#precaution_label").css("background-color",label_background);
+  $("#precaution_content").text(content);
+  $(".warning_content").css("background-color",content_background);
+}
+// End of Precaution Selection
