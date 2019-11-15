@@ -1,11 +1,17 @@
+<?php
+
+	$http_host = "http://" . $_SERVER['HTTP_HOST'] . "/reservation";
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
 	<title></title>
-	<link rel="stylesheet" type="text/css" href="<?php echo "http://" . $_SERVER['HTTP_HOST'] . "/chem";?>/css/admin_setup.css">
+	<link rel="stylesheet" type="text/css" href="<?=$http_host?>/css/admin_setup.css">
 	<link href="https://fonts.googleapis.com/css?family=Quicksand:400,500&display=swap" rel="stylesheet"> 
 	<link rel="stylesheet" type="text/css" href="https://pro.fontawesome.com/releases/v5.1.0/css/all.css">
-	<link rel="stylesheet" type="text/css" href="<?php echo "http://" . $_SERVER['HTTP_HOST'] . "/chem";?>/css/animsition.min.css">
+	<link rel="stylesheet" type="text/css" href="<?=$http_host?>/css/animsition.min.css">
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
 </head>
@@ -134,7 +140,7 @@
 			<section class="form">
 				<div class="awesome" style="width: 80%;min-height: 300px;">
 					<div class="icon">
-						<img src="<?php echo "http://" . $_SERVER['HTTP_HOST'] . "/chem";?>/img/gif/loading.gif">
+						<img src="<?=$http_host?>/img/gif/loading.gif">
 					</div>
 					<div class="add">
 						<h3 class="loadingTxt"></h3>
@@ -148,7 +154,7 @@
 				<div class="awesome" style="width: 95%;min-height: 300px;display: flex;">
 					<div class="icon" style="width: 50%;margin: 0 auto;"> 
 						<!-- <i class="fal fa-exclamation-triangle" style="color: #9c1a1a;border: 2px solid #9c1a1a;"></i> -->
-						<img src="<?php echo "http://" . $_SERVER['HTTP_HOST'] . "/chem";?>/img/gif/errorpage10.png" style="width: 100%;">
+						<img src="<?=$http_host?>/img/gif/errorpage10.png" style="width: 100%;">
 					</div>
 					<div class="add" style="margin-top: 15%;text-align: left;">
 						<h3 style="font-size: 40px;">Oh no!</h3>
@@ -174,7 +180,7 @@
 						proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 					</div>
 					<button class="setup-btn" data-link="login" style="display: block;font-weight: 200;">continue login</button>
-					<a href="<?php echo "http://" . $_SERVER['HTTP_HOST'] . "/chem";?>" class="login-link"><i class="fal fa-long-arrow-left"></i> back to website</a>
+					<a href="<?=$http_host?>" class="login-link"><i class="fal fa-long-arrow-left"></i> back to website</a>
 				</div>
 			</section>			
 		</div>
@@ -183,9 +189,9 @@
 	</div>
 	<div class="modal" style="display: none;">
 	</div> -->
-	<script src="<?php echo "http://" . $_SERVER['HTTP_HOST'] . "/chem";?>/js/jquery.mCustomScrollbar.concat.min.js"></script>
-	<script src="<?php echo "http://" . $_SERVER['HTTP_HOST'] . "/chem";?>/js/main.js"></script>
-	<script src="<?php echo "http://" . $_SERVER['HTTP_HOST'] . "/chem";?>/js/animsiton.min.js"></script>
-	<script src="<?php echo "http://" . $_SERVER['HTTP_HOST'] . "/chem";?>/js/animation.js"></script>
+	<script src="<?=$http_host?>/js/jquery.mCustomScrollbar.concat.min.js"></script>
+	<script src="<?=$http_host?>/js/main.js"></script>
+	<script src="<?=$http_host?>/js/animsiton.min.js"></script>
+	<script src="<?=$http_host?>/js/animation.js"></script>
 </body>
 </html>

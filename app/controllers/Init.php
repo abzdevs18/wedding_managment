@@ -1,5 +1,6 @@
 <?php
 
+define("ROOT", "/reservation");
 /**
  * 
  */
@@ -79,7 +80,7 @@ class Init extends Controller
 			define('APP_ROOT', dirname(dirname(__FILE__)));
 
 			//URL ROOT
-			define('URL_ROOT', 'https://" . $_SERVER['HTTP_HOST'] . "/chem');
+			define('URL_ROOT', 'https://" . $_SERVER['HTTP_HOST']  . ROOT ."');
 
 			//SITE NAME
 			define('SITE_NAME', 'Help Agency');
@@ -127,7 +128,7 @@ class Init extends Controller
 		if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {		
 			$_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
-			$target = $_SERVER['DOCUMENT_ROOT'] . "chem/public/img/default/" . basename($_FILES['siteLogo']['name']);
+			$target = $_SERVER['DOCUMENT_ROOT'] . ROOT . "/public/img/default/" . basename($_FILES['siteLogo']['name']);
 
 			$salted_pass = $this->salt . trim($_POST['adminUserPass']);
 			$data = [
