@@ -280,6 +280,7 @@ class Init extends Controller
 		$_SESSION['email'] = $user->usrEmail;
 		$_SESSION['user_type'] = $user->uType;
 		$_SESSION['is_admin'] = $user->is_admin;
+		$_SESSION['is_client'] = $user->uClient;
 	}
 
 	public function signout() {
@@ -287,6 +288,7 @@ class Init extends Controller
 		unset($_SESSION['userName']);
 		unset($_SESSION['email']);
 		unset($_SESSION['user_type']);
+		unset($_SESSION['is_client']);
 		session_destroy();
 
 		redirect('users/signin');

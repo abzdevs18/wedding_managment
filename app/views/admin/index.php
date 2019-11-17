@@ -1,5 +1,7 @@
 <?php require_once APP_ROOT . '/views/admin/inc/head.php'; ?>
 
+<div class="dash_container">
+
 	<section class="tg-dash">
 		<h1>Dashboard</h1>
 	</section>
@@ -10,10 +12,10 @@
 				<sup><i class="fal fa-question-circle" style="font-size:12px;" title="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eligendi est eaque laborum eum sit? Ipsa earum dolor velit non praesentium architecto hic cupiditate fugiat sed. Maiores quod repellendus aliquam commodi."></i></sup>
 				<div class="col-wrap pad-30">
 					<figure>
-						<img src="<?=URL_ROOT;?>/img/icons/col-1.png">				
+						<img src="<?=URL_ROOT;?>/img/icons/col-1.png">	
+						<p>562</p>			
 					</figure>
 					<div class="col-content">
-						<p>562</p>
 						<h3>Monthly Request</h3>
 						<a href="#">view details <i class="fal fa-angle-right"></i></a>						
 					</div>
@@ -23,11 +25,11 @@
 				<sup><i class="fal fa-question-circle" style="font-size:12px;" title="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eligendi est eaque laborum eum sit? Ipsa earum dolor velit non praesentium architecto hic cupiditate fugiat sed. Maiores quod repellendus aliquam commodi."></i></sup>
 				<div class="col-wrap pad-30">
 					<figure>
-						<img src="<?=URL_ROOT;?>/img/icons/clock.png">				
+						<img src="<?=URL_ROOT;?>/img/icons/schedule.png">	
+						<p>562</p>			
 					</figure>
 					<div class="col-content">
-						<p>562</p>
-						<h3>Pending Request</h3>
+						<h3>Pending Booking</h3>
 						<a href="#">view details <i class="fal fa-angle-right"></i></a>
 					</div>
 				</div>
@@ -36,10 +38,10 @@
 				<sup><i class="fal fa-question-circle" style="font-size:12px;" title="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eligendi est eaque laborum eum sit? Ipsa earum dolor velit non praesentium architecto hic cupiditate fugiat sed. Maiores quod repellendus aliquam commodi."></i></sup>
 				<div class="col-wrap pad-30">
 					<figure>
-						<img src="<?=URL_ROOT;?>/img/icons/chemistry.png">				
+						<img src="<?=URL_ROOT;?>/img/icons/chemistry.png">	
+						<p>562</p>			
 					</figure>
 					<div class="col-content">
-						<p>562</p>
 						<h3>Chemical in Lab</h3>
 						<a href="#">view details <i class="fal fa-angle-right"></i></a>
 					</div>
@@ -49,11 +51,11 @@
 				<sup><i class="fal fa-question-circle" style="font-size:12px;" title="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eligendi est eaque laborum eum sit? Ipsa earum dolor velit non praesentium architecto hic cupiditate fugiat sed. Maiores quod repellendus aliquam commodi."></i></sup>
 				<div class="col-wrap pad-30">
 					<figure>
-						<img src="<?=URL_ROOT;?>/img/icons/col-4.png">				
+						<img src="<?=URL_ROOT;?>/img/icons/team.png">
+						<p>562</p>				
 					</figure>
 					<div class="col-content">
-						<p>562</p>
-						<h3>Registered Student</h3>
+						<h3>Registered Users</h3>
 						<a href="#">view details <i class="fal fa-angle-right"></i></a>
 					</div>
 				</div>
@@ -126,7 +128,7 @@
 		</div>
 	</section>
 
-	<section class="updates-msgs">
+	<!-- <section class="updates-msgs">
 		<div class="msgs-acc">
 			<div class="msgs-container">
 				<div class="content-head">
@@ -201,6 +203,7 @@
 				</div>			
 			</div>			
 		</div>
-	</section>
+	</section> -->
 
+</div>
 <?php require_once APP_ROOT . '/views/admin/inc/footer.php'; ?>

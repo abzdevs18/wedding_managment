@@ -39,13 +39,75 @@ class Admin extends Controller
 		$this->view('admin/index',$data);
 	}
 
+	public function calendar(){
+		
+		// no other solution this is for the Left sidebar navigation
+		// the active state is dependent to this SESSION we are setting.
+		unset($_SESSION['menu_active']);
+		$_SESSION['menu_active'] = "calendar";
+
+		$this->view('admin/calendar');
+	}
+
+	public function flower(){
+		
+		// no other solution this is for the Left sidebar navigation
+		// the active state is dependent to this SESSION we are setting.
+		unset($_SESSION['menu_active']);
+		$_SESSION['menu_active'] = "flower";
+
+		$this->view('admin/flower');
+	}
+
+	public function food(){
+		
+		// no other solution this is for the Left sidebar navigation
+		// the active state is dependent to this SESSION we are setting.
+		unset($_SESSION['menu_active']);
+		$_SESSION['menu_active'] = "food";
+
+		$this->view('admin/food');
+	}
+
+	public function attire(){
+
+		
+		// no other solution this is for the Left sidebar navigation
+		// the active state is dependent to this SESSION we are setting.
+		unset($_SESSION['menu_active']);
+		$_SESSION['menu_active'] = "attire";
+
+		$this->view('admin/attire');
+	}
+
+	public function photographer(){
+		
+		// no other solution this is for the Left sidebar navigation
+		// the active state is dependent to this SESSION we are setting.
+		unset($_SESSION['menu_active']);
+		$_SESSION['menu_active'] = "photographer";
+
+		$this->view('admin/photographer');
+	}
+
+	public function event(){
+		
+		// no other solution this is for the Left sidebar navigation
+		// the active state is dependent to this SESSION we are setting.
+		unset($_SESSION['menu_active']);
+		$_SESSION['menu_active'] = "event";
+
+		$this->view('client/event');
+	}
+
 	public function login(){
 		if (isLoggedIn() && $_SESSION['is_admin'] == 1) {
 			$this->view('admin/index');
-		}else if(isLoggedIn() && $_SESSION['user_type'] == 1){
-			redirect("dashboard/index");
+		}else if(isLoggedIn() && $_SESSION['is_client'] == 1){
+			// redirect("dashboard/index");			
+			$this->view('admin/index');
 		}else{
-		$this->view('admin/login');
+			$this->view('admin/login');
 		}
 	}
 
@@ -75,7 +137,7 @@ class Admin extends Controller
 		$this->view('admin/request',$data);
 	}
 
-	public function biddings(){
+	public function messenger(){
 		
 		// no other solution this is for the Left sidebar navigation
 		// the active state is dependent to this SESSION we are setting.
@@ -83,27 +145,6 @@ class Admin extends Controller
 		$_SESSION['menu_active'] = "messages";
 
 		$this->view('admin/messages');
-	}
-
-	public function chemical(){
-		
-		// no other solution this is for the Left sidebar navigation
-		// the active state is dependent to this SESSION we are setting.
-		unset($_SESSION['menu_active']);
-		$_SESSION['menu_active'] = "chemicals";
-
-		$this->view('admin/chemical');
-	}
-
-	public function student(){
-
-		
-		// no other solution this is for the Left sidebar navigation
-		// the active state is dependent to this SESSION we are setting.
-		unset($_SESSION['menu_active']);
-		$_SESSION['menu_active'] = "student";
-
-		$this->view('admin/student');
 	}
 
 	public function privacy(){

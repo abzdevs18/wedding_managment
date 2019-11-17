@@ -1,5 +1,6 @@
 <?php require_once APP_ROOT . '/views/admin/inc/head.php'; ?>
 
+<div class="dash_container">
 
 	<!-- <section class="tg-dash">
 		<h1>Pending Request</h1>
@@ -7,7 +8,7 @@
 	<section class="main-tbl-container">
 		<div class="tbl-wrap">
 			<div class="content-head">
-				<h2>Pending Request <sup><i class="fal fa-question-circle" style="font-size:12px;" title="This are the current request sent to the admin."></i></sup></h2>
+				<h2>Booking Request <sup><i class="fal fa-question-circle" style="font-size:12px;" title="This are the current request sent to the admin."></i></sup></h2>
 			</div>
 			<div class="filter-category">
 				<ul id="job-filters">
@@ -34,24 +35,22 @@
 				</div>
 			</div><!-- End of Sorting -->
 			<div class="job-list-tables">
-				<table>
+				<table class="table-custom">
 					<thead>
 						<tr>
-							<th style="text-align: center;"><input type="checkbox" name=""></th>
 							<th>Name</th>
-							<th>User Type</th>
-							<th>Department</th>
-							<th>Student No.</th>
+							<th>Event date</th>
+							<th>Venue</th>
+							<th>Budget</th>
+							<th>Status</th>
 							<th>Actions</th>
 						</tr>
 					</thead>
-					<tbody id="filter-job-container">
+					<tbody id="filter-job-container" class="table-inventory">
 						<!-- if job is close add row with class name "sold" -->
 						<?php for($i = 0; $i < 5; $i++) : ?>
 						<tr class="req_logs_">
-							<td style="text-align: center;">
-								<input type="checkbox" name="">
-							</td>
+							
 							<td>
 								<div class="request_icon_wrapper">
 									<div class="req_icon">
@@ -59,23 +58,24 @@
 									</div>
 									<div style="margin:5px;margin-top:0px;">
 										<h3>Clint Anthony Abueva</h3>
-										<time datetime="2017-08-08">01 Day Ago</time>
+										<time datetime="2017-08-08">Client ID: <span>20193124</span></time>
 									</div>
 								</div>
 							</td>
 							<td class="tittle-id">
-								<h3>Student</h3>
+								<h3 style="color:orange;">05.15.2020</h3>
 							</td>
 							<td class="tittle-id">
-								<h3>Department</h3>
+								<h3>Dumaguete</h3>
 							</td>
 							<td>
-								<span>02131011</span>
+								<span class="budgetForWedding"><i class="far fa-ruble-sign"></i> 200,000.00</span>
+							</td>
+							<td class="status-job booking-status">
+								<span>Pending</span>
 							</td>
 							<td class="action-btn">
-								<span class="eye" data-jId="<?=$job->jId;?>"><i class="fal fa-eye"></i></span>
-								<span class="pencil" data-jId="<?=$job->jId;?>"><i class="fal fa-pencil-alt"></i></span>
-								<span class="trash" data-jId="<?=$job->jId;?>"><i class="fal fa-trash"></i></span>
+								<i class="far fa-ellipsis-h-alt" style="font-size: 30px;color: #fe5894;"></i>
 							</td>
 						</tr>
 						<?php endfor; ?>
@@ -84,5 +84,5 @@
 			</div><!-- End of Table Design -->
 		</div>
 	</section>
-
+</div>
 <?php require_once APP_ROOT . '/views/admin/inc/footer.php'; ?>

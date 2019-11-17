@@ -1,33 +1,10 @@
-	</main>	
-	<div id="action_options" class="m_add_hidden">
-		<a href="<?=URL_ROOT;?>/admin/add_user_ad"><i class="far fa-user-shield"></i> Add User</a>
-		<a href="<?=URL_ROOT;?>/admin/add_student"><i class="far fa-user-tag"></i> Add Student</a>
-	</div>
-  <a class="c-btn c-datepicker-btn">
-    <span class="material-icon">Open date picker</span>
-  </a>
 
-  <pre id="output"></pre>
+  <script src="https://unpkg.com/babel-polyfill@6.2.0/dist/polyfill.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/rome/2.1.22/rome.standalone.js"></script>
+  <script src="<?=URL_ROOT;?>/js/datePicker/material-datetime-picker.js" charset="utf-8"></script>
 
-  <p id="demo"></p>
-  <?=$data['id']?>
-	<!-- <div id="add_record">
-		<p><i class="far fa-plus"></i></p>
-	</div> -->
-	<!-- <div id="sound"></div> -->
-	<script src="<?=URL_ROOT;?>/js/jquery.mCustomScrollbar.concat.min.js"></script>
-	<script src="<?=URL_ROOT;?>/js/push.min.js"></script>
-	<script src="<?=URL_ROOT;?>/js/main.js"></script>
-	<script src="<?=URL_ROOT;?>/js/admin_script.js"></script>
-	<!-- <script src="https://cdn.tiny.cloud/1/hhu3aczt7p034dcjnizjwnns5faj5u4s14e894midesztea0/tinymce/5/tinymce.min.js"></script>  -->
-
-	<!-- For Countdown -->
-	<script src="https://unpkg.com/babel-polyfill@6.2.0/dist/polyfill.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/rome/2.1.22/rome.standalone.js"></script>
-	<script src="<?=URL_ROOT;?>/js/datePicker/material-datetime-picker.js" charset="utf-8"></script>
-
-<script>
+  <script>
 
     var picker = new MaterialDatetimePicker({})
       .on('submit', function(d) {

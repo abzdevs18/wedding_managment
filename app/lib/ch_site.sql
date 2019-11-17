@@ -49,6 +49,7 @@ CREATE TABLE `user` (
   `user_pass` varchar(250),
   `user_type` boolean,
   `is_admin` boolean,
+  `is_client` boolean,
   `user_availability` boolean,
   PRIMARY KEY (`id`)
 );

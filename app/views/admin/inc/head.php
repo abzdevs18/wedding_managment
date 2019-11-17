@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title><?=SITE_NAME;?></title>
 	<link rel="icon" type="image/x-icon" href="<?=URL_ROOT;?>/img/logo_icon/lab.ico">
 	<link href="https://fonts.googleapis.com/css?family=Quicksand:400,500&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet"> 
 	<link rel="stylesheet" type="text/css" href="https://cdndevelopment.blob.core.windows.net/cdn/fa/css/all.min.css">
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	<link rel="stylesheet" type="text/css" href="<?=URL_ROOT;?>/css/style.css">
@@ -11,6 +15,16 @@
 	<link rel="stylesheet" type="text/css" href="<?=URL_ROOT;?>/css/jquery.mCustomScrollbar.css">
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>	
 	<script src="https://cdn.tiny.cloud/1/hhu3aczt7p034dcjnizjwnns5faj5u4s14e894midesztea0/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+   
+	<script src="<?=URL_ROOT;?>/js/calendar/dhtmlxscheduler.js?v=5.3.3" type="text/javascript" charset="utf-8"></script>
+   <link rel="stylesheet" href="<?=URL_ROOT;?>/js/calendar/dhtmlxscheduler_material.css?v=5.3.3" type="text/css" charset="utf-8">
+
+	<script src="<?=URL_ROOT;?>/js/calendar/dhtmlxscheduler_minical.js?v=5.3.3" type="text/javascript" charset="utf-8"></script>
+	
+    
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="<?=URL_ROOT;?>/js/datePicker/material-datetime-picker.css">
 
 	<style>
 		@import url("<?=URL_ROOT;?>/css/static-style.css");
@@ -32,7 +46,10 @@
 		.tox-statusbar__branding {
 			display: none !important;
 		}
-
+		.c-datepicker--open {
+			font-family: 'Roboto';
+			z-index: 99999999;
+		}
 	</style>
 	<script>
 		$( function() {
@@ -58,8 +75,34 @@
 			$('i').tooltip();
 		});
 	</script>
+
+	<script type="text/javascript" charset="utf-8">
+		function init() {
+			scheduler.config.multi_day = true;
+			
+			scheduler.init('scheduler_here',new Date(),"week");
+			scheduler.load("<?=URL_ROOT;?>/js/calendar/events.json");
+
+		}
+		
+		function show_minical(){
+			if (scheduler.isCalendarVisible())
+				scheduler.destroyCalendar();
+			else
+				scheduler.renderCalendar({
+					position:"dhx_minical_icon",
+					date:scheduler.getState().date,
+					navigation:true,
+					handler:function(date,calendar){
+						scheduler.setCurrentView(date);
+						scheduler.destroyCalendar()
+					}
+				});
+		}
+		
+	</script>
 </head>
-<body style="position:relative;">
+<body style="position:relative;" onload="init();">
 	<!-- <img style="position:absolute;z-index:-1;" src="<?=URL_ROOT;?>/css/svg/header.svg" alt="" class="src"> -->
 			<!-- Modal: For adding chemicals. First Plan -->
 	<div id="modal" style="display:none;width: 100%;height: 100vh;background: rgba(51, 51, 51, 0.37);z-index: 999999;position: fixed;">
@@ -125,43 +168,17 @@
 						<span>IV</span>
 					</div>
 					<div style="margin:5px;margin-top:11px;" class="m_head_req">
-						<h3>Clint Anthony Abueva</h3>
+						<h3>Flower de Santa Ana</h3>
 					</div>
-					<p style="font:var(--font-quick-500-18);font-size:15px;">Department</p>
+					<p style="font:var(--font-quick-500-18);font-size:15px;">Flower Shop</p>
 					<div id="m_req_status">
-						<span><i class="fas fa-circle" style="font-size:10px;"></i> Pending</span>
+						<span><i class="far fa-ruble-sign"></i> 400.00</span>
 					</div>
-				</div>
-			</div>
-			<div id="accordion">
-				<h3>Requested</h3>
-				<div class="ad-log">
-					<ul class="mCustomScrollbar content fluid light" data-mcs-theme="inset-2-dark" style="height: 300px;width: 100%;">
-						<?php for($i = 0; $i <= 10; $i++) :?>
-						<li>							
-							<span class="tg-adverified cat_chemical">Salt</span>
-							<h3>Sodium Orthophosphate</h3>
-							<time datetime="2017-08-08">01 Day Ago</time>									
-						</li>
-						<?php endfor;?>
-					</ul>
-				</div>
-				<h3>Note</h3>
-				<div class="ad-log">
-					<ul class="mCustomScrollbar content fluid light" data-mcs-theme="inset-2-dark" style="height: 300px;width: 100%;">
-						<?php for($i = 0; $i <= 2; $i++) :?>
-						<li>							
-							<span class="tg-adverified cat_chemical">Salt</span>
-							<h3>Sodium Orthophosphate</h3>
-							<time datetime="2017-08-08">01 Day Ago</time>									
-						</li>
-						<?php endfor;?>
-					</ul>
 				</div>
 			</div>
 			<div class="actionButtonModal">
-				<button>Deny</button>
-				<button id="cancelDeletion">Approve</button>
+				<button>Delete</button>
+				<button id="cancelDeletion">Update</button>
 			</div>
 		</div>
 	</div>	
@@ -175,10 +192,10 @@
 				<?php for($i = 0; $i <= 10; $i++) :?>
 				<li style="padding-bottom:0px;margin-bottom:10px;border-bottom:1px solid #888;cursor:pointer;">							
 					<!-- <span class="tg-adverified"><i class="fal fa-atom" style="padding-right:5px;"></i> user identification</span> -->
-					<div class="m_tag_time">
+					<!-- <div class="m_tag_time">
 						<label for="notification" class="notif_tag">Admin</label>
 						<span>12:00 am</span>
-					</div>
+					</div> -->
 					<div class="request_icon_wrapper" style="margin-top:4px;margin-bottom:5px;">
 						<div class="req_icon m_notif_icon">
 							<span>KS</span>
@@ -200,8 +217,8 @@
 			<div id="add-post">
 				<div class="search-dash" style="margin-top: 5px;">
 					<div id="search-sort" style="width: 80%;">
-						<input type="text" name="search" placeholder="Search Here" style="width: 100%;" id="admin-search-field">
-						<i class="fal fa-search"></i>
+						<input type="text" name="search" placeholder="Search on the site." style="width: 10%;" id="admin-search-field">
+						<i class="fal fa-search" style="left:0;"></i>
 					</div>	
 					<div class="dash-result">
 						<div>
@@ -215,20 +232,23 @@
 					</div>				
 				</div>
 				<div>
-					<a href="<?=URL_ROOT;?>/admin/form"><i class="fal fa-bookmark"></i> Store Chemical</a>
+					<div id="notif-icon">
+						<button><i class="fal fa-envelope"></i></button>
+						<span id="notif-counter">2</span>
+					</div>
 					<div id="notif-icon">
 						<button><i class="fal fa-bell"></i></button>
 						<span id="notif-counter">2</span>
 					</div>
-					<div style="display: flex;flex-direction: row;margin-left: 20px;vertical-align: middle;line-height: 45px;border-left: 2px solid #999;">
-						<span style="font-family: 'quicksand';font-weight: 600;padding-left: 10px;">Administrator</span>
-						<div style="width: 46px;height: 46px;border: 1px solid #666;margin-left: 10px;border-radius: 50%;background: #f3f3f3;background-image: url('<?=URL_ROOT;?>/img/prof.png');background-size: contain;background-repeat: no-repeat;background-position: center;">
+					<div style="display: flex;flex-direction: row;margin-left: 20px;vertical-align: middle;line-height: 45px;">
+						<!-- <span style="font-family: 'quicksand';font-weight: 600;padding-left: 10px;">Administrator</span> -->
+						<div style="width: 35px;height: 35px;border: 1px solid #666;margin-left: 10px;border-radius: 50%;background: #f3f3f3;background-image: url('<?=URL_ROOT;?>/img/prof.png');background-size: contain;background-repeat: no-repeat;background-position: center;">
 							
 						</div>
 					</div>
 				</div>
 			</div>
-			<section id="side-navigation">				
+			<section id="side-navigation" class="sideNav-full" style="margin-bottom: 100px;" >				
 				<div class="clip-path">
 					<span>
 						<i class="fal fa-angle-left caret-left caret"></i>
@@ -250,11 +270,12 @@
 				<!--  data-simplebar -->
 				<div id="navigation-scroll" class="mCustomScrollbar content fluid light" data-mcs-theme="inset-2-dark" style="height: 100%;width: 100%;">			
 					<div id="logo-admin" dir="ltr"> 
-						<div style="width: 116px;">
-							<img style="width: 100%;" src="<?=URL_ROOT;?>/img/logo1.png" id="logo-icon">
+						<div style="width: 70%;margin: 0 auto;">
+							<img style="width: 100%;" src="<?=URL_ROOT;?>/img/default/logo.png" id="logo-icon" class="logo-show">
 						</div>
 					</div>
 					<div id="admin-profile">
+						<a href="<?=URL_ROOT;?>/admin/form" title="Create modal to and select all the clients to view the data of their events.">Check Couples <i class="far fa-rings-wedding" style="color:#fe5894;"></i></a>
 						<div id="profile-container" class="adm-prof">
 							<div id="admin-icon">
 								<img src="<?=URL_ROOT;?>/img/prof.png">
@@ -269,10 +290,23 @@
 						</div>
 					</div>
 					<nav>
-						<ul id="menus-nav">
-							<li data-link="<?=URL_ROOT;?>/admin" class="<?=($_SESSION['menu_active']=="home") ? 'menu-active' : ''; ?>">
+						<div id="admin-details" class="menu-head">
+							<h3>Menu</h3>
+						</div>
+						<ul id="menus-nav" style="padding-left: 20px;">
+							<li data-link="<?=URL_ROOT;?>/<?=($_SESSION['is_admin'] && $_SESSION['is_client'] == 0) ? 'admin' : 'client'; ?>" class="<?=($_SESSION['menu_active']=="home") ? 'menu-active' : ''; ?>">
 								<i class="fal fa-chart-bar"></i>
-								<a href="#"> Analytics</a>
+								<a href="#"> Dashboard</a>
+							</li>
+							<?php if($_SESSION['is_client']):?>
+								<li data-link="<?=URL_ROOT;?>/admin/event" class="<?=($_SESSION['menu_active']=="event") ? 'menu-active' : ''; ?>">
+									<i class="far fa-rings-wedding" style="color:#fe5894;"></i>
+									<a href="#"> Event</a>
+								</li>
+							<?php endif;?>
+							<li data-link="<?=URL_ROOT;?>/admin/messenger" class="<?=($_SESSION['menu_active']=="messages") ? 'menu-active' : ''; ?>">
+								<i class="fal fa-envelope"></i>
+								<a href="#"> Messages</a>
 							</li>
 							<li data-link="<?=URL_ROOT;?>/admin/profile" class="<?=($_SESSION['menu_active']=="profile") ? 'menu-active' : ''; ?>">
 								<i class="fal fa-cog"></i>
@@ -280,23 +314,32 @@
 							</li>
 							<li data-link="<?=URL_ROOT;?>/admin/posted" class="<?=($_SESSION['menu_active']=="request") ? 'menu-active' : ''; ?>">
 								<i class="fal fa-cubes"></i>
-								<a href="#"> Requests</a>
+								<a href="#"> Bookings</a>
 							</li>
-							<li data-link="<?=URL_ROOT;?>/admin/biddings" class="<?=($_SESSION['menu_active']=="messages") ? 'menu-active' : ''; ?>">
-								<i class="fal fa-envelope"></i>
-								<a href="#"> Messages</a>
+							<li data-link="<?=URL_ROOT;?>/admin/calendar" class="<?=($_SESSION['menu_active']=="calendar") ? 'menu-active' : ''; ?>">
+								<i class="fal fa-calendar-alt"></i>
+								<a href="#"> Calendar of Events</a>
 							</li>
-							<li data-link="<?=URL_ROOT;?>/admin/chemical" class="<?=($_SESSION['menu_active']=="chemicals") ? 'menu-active' : ''; ?>">
-								<i class="fal fa-flask"></i>
-								<a href="#"> Chemicals</a>
+						</ul>
+						<div id="admin-details" class="menu-head">
+							<h3>Vendors</h3>
+						</div>
+						<ul id="menus-nav" style="padding-left: 20px;padding-bottom:60px;">
+							<li data-link="<?=URL_ROOT;?>/admin/photographer" class="<?=($_SESSION['menu_active']=="chemicals") ? 'menu-active' : ''; ?>">
+								<i class="fal fa-camera-retro"></i>
+								<a href="#"> Photography</a>
 							</li>
-							<li data-link="<?=URL_ROOT;?>/admin/student" class="<?=($_SESSION['menu_active']=="student") ? 'menu-active' : ''; ?>">
-								<i class="fal fa-users-class"></i>
-								<a href="#"> Students</a>
+							<li data-link="<?=URL_ROOT;?>/admin/attire" class="<?=($_SESSION['menu_active']=="attire") ? 'menu-active' : ''; ?>">
+								<i class="fal fa-tshirt"></i>
+								<a href="#"> Attire & Beauty</a>
 							</li>
-							<li data-link="<?=URL_ROOT;?>/admin/privacy" class="<?=($_SESSION['menu_active']=="privacy") ? 'menu-active' : ''; ?>">
-								<i class="fal fa-shield-check"></i>
-								<a href="#"> Privacy settings</a>
+							<li data-link="<?=URL_ROOT;?>/admin/food" class="<?=($_SESSION['menu_active']=="food") ? 'menu-active' : ''; ?>">
+								<i class="fas fa-burger-soda"></i>
+								<a href="#"> Food</a>
+							</li>
+							<li data-link="<?=URL_ROOT;?>/admin/flower" class="<?=($_SESSION['menu_active']=="flower") ? 'menu-active' : ''; ?>">
+								<i class="fal fa-flower-tulip"></i>
+								<a href="#"> Flowers</a>
 							</li>
 							<li data-link="<?=URL_ROOT;?>/users/signout">
 								<i class="fal fa-sign-out"></i>
