@@ -1,6 +1,6 @@
 <?php require_once APP_ROOT . '/views/user_cms/inc/head.php'; ?>
 <main>
-  <section class="hero_front" style="background:url('<?=URL_ROOT;?>/img/frontEnd/Slider-3.jpg');">
+  <section class="hero_front" style="background:url('<?=URL_ROOT;?>/img/frontEnd/Slider-3.jpg');background-attachment:fixed;">
     <div class="hero_content">
         <div class="img_container">
           <img src="<?=URL_ROOT;?>/img/wedding-rings.png" alt="" srcset="">

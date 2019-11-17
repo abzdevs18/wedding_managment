@@ -325,7 +325,7 @@
 							<h3>Vendors</h3>
 						</div>
 						<ul id="menus-nav" style="padding-left: 20px;padding-bottom:60px;">
-							<li data-link="<?=URL_ROOT;?>/admin/photographer" class="<?=($_SESSION['menu_active']=="chemicals") ? 'menu-active' : ''; ?>">
+							<li data-link="<?=URL_ROOT;?>/admin/photographer" class="<?=($_SESSION['menu_active']=="photographer") ? 'menu-active' : ''; ?>">
 								<i class="fal fa-camera-retro"></i>
 								<a href="#"> Photography</a>
 							</li>
