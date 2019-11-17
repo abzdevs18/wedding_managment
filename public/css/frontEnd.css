@@ -1,0 +1,224 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.hero_front {
+  width: 100%;
+  height: 100vh;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+.hero_content {
+  position: absolute;
+  width: 100%;
+  min-height: 100%;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(255, 255, 255, 0.7);
+  justify-content: center;
+}
+.img_container {
+}
+.hero_content span {
+  font-family: "Poppins", sans-serif;
+  font-size: 22px;
+  text-transform: uppercase;
+  color: #54595f;
+  letter-spacing: 8.8px;
+}
+.hero_content h2 {
+  font-family: "Pacifico", sans-serif;
+  font-size: 66px;
+  font-weight: 400;
+  text-shadow: 4px 0px 0px rgba(0, 0, 0, 0.05);
+}
+.hero_content p,
+.story_p p {
+  font-family: "Montserrat", Sans-serif;
+  color: #3e3c44;
+  width: 60%;
+  text-align: center;
+  margin: 0 auto;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.9em;
+  letter-spacing: 1px;
+}
+.story_p p {
+  width: 100%;
+  text-align: left;
+}
+.hero_paragraph {
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
+/* 
+Our Story Stylesheet
+*/
+.our_story {
+  width: 100%;
+  height: 90vh;
+  display: flex;
+  flex-direction: row;
+  margin-top: 100px;
+}
+.our_story > div {
+  width: 50%;
+  justify-content: right;
+  display: flex;
+}
+.item2 {
+  grid-area: menu;
+}
+.item3 {
+  grid-area: main;
+}
+.item5 {
+  grid-area: footer;
+}
+.item2,
+.item3,
+.item5 {
+  background-size: cover !important;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    "menu main"
+    "menu footer";
+  grid-gap: 10px;
+  /* background-color: #2196f3; */
+  padding: 10px;
+  width: 85%;
+  height: 70%;
+  margin-top: 20px;
+}
+
+.grid-container > div {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: 20px 0;
+  font-size: 30px;
+}
+
+.story_txt div {
+  margin: 40px;
+  margin-left: 10px;
+}
+.story_head {
+  padding: 0px 0px 0px 15px;
+  border-style: solid;
+  border-width: 0px 0px 0px 6px;
+  border-color: #ed4e88;
+}
+.our_story h2 {
+  font-family: "Pacifico", sans-serif;
+  color: #4c4c4c;
+  font-weight: 400;
+  font-size: 40px;
+}
+/* COuple */
+.couple {
+  width: 100%;
+  position: relative;
+  justify-content: normal;
+  background-color: #fff2f5;
+  padding-top: 50px;
+  padding-bottom: 100px;
+}
+.couple_img_container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+.couple_img {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  border: 1px solid #54595f;
+}
+.img_c {
+  width: 100%;
+  height: 350px;
+}
+.couple_img h2 {
+  margin-top: 20px;
+}
+.couple_img p:last-child {
+  margin-top: 20px;
+  width: 90%;
+}
+/* Captured moments */
+.capture_moments {
+  width: 100%;
+  height: 90vh;
+  background: none !important;
+}
+.slider {
+  display: flex;
+  width: 80%;
+  margin: 30px auto;
+}
+.img_box {
+  width: 33.333%;
+  height: 380px !important;
+  background-color: red;
+  margin: 10px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.map_container {
+  width: calc(100% - 60px);
+  display: flex;
+  flex-direction: row;
+  margin: 0 auto;
+}
+.mp_location {
+  width: 66.66%;
+  margin-top: 20px;
+  /* height: 250px; */
+  /* background-color: saddlebrown; */
+}
+.loc_address {
+  width: 33.33%;
+  background-color: #ed4e88;
+  margin-left: 20px;
+}
+
+.add_info {
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.contact_info {
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 24px !important;
+  border: none !important;
+  margin-top: 20px !important;
+}
+.contact_info h2 {
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 24px !important;
+  font-weight: 500 !important;
+}
+.contact_info p {
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  color: #fff !important;
+  text-align: left;
+  width: 100% !important;
+  margin: 8px;
+}
