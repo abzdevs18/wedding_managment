@@ -852,6 +852,7 @@ Table Design
 */
 .main-tbl-container {
 	width: 100%;
+	position: relative;
 }
 .tbl-wrap {
 	width: 90%;
@@ -1538,4 +1539,65 @@ transition: all .5s;
 /* Privacy Settings Stylesheet */
 .privacy_settings {
 	width: 41.66666667% !important;
+}
+/* 
+TODO working the event countdown
+*/
+.wrap_time {
+	width: 60%;
+	/* height: 300px; */
+	background-color: steelblue;
+	position: absolute;
+	z-index: 99999;
+	top: 150px;
+	left: 0;
+	right: 0;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	margin: 0 auto;
+	background-color: rgba(255, 255, 255, 0.8);
+	border-radius: 5px;
+	box-shadow: var(--box-shadow);
+}
+.time_date {
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	width: 25%;
+	height: 200px;
+	justify-content: center;
+	position: relative;
+}
+.time_date:not(:last-child):after{
+	content: ':';
+	font-family: 'Roboto', sans-serif;
+	font-size: 100px;
+	position: absolute;
+	top: 20px;
+	right: -10px;
+	font-weight: bold;
+	color: #666666;
+}
+.time_date > h2 {
+	font-family: 'Roboto', sans-serif;
+	font-size: 100px;
+	color: #666666;
+}
+.time_date > p {
+	font-family: 'Quicksand', sans-serif;
+	font-size: 25px;
+	text-transform: uppercase;
+	color: #888888;
+}
+.counter_text {
+	font-family: 'Quicksand', sans-serif;
+	position: absolute;
+	bottom: 10px;
+	left: 60px;
+	text-shadow: var(--box-shadow);
+	font-weight: 500;
+	margin: 10px;
+	font-size: 40px;
+	color: #fff;
 }
