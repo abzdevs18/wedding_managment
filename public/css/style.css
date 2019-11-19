@@ -960,7 +960,7 @@ Table Design
 	font-weight: 500;
 }
 .table-custom thead tr th:not(:first-child){
-	text-align: center;
+	text-align: right;
 }
 .table-custom tbody tr {
 	font: var(--font-quick-500-14);

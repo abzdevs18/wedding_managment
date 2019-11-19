@@ -81,7 +81,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="alerts-notif">
+		<div class="alerts-notif" style="display:none;">
 			<div class="alert-content">
 				<div class="content-head">
 					<h2>Recent Activity <sup><i class="fal fa-question-circle" style="font-size:12px;" title="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eligendi est eaque laborum eum sit? Ipsa earum dolor velit non praesentium architecto hic cupiditate fugiat sed. Maiores quod repellendus aliquam commodi."></i></sup></h2>
@@ -99,7 +99,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="alerts-notif">
+		<div class="alerts-notif" style="width:66.666%;">
 			<div class="alert-content">
 				<div class="content-head">
 					<h2>Request <sup><i class="fal fa-question-circle" style="font-size:12px;" title="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eligendi est eaque laborum eum sit? Ipsa earum dolor velit non praesentium architecto hic cupiditate fugiat sed. Maiores quod repellendus aliquam commodi."></i></sup></h2>

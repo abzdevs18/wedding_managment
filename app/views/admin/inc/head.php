@@ -11,6 +11,7 @@
 	<link rel="stylesheet" type="text/css" href="https://cdndevelopment.blob.core.windows.net/cdn/fa/css/all.min.css">
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	<link rel="stylesheet" type="text/css" href="<?=URL_ROOT;?>/css/style.css">
+	<link rel="stylesheet" type="text/css" href="<?=URL_ROOT;?>/css/main.css">
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 	<link rel="stylesheet" type="text/css" href="<?=URL_ROOT;?>/css/jquery.mCustomScrollbar.css">
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>	
@@ -41,7 +42,7 @@
 			font-size: 15px;
 		}
 		.mCSB_inside > .mCSB_container {
-			margin-right: 5px !important;
+			margin-right: 0px !important;
 		}
 		.tox-statusbar__branding {
 			display: none !important;
@@ -49,6 +50,21 @@
 		.c-datepicker--open {
 			font-family: 'Roboto';
 			z-index: 99999999;
+		}
+		.grid-container {
+		display: grid;
+		grid-template-columns: auto auto auto;
+		background-color: #fff;
+		padding: 10px;
+		}
+		.grid-item {
+		background-color: #f3f3f3;
+		border: 1px solid rgba(0, 0, 0, 0.8);
+		padding: 20px;
+		font-size: 30px;
+		text-align: center;
+		border-radius: 5px;
+		margin: 5px;
 		}
 	</style>
 	<script>
@@ -103,6 +119,67 @@
 	</script>
 </head>
 <body style="position:relative;" onload="init();">
+	<!-- Modal for confirmation in deleting Blog  -->
+	<div class="confirmationModal" style="display:none;">
+		<div class="confirmationMessage mCustomScrollbar content fluid light" data-mcs-theme="inset-2-dark" style="max-height:500px;margin-top:3%;">
+			
+		<div class="alert-content no-fixed-height" style="display: flex;flex-direction: column;">
+			<h2 style="text-align:left;padding-left:30px;"></h2>
+				<div class="changepass-holder" style="padding:5px 30px;display:none;">
+					<div class="form-group half-form-group" style="width:100%;">
+						<!-- <input type="text" name="title" class="form-control"> -->
+						<select style="width: 100%;border-radius: 35px;" name="category">
+							<optgroup>
+								<?php for ($i = 0; $i < 5; $i++) : ?>
+									<option value="<?=$category->id;?>">Client One</option>
+								<?php endfor; ?>
+							</optgroup>
+						</select>
+						<label for="category">Clients</label>
+					</div>
+				</div>
+				<div class="changepass-holder" style="padding:5px 30px;">
+					<div class="form-group">
+						<input type="text" name="vendorName" id="vendorName" class="form-control">
+						<label for="vendorName">Name</label>
+					</div>
+				</div>
+				<div class="changepass-holder" style="padding:5px 30px;">
+					<div class="form-group">
+						<input type="text" name="vendorFee" id="vendorFee" class="form-control">
+						<label for="vendorFee">Price</label>
+					</div>
+				</div>
+				<div class="changepass-holder" style="padding:5px 30px;">
+					<div class="form-group">
+						<input type="file" name="vendorSample[]" class="form-control" id="sampleVendors" multiple="multiple">
+						<label for="vendorSample">Photos taken</label>
+					</div>
+				</div>
+				<div class="changepass-holder" style="padding:5px 30px;display:none;">
+					<div class="form-group">
+						<div class="grid-container" style="border: 1px solid #2b2f3e4f;border-radius:5px;">
+						<div class="grid-item">1</div>
+						<div class="grid-item">2</div>
+						<div class="grid-item">3</div>  
+						<div class="grid-item">4</div>
+						<div class="grid-item">5</div>
+						<div class="grid-item">6</div>  
+						<div class="grid-item">7</div>
+						<div class="grid-item">8</div>
+						<div class="grid-item">9</div>  
+						</div>
+						<label>Price</label>
+					</div>
+				</div>
+			</div>
+			<div class="actionButtonModal" style="padding: 15px 30px;margin: 0;background: #3333331c;justify-content: right;">
+				<button>Save</button>
+				<button>Cancel</button>
+			</div>
+		</div>
+	</div>
+	<!-- End of modal blog Deletion -->
 	<!-- <img style="position:absolute;z-index:-1;" src="<?=URL_ROOT;?>/css/svg/header.svg" alt="" class="src"> -->
 			<!-- Modal: For adding chemicals. First Plan -->
 	<div id="modal" style="display:none;width: 100%;height: 100vh;background: rgba(51, 51, 51, 0.37);z-index: 999999;position: fixed;">
@@ -185,7 +262,7 @@
 	<!-- End Right Sidebar -->
 
 	<!-- Notification Modal -->
-	<div class="m_notification">
+	<div class="m_notification" style="position:fixed;">
 		<h3>Notification</h3>
 		<div class="ad-log">
 			<ul class="mCustomScrollbar content fluid light" data-mcs-theme="inset-2-dark" style="height: 400px;width: 100%;">
@@ -217,7 +294,7 @@
 			<div id="add-post">
 				<div class="search-dash" style="margin-top: 5px;">
 					<div id="search-sort" style="width: 80%;">
-						<input type="text" name="search" placeholder="Search on the site." style="width: 10%;" id="admin-search-field">
+						<input type="text" name="search" placeholder="Search on couples...." style="width: 10%;" id="admin-search-field">
 						<i class="fal fa-search" style="left:0;"></i>
 					</div>	
 					<div class="dash-result">
@@ -275,7 +352,7 @@
 						</div>
 					</div>
 					<div id="admin-profile">
-						<a href="<?=URL_ROOT;?>/admin/form" title="Create modal to and select all the clients to view the data of their events.">Check Couples <i class="far fa-rings-wedding" style="color:#fe5894;"></i></a>
+						<a href="#" id="check-couple" title="Create modal to and select all the clients to view the data of their events.">Check Couples <i class="far fa-rings-wedding" style="color:#fe5894;"></i></a>
 						<div id="profile-container" class="adm-prof">
 							<div id="admin-icon">
 								<img src="<?=URL_ROOT;?>/img/prof.png">

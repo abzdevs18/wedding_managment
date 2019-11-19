@@ -19,9 +19,9 @@
 					</select>
 				</div>
 				<div id="search-sort">
-                    <div class="actionButtonModal add-btn-top-table">
+                    <div class="actionButtonModal add-btn-top-table" style="margin:0px;">
                         <!-- <button>Deny</button> -->
-                        <button id="cancelDeletion">Add Vendor</button>
+                        <button class="addVendor" data-ven="photog">Add Vendor</button>
                     </div>
 				</div>
 			</div><!-- End of Sorting -->
@@ -30,7 +30,7 @@
 				<table class="table-custom">
 					<thead>
 						<tr>
-							<th>Florist</th>
+							<th>Photographer <sup><i class="fal fa-question-circle" style="font-size:12px;" title="Click the photo of photographer to see sample work."></i></sup></th>
 							<th>Flower</th>
 							<!-- <th>Floral Image</th> -->
 							<th>Actions</th>

@@ -17,7 +17,7 @@
 					</select>
 				</div>
 				<div id="search-sort">
-                    <div class="actionButtonModal add-btn-top-table">
+                    <div class="actionButtonModal add-btn-top-table" style="margin:0px;">
                         <!-- <button>Deny</button> -->
                         <button id="cancelDeletion">Add Vendor</button>
                     </div>
