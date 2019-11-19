@@ -1,5 +1,6 @@
 <?php
 
+define("ROOT", "/wedding_cms");
 /**
  * Admin Account Controller
  */
@@ -145,6 +146,42 @@ class Admin extends Controller
 		$_SESSION['menu_active'] = "messages";
 
 		$this->view('admin/messages');
+	}
+	public function vendor(){
+		
+		if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {		
+			$_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+			$data = [
+				"status" => "",
+				"fee" => trim($_POST['fee']),
+				"serviceType" => trim($_POST['serviceType']),
+				"name" => trim($_POST['name'])
+			];
+			$photo = array();
+			if (isset($_FILES['files']) && !empty($_FILES['files'])) {
+				$no_files = count($_FILES["files"]['name']);
+				for ($i = 0; $i < $no_files; $i++) {
+					array_push($photo,$_FILES["files"]["name"][$i]);
+					if ($_FILES["files"]["error"][$i] > 0) {
+						echo "Error: " . $_FILES["files"]["error"][$i] . "<br>";
+					} else {
+						if (file_exists($_SERVER['DOCUMENT_ROOT'] . ROOT ."/public/img/test/" . $_FILES["files"]["name"][$i])) {
+							echo 'File already exists : uploads/' . $_FILES["files"]["name"][$i];
+						} else {
+							move_uploaded_file($_FILES["files"]["tmp_name"][$i], $_SERVER['DOCUMENT_ROOT'] . ROOT ."/public/img/test/" . $_FILES["files"]["name"][$i]);
+							echo 'File successfully uploaded : uploads/' . $_FILES["files"]["name"][$i] . ' ';
+							
+						}
+					}
+				}
+				echo $this->adminModel->vendor($data,$photo);
+				// print_r($photo[1]);
+				// echo count($photo);
+			} else {
+				echo 'Please choose at least one file';
+			}
+		}
 	}
 
 	public function privacy(){

@@ -37,7 +37,9 @@ $(document).on("click", "#vendorSave", function() {
   for (var x = 0; x < sd; x++) {
     fd.append("files[]", document.getElementById("sampleVendors").files[x]);
   }
-  // fd.append("samples", photo_data);
+  fd.append("name", name);
+  fd.append("fee", fee);
+  fd.append("serviceType", serviceType);
   $.ajax({
     url: URLL_ROOT + "/admin/vendor",
     type: "POST",
