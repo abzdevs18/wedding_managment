@@ -12,14 +12,18 @@ CREATE TABLE `user` (
   `user_availability` boolean,
   PRIMARY KEY (`id`)
 );
+CREATE TABLE `ch_site` (
+  `id` int auto_increment,
+  `site_name` varchar(50),
+  `timestamp` timestamp,
+  PRIMARY KEY (`id`)
+);
 
-CREATE TABLE `profile_photo` (
-  `photo_id` int(11) auto_increment,
-  `user_id` int(11),
-  `image_path` varchar(250),
-  `image_status` boolean,
-  PRIMARY KEY (`photo_id`),
-  KEY `FK` (`user_id`)
+CREATE TABLE `ch_logo` (
+  `id` int auto_increment PRIMARY KEY,
+  `site_fk` int(11) NOT NULL,
+  `path` text NOT NULL,
+  `status` tinyint(1) NOT NULL
 );
 
 CREATE TABLE `user_email` (
@@ -30,6 +34,18 @@ CREATE TABLE `user_email` (
   PRIMARY KEY (`id`),
   KEY `FK` (`user_id`)
 );
+
+-- Above are the most important tables during first execution
+
+CREATE TABLE `profile_photo` (
+  `photo_id` int(11) auto_increment,
+  `user_id` int(11),
+  `image_path` varchar(250),
+  `image_status` boolean,
+  PRIMARY KEY (`photo_id`),
+  KEY `FK` (`user_id`)
+);
+
 
 CREATE TABLE `contact` (
   `contact_id` int(11) auto_increment,
@@ -183,20 +199,3 @@ CREATE TABLE `bride` (
   PRIMARY KEY (`id`),
   KEY `FK` (`couple_id`)
 );
-
-
-
-CREATE TABLE `ch_site` (
-  `id` int auto_increment,
-  `site_name` varchar(50),
-  `timestamp` timestamp,
-  PRIMARY KEY (`id`)
-);
-
-CREATE TABLE `ch_logo` (
-  `id` int auto_increment PRIMARY KEY,
-  `site_fk` int(11) NOT NULL,
-  `path` text NOT NULL,
-  `status` tinyint(1) NOT NULL
-);
-
