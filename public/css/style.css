@@ -1384,8 +1384,9 @@ transition: all .5s;
 	border-radius: 5px;
 }
 .m_icon_req > span {
-	font-size: 40px;
-	line-height: 69px;
+	font-size: 120px;
+	line-height: 160px;
+	font-family: 'Roboto', sans-serif;
 }
 .m_head_req {
 	font: var(--font-quick-500-18);

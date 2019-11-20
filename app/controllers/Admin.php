@@ -82,13 +82,18 @@ class Admin extends Controller
 	}
 
 	public function photographer(){
+
+		$photog = $this->adminModel->getPhotog();
+		$data = [
+			"photog" => $photog
+		];
 		
 		// no other solution this is for the Left sidebar navigation
 		// the active state is dependent to this SESSION we are setting.
 		unset($_SESSION['menu_active']);
 		$_SESSION['menu_active'] = "photographer";
 
-		$this->view('admin/photographer');
+		$this->view('admin/photographer', $data);
 	}
 
 	public function event(){
@@ -167,20 +172,47 @@ class Admin extends Controller
 						echo "Error: " . $_FILES["files"]["error"][$i] . "<br>";
 					} else {
 						if (file_exists($_SERVER['DOCUMENT_ROOT'] . ROOT ."/public/img/test/" . $_FILES["files"]["name"][$i])) {
-							echo 'File already exists : uploads/' . $_FILES["files"]["name"][$i];
+								$data['status'] = 0;
 						} else {
 							move_uploaded_file($_FILES["files"]["tmp_name"][$i], $_SERVER['DOCUMENT_ROOT'] . ROOT ."/public/img/test/" . $_FILES["files"]["name"][$i]);
-							echo 'File successfully uploaded : uploads/' . $_FILES["files"]["name"][$i] . ' ';
-							
+							$data['status'] = 2;
 						}
 					}
 				}
-				echo $this->adminModel->vendor($data,$photo);
-				// print_r($photo[1]);
-				// echo count($photo);
+				if($data['status'] == 2){
+					// If the upload to the server is successful STATUS 2, only then we execute a insert query to the database
+					if($this->adminModel->vendor($data,$photo)){
+						$data['status'] = 1;
+					}
+				}
 			} else {
-				echo 'Please choose at least one file';
+				if($this->adminModel->vendor($data,$photo)){
+					$data['status'] = 1;
+				}
 			}
+			echo json_encode($data);
+		}
+	}
+
+	public function getSamples()
+	{
+		if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {		
+			$_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+			$id = trim($_POST['uid']);
+
+			$data = [
+				"samples" => ""
+			];
+
+			$images = $this->adminModel->getSamples($id);
+			if($images){
+				$data['samples'] = $images;
+				$this->view("admin/templates/sampleSlider", $data);
+			}else{
+				echo 'dd';
+			}
+
 		}
 	}
 

@@ -33,7 +33,7 @@ class Admins
 		// echo $this->db;
 	}
 
-	public function vendor($data, $photo = []){
+	public function vendor($data, $photo){
 		try {
 			$this->db->beginTransaction();
 			$this->db->query("INSERT INTO `vendor`(`vendor_name`) VALUES (:name)");
@@ -63,5 +63,28 @@ class Admins
 			return false;
 		}
 
+	}
+
+	public function getPhotog()
+	{
+		$this->db->query("SELECT vendor.vendor_id AS vendorId, vendor.vendor_name AS vendorN, service.name AS serviceN, service.price AS serviceP FROM vendor LEFT JOIN service ON service.vendor_id = vendor.vendor_id");
+		$row = $this->db->resultSet();
+		if($row){
+			return $row;
+		}else{
+			return false;
+		}
+	}
+	// Samples photo taken
+	public function getSamples($id)
+	{
+		$this->db->query("SELECT * FROM service_photo WHERE service_photo.vendor_id = :vId");
+		$this->db->bind(":vId", $id);
+		$row = $this->db->resultSet();
+		if($row){
+			return $row;
+		}else{
+			return false;
+		}
 	}
 }

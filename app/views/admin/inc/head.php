@@ -119,6 +119,27 @@
 	</script>
 </head>
 <body style="position:relative;" onload="init();">
+<!-- Modal for confirmation in deleting Blog  -->
+<div class="slideModal" style="display:none;z-index:999999999;">
+    <div class="confirmationMessage mCustomScrollbar content fluid light" data-mcs-theme="inset-2-dark" style="max-height:500px;margin-top:3%;">
+        
+    <div class="alert-content no-fixed-height" style="display: flex;flex-direction: column;">
+        <h2 style="text-align:left;padding:30px;">Sample works</h2>				
+            <div class="changepass-holder" style="padding:5px 30px;">
+                <div class="form-group" style="height:300px;">
+                    <div class="sampleModal" style="box-shadow: var(--box-shadow);border-radius: 5px;overflow: hidden;">
+					
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="actionButtonModal slideM" style="padding: 15px 30px;margin: 0;background: #3333331c;justify-content: right;">
+            <!-- <button>Save</button> -->
+            <button>Close</button>
+        </div>
+    </div>
+</div>
+<!-- End of modal blog Deletion -->
 	<!-- Modal for confirmation in deleting Blog  -->
 	<div class="confirmationModal" style="display:none;">
 		<div class="confirmationMessage mCustomScrollbar content fluid light" data-mcs-theme="inset-2-dark" style="max-height:500px;margin-top:3%;">
@@ -156,21 +177,26 @@
 						<label for="vendorSample">Photos taken</label>
 					</div>
 				</div>
-				<div class="changepass-holder" style="padding:5px 30px;display:none;">
+				<div class="changepass-holder previewSampleImages" style="padding:5px 30px;display:none;">
 					<div class="form-group">
 						<div class="grid-container" style="border: 1px solid #2b2f3e4f;border-radius:5px;">
-						<div class="grid-item">1</div>
-						<div class="grid-item">2</div>
-						<div class="grid-item">3</div>  
-						<div class="grid-item">4</div>
-						<div class="grid-item">5</div>
-						<div class="grid-item">6</div>  
-						<div class="grid-item">7</div>
-						<div class="grid-item">8</div>
-						<div class="grid-item">9</div>  
-						</div>
+							<!-- <div class="grid-item" style="height:115px;"></div> -->
+							<!-- <div class="grid-item">2</div>
+							<div class="grid-item">3</div>  
+							<div class="grid-item">4</div>
+							<div class="grid-item">5</div>
+							<div class="grid-item">6</div>  
+							<div class="grid-item">7</div>
+							<div class="grid-item">8</div>
+							<div class="grid-item">9</div>   -->
+							</div>
 						<label>Price</label>
 					</div>
+				</div>
+				<!-- Updating:  <span id="statusText">10%</span> -->
+				<div class="form-group updatingSign" style="width:90%;margin:0 auto;display:none;">
+					<div class="blog_update_progress_percent" style="background-color:#323759;border-radius:35px;"><p id="statusPercent"></p></div>
+					<input type="text" id="blog_update_progress" class="form-control" style="height:0px;">
 				</div>
 			</div>
 			<div class="actionButtonModal" style="padding: 15px 30px;margin: 0;background: #3333331c;justify-content: right;">
@@ -237,19 +263,19 @@
 	
 	<!-- Right Sidebar -->
 	<div class="request_side">
-		<span><i class="fal fa-times"></i></span>
+		<span id="venCloser" style="cursor:pointer;z-index:999999;"><i class="fal fa-times"></i></span>
 		<div class="req_details mCustomScrollbar content fluid light" data-mcs-theme="inset-2-dark" style="height: calc( 100vh - 100px );width:100%;">
 			<div id="head_name">
-				<div class="request_icon_wrapper m_icon">
-					<div class="req_icon m_icon_req">
+				<div class="request_icon_wrapper m_icon" style="width:100%;">
+					<div class="req_icon m_icon_req" style="min-width: 50%;max-width: 55%;">
 						<span>IV</span>
 					</div>
 					<div style="margin:5px;margin-top:11px;" class="m_head_req">
 						<h3>Flower de Santa Ana</h3>
 					</div>
-					<p style="font:var(--font-quick-500-18);font-size:15px;">Flower Shop</p>
+					<p style="font:var(--font-quick-500-18);font-size:15px;" id="vendorType">Flower Shop</p>
 					<div id="m_req_status">
-						<span><i class="far fa-ruble-sign"></i> 400.00</span>
+						<p><i class="far fa-ruble-sign"></i> <span id="fees"> 400.00</span></p>
 					</div>
 				</div>
 			</div>

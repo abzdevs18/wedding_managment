@@ -1,52 +1,75 @@
-
-.confirmationModal {
-	position: absolute;
-	width: 100%;
-	height: 100vh;
-	/* height: 100%; */
-	background: rgba(51, 51, 51, 0.425);
-	margin: 0 auto;
-	z-index: 9999999;
+#blog_update_progress {
+  position: relative;
+  border-radius: 0px;
+  font: var(--font-quick-500-16);
+  color: #333;
+  text-align: center;
+  background: none;
+  border: none;
+}
+.blog_update_progress_percent {
+  position: absolute;
+  background: #00cc67;
+  left: 0;
+  transition: all 0.3s ease-in-out;
+  height: 100%;
+}
+#statusPercent {
+  position: absolute;
+  right: 10px;
+  font: var(--font-quick-500-16);
+  top: -3px;
+  color: #fff;
+}
+.confirmationModal,
+.slideModal {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  /* height: 100%; */
+  background: rgba(51, 51, 51, 0.425);
+  margin: 0 auto;
+  z-index: 9999999;
 }
 .confirmationMessage {
-	width: 40%;
-	/* height: 300px; */
-	background:#fff;
-	margin: 0 auto;
-	margin-top: 10%;
-	display:flex;
-	flex-direction: column;
-	border-radius: 5px;
-	position: fixed;
-	left: 0;
-	right: 0;
+  width: 40%;
+  /* height: 300px; */
+  background: #fff;
+  margin: 0 auto;
+  margin-top: 10%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  position: fixed;
+  left: 0;
+  right: 0;
 }
 .confirmationMessage h2 {
-	padding: 50px;
-	font: var(--font-quick-500-20);
-	color: var(--light-dark);
-	text-align: center;
+  padding: 50px;
+  font: var(--font-quick-500-20);
+  color: var(--light-dark);
+  text-align: center;
 }
 
 .actionButtonModal {
-	display: flex;
-	flex-direction: row;
-	margin: 30px;
+  display: flex;
+  flex-direction: row;
+  margin: 30px;
 }
-.actionButtonModal button{
-	padding: 0px 10px;
-	border: none;
-	border-radius: 5px;
-	margin-right: 15px;
-	font:var(--font-quick-500-16);
-	cursor: pointer;
+.actionButtonModal button {
+  padding: 0px 10px;
+  border: none;
+  border-radius: 5px;
+  margin-right: 15px;
+  font: var(--font-quick-500-16);
+  cursor: pointer;
 }
 .actionButtonModal button:first-child {
-	background: #f91942;
-	color: #fff;
+  background: #f91942;
+  color: #fff;
 }
 .actionButtonModal button:last-child {
-	background: var(--green);
-	color: #fff;
-	padding: 0 20px;
+  background: var(--green);
+  color: #fff;
+  padding: 0 20px;
 }

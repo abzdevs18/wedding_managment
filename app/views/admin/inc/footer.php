@@ -18,7 +18,6 @@
 	<script src="<?=URL_ROOT;?>/js/jquery.mCustomScrollbar.concat.min.js"></script>
 	<script src="<?=URL_ROOT;?>/js/push.min.js"></script>
 	<script src="<?=URL_ROOT;?>/js/main.js"></script>
-	<script src="<?=URL_ROOT;?>/js/script.js"></script>
 	<script src="<?=URL_ROOT;?>/js/admin_script.js"></script>
 	<!-- <script src="https://cdn.tiny.cloud/1/hhu3aczt7p034dcjnizjwnns5faj5u4s14e894midesztea0/tinymce/5/tinymce.min.js"></script>  -->
 
@@ -26,7 +25,23 @@
 	<script src="https://unpkg.com/babel-polyfill@6.2.0/dist/polyfill.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/rome/2.1.22/rome.standalone.js"></script>
-	<script src="<?=URL_ROOT;?>/js/datePicker/material-datetime-picker.js" charset="utf-8"></script>
+  <script src="<?=URL_ROOT;?>/js/datePicker/material-datetime-picker.js" charset="utf-8"></script>
+
+  <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+	<script src="<?=URL_ROOT;?>/js/script.js"></script>
+  <!-- <script type="text/javascript">
+    $(document).ready(function(){
+      $('.sampleModal').slick({
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        autoplay: true,
+        arrows: false,
+        autoplaySpeed: 1000,
+      });
+    });
+  </script> -->
 
 <script>
 

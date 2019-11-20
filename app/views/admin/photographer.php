@@ -31,29 +31,31 @@
 					<thead>
 						<tr>
 							<th>Photographer <sup><i class="fal fa-question-circle" style="font-size:12px;" title="Click the photo of photographer to see sample work."></i></sup></th>
-							<th>Flower</th>
+							<th>Service Fee</th>
 							<!-- <th>Floral Image</th> -->
 							<th>Actions</th>
 						</tr>
 					</thead>
 					<tbody>
-						<?php for($i = 0; $i < 5; $i++) : ?>
-						<tr class="table-inventory req_logs_">						
-							<td class="tittle-id" valign="middle">
-								<h3>Ammonium Sulphate  AR Grade  </h3>
-								<!-- <span>Chemical ID: 20190321341</span> -->
-							</td> 
-							<td class="item-cat" valign="middle">
-								<span>(NH<sub>4</sub>)2SO<sub>3</sub></span>	
-							</td>
-							<!-- <td class="item-cat">
-								<span>77.08</span>	
-							</td> -->
-							<td class="action-btn">
-								<i class="far fa-ellipsis-h-alt" style="font-size: 30px;color: #fe5894;"></i>
-							</td>
-						</tr>
-						<?php endfor; ?>
+						<?php if($data['photog']) : ?>
+							<?php foreach($data['photog'] AS $photographer): ?>
+								<tr class="table-inventory req_logs_ photog_wrapper" data-uid="<?=$photographer->vendorId?>" data-name="<?=$photographer->vendorN?>" data-fee="<?=number_format($photographer->serviceP)?>.00">						
+									<td class="tittle-id" valign="middle">
+										<h3><?=$photographer->vendorN?></h3>
+										<!-- <span>Chemical ID: 20190321341</span> -->
+									</td> 
+									<td class="item-cat" valign="middle">
+										<span id="serviceFee">P<?=number_format($photographer->serviceP)?>.00</span>	
+									</td>
+									<!-- <td class="item-cat">
+										<span>77.08</span>	
+									</td> -->
+									<td class="action-btn">
+										<i class="far fa-ellipsis-h-alt" style="font-size: 30px;color: #fe5894;"></i>
+									</td>
+								</tr>
+							<?php endforeach;?>
+						<?php endif; ?>
 					</tbody>
 				</table>
 			</div><!-- End of Table Design -->

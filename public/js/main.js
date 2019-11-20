@@ -338,17 +338,6 @@ function feedbackHide(container){
   $('.' + container + ' .invalid-feedback').hide();
 }
 
-$(document).on('click','.req_logs_', function(){
-  var stat = $(".request_side").attr("data-status");
-  if(stat == "open"){
-    $(".request_side").attr("data-status","");
-    $(".request_side").css("right","-33%");
-  }else{
-    $(".request_side").attr("data-status","open");
-    $(".request_side").css("right","0");
-  }
-});
-
 $(window).scroll(function(){
   var w = $(window).scrollTop();
   var e = $(".dashboard-nav").offset().top;
