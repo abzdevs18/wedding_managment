@@ -10,6 +10,15 @@ $(document).on("click", ".addVendor", function() {
   if (vendorType == "photog") {
     $(".confirmationMessage h2").text("Adding photographer to record.");
     $(".actionButtonModal button:first-child").attr("data-serviceType", 1);
+  } else if (vendorType == "attire") {
+    $(".confirmationMessage h2").text("Adding artist to record.");
+    $(".actionButtonModal button:first-child").attr("data-serviceType", 2);
+  } else if (vendorType == "food") {
+    $(".confirmationMessage h2").text("Adding Catering services to record.");
+    $(".actionButtonModal button:first-child").attr("data-serviceType", 3);
+  } else if (vendorType == "flower") {
+    $(".confirmationMessage h2").text("Adding Flower shop to record.");
+    $(".actionButtonModal button:first-child").attr("data-serviceType", 4);
   }
   $("body").css({
     overflow: "hidden",
@@ -19,12 +28,7 @@ $(document).on("click", ".addVendor", function() {
   $(".actionButtonModal button:last-child").attr("id", "closeClient");
 });
 $(document).on("click", "#closeClient", function() {
-  //   window.location.href = URL_ROOT;
-  $(".confirmationModal").hide(10);
-  $("body").css({
-    overflow: "auto",
-    position: "relative"
-  });
+  venderRecordAdding("photographer");
 });
 
 $(document).on("click", "#vendorSave", function() {
@@ -33,6 +37,7 @@ $(document).on("click", "#vendorSave", function() {
   var serviceType = $(this).attr("data-serviceType");
   var name = $("#vendorName").val();
   var fee = $("#vendorFee").val();
+
   var fd = new FormData();
   // var photo_data = $("#sampleVendors").prop("files")[0];
   var sd = document.getElementById("sampleVendors").files.length;
@@ -80,10 +85,19 @@ $(document).on("click", "#vendorSave", function() {
     },
     success: function(data) {
       if (data["status"]) {
-        $(".confirmationModal").hide(10);
-        window.location.href = URLL_ROOT + "/admin/photographer";
+        // $(".confirmationModal").hide(10);
+        // window.location.href = URLL_ROOT + "/admin/photographer";
+        if (serviceType == 1) {
+          venderRecordAdding("photographer");
+        } else if (serviceType == 2) {
+          venderRecordAdding("attire");
+        } else if (serviceType == 3) {
+          venderRecordAdding("food");
+        } else if (serviceType == 4) {
+          venderRecordAdding("flower");
+        }
       }
-      // console.log(fd);
+      console.log(data);
     },
     error: function(err) {
       console.log(err);
@@ -126,29 +140,33 @@ $(document).on("click", ".photog_wrapper", function() {
   var vendor_name = $(this).attr("data-name");
   var vendor_fee = $(this).attr("data-fee");
   var vendor_id = $(this).attr("data-uid");
+  var vendorType = $(this).attr("data-vt");
 
   //  else {
   $(".m_icon_req").attr("data-uid", vendor_id);
+  $(".m_icon_req").attr("data-vt", vendorType);
   $(".request_side").attr("data-status", "open");
   $(".request_side").css("right", "0");
   $(".m_head_req").text(vendor_name);
   $("#fees").text(vendor_fee);
-  $("#vendorType").text("Photographer");
   $(".m_icon_req span").text(vendor_name.charAt(0));
   // }
-});
-
-$(document).on("click", "#venCloser", function() {
-  var stat = $(".request_side").attr("data-status");
-  if (stat == "open") {
-    $(".request_side").attr("data-status", "");
-    $(".request_side").css("right", "-33%");
+  if (vendorType == 1) {
+    $("#vendorType").text("Photographer");
+  } else if (vendorType == 2) {
+    $("#vendorType").text("Beauty Shop");
+  } else if (vendorType == 3) {
+    $("#vendorType").text("Food & Catering Services");
+  } else if (vendorType == 4) {
+    $("#vendorType").text("Flower Shop");
   }
 });
 
 $(document).on("click", ".m_icon_req", function() {
   $(".slideModal").show(100);
+  $(".slideM button").attr("data-type", $(this).attr("data-vt"));
   var uid = $(".m_icon_req").attr("data-uid");
+
   $.ajax({
     url: URLL_ROOT + "/admin/getSamples",
     type: "POST",
@@ -173,8 +191,32 @@ $(document).on("click", ".m_icon_req", function() {
   });
   console.log(uid);
 });
-
-$(document).on("click", ".slideM", function() {
-  // $(".slideModal").hide(100);
-  window.location.href = URLL_ROOT + "/admin/photographer";
+$(document).on("click", ".slideM button", function() {
+  var serviceType = $(this).attr("data-type");
+  if (serviceType == 1) {
+    venderRecordAdding("photographer");
+  } else if (serviceType == 2) {
+    venderRecordAdding("attire");
+  } else if (serviceType == 3) {
+    venderRecordAdding("food");
+  } else if (serviceType == 4) {
+    venderRecordAdding("flower");
+  }
 });
+// $(document).on("click", "#closeClient", function() {
+//   // $(".slideModal").hide(100);
+//   window.location.href = URLL_ROOT + "/admin/photographer";
+// });
+
+$(document).on("click", "#venCloser", function() {
+  var stat = $(".request_side").attr("data-status");
+  if (stat == "open") {
+    $(".request_side").attr("data-status", "");
+    $(".request_side").css("right", "-33%");
+  }
+});
+
+// Using the function below close the modal slider and adding of vendor
+function venderRecordAdding(photographer) {
+  window.location.href = URLL_ROOT + "/admin/" + photographer;
+}

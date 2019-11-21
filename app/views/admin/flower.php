@@ -19,7 +19,7 @@
 				<div id="search-sort">
                     <div class="actionButtonModal add-btn-top-table" style="margin:0px;">
                         <!-- <button>Deny</button> -->
-                        <button id="cancelDeletion">Add Vendor</button>
+                        <button class="addVendor" data-ven="flower">Add Vendor</button>
                     </div>
 				</div>
 			</div><!-- End of Sorting -->
@@ -35,23 +35,25 @@
 						</tr>
 					</thead>
 					<tbody>
-						<?php for($i = 0; $i < 5; $i++) : ?>
-						<tr class="table-inventory req_logs_">						
-							<td class="tittle-id" valign="middle">
-								<h3>Ammonium Sulphate  AR Grade  </h3>
-								<!-- <span>Chemical ID: 20190321341</span> -->
-							</td> 
-							<td class="item-cat" valign="middle">
-								<span>(NH<sub>4</sub>)2SO<sub>3</sub></span>	
-							</td>
-							<!-- <td class="item-cat">
-								<span>77.08</span>	
-							</td> -->
-							<td class="action-btn">
-								<i class="far fa-ellipsis-h-alt" style="font-size: 30px;color: #fe5894;"></i>
-							</td>
-						</tr>
-						<?php endfor; ?>
+						<?php if($data['flower']) : ?>
+							<?php foreach($data['flower'] AS $flower): ?>
+								<tr class="table-inventory req_logs_ photog_wrapper" data-uid="<?=$flower->vendorId?>" data-name="<?=$flower->vendorN?>" data-fee="<?=number_format($flower->serviceP)?>.00" data-vt="<?=$flower->vType?>">						
+									<td class="tittle-id" valign="middle">
+										<h3><?=$flower->vendorN?></h3>
+										<!-- <span>Chemical ID: 20190321341</span> -->
+									</td> 
+									<td class="item-cat" valign="middle">
+										<span id="serviceFee">P<?=number_format($flower->serviceP)?>.00</span>	
+									</td>
+									<!-- <td class="item-cat">
+										<span>77.08</span>	
+									</td> -->
+									<td class="action-btn">
+										<i class="far fa-ellipsis-h-alt" style="font-size: 30px;color: #fe5894;"></i>
+									</td>
+								</tr>
+							<?php endforeach;?>
+						<?php endif; ?>
 					</tbody>
 				</table>
 			</div><!-- End of Table Design -->

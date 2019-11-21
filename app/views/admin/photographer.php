@@ -39,7 +39,7 @@
 					<tbody>
 						<?php if($data['photog']) : ?>
 							<?php foreach($data['photog'] AS $photographer): ?>
-								<tr class="table-inventory req_logs_ photog_wrapper" data-uid="<?=$photographer->vendorId?>" data-name="<?=$photographer->vendorN?>" data-fee="<?=number_format($photographer->serviceP)?>.00">						
+								<tr class="table-inventory req_logs_ photog_wrapper" data-uid="<?=$photographer->vendorId?>" data-name="<?=$photographer->vendorN?>" data-fee="<?=number_format($photographer->serviceP)?>.00" data-vt="<?=$photographer->vType?>">						
 									<td class="tittle-id" valign="middle">
 										<h3><?=$photographer->vendorN?></h3>
 										<!-- <span>Chemical ID: 20190321341</span> -->

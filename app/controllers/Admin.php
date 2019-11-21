@@ -51,34 +51,47 @@ class Admin extends Controller
 	}
 
 	public function flower(){
+		$flower = $this->adminModel->getFlowers();
+		$data = [
+			"flower" => $flower
+		];
+		
 		
 		// no other solution this is for the Left sidebar navigation
 		// the active state is dependent to this SESSION we are setting.
 		unset($_SESSION['menu_active']);
 		$_SESSION['menu_active'] = "flower";
 
-		$this->view('admin/flower');
+		$this->view('admin/flower',$data);
 	}
 
 	public function food(){
+		$food = $this->adminModel->getFoods();
+		$data = [
+			"food" => $food
+		];
+		
 		
 		// no other solution this is for the Left sidebar navigation
 		// the active state is dependent to this SESSION we are setting.
 		unset($_SESSION['menu_active']);
 		$_SESSION['menu_active'] = "food";
 
-		$this->view('admin/food');
+		$this->view('admin/food', $data);
 	}
 
 	public function attire(){
-
+		$attire = $this->adminModel->getAttire();
+		$data = [
+			"attire" => $attire
+		];
 		
 		// no other solution this is for the Left sidebar navigation
 		// the active state is dependent to this SESSION we are setting.
 		unset($_SESSION['menu_active']);
 		$_SESSION['menu_active'] = "attire";
 
-		$this->view('admin/attire');
+		$this->view('admin/attire', $data);
 	}
 
 	public function photographer(){
@@ -206,12 +219,12 @@ class Admin extends Controller
 			];
 
 			$images = $this->adminModel->getSamples($id);
-			if($images){
+			// if($images){
 				$data['samples'] = $images;
 				$this->view("admin/templates/sampleSlider", $data);
-			}else{
-				echo 'dd';
-			}
+			// }else{
+			// 	echo 'dd';
+			// }
 
 		}
 	}

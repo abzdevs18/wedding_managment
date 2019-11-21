@@ -21,7 +21,7 @@
 				<div id="search-sort">
                     <div class="actionButtonModal add-btn-top-table" style="margin:0px;">
                         <!-- <button>Deny</button> -->
-                        <button id="cancelDeletion">Add Vendor</button>
+                        <button class="addVendor" data-ven="food">Add Vendor</button>
                     </div>
 				</div>
 			</div><!-- End of Sorting -->
@@ -30,30 +30,32 @@
 				<table class="table-custom">
 					<thead>
 						<tr>
-							<th>Florist</th>
-							<th>Flower</th>
+							<th>Catering Service Provider</th>
+							<th>Price</th>
 							<!-- <th>Floral Image</th> -->
 							<th>Actions</th>
 						</tr>
 					</thead>
 					<tbody>
-						<?php for($i = 0; $i < 5; $i++) : ?>
-						<tr class="table-inventory req_logs_">						
-							<td class="tittle-id" valign="middle">
-								<h3>Ammonium Sulphate  AR Grade  </h3>
-								<!-- <span>Chemical ID: 20190321341</span> -->
-							</td> 
-							<td class="item-cat" valign="middle">
-								<span>(NH<sub>4</sub>)2SO<sub>3</sub></span>	
-							</td>
-							<!-- <td class="item-cat">
-								<span>77.08</span>	
-							</td> -->
-							<td class="action-btn">
-								<i class="far fa-ellipsis-h-alt" style="font-size: 30px;color: #fe5894;"></i>
-							</td>
-						</tr>
-						<?php endfor; ?>
+						<?php if($data['food']) : ?>
+							<?php foreach($data['food'] AS $food): ?>
+								<tr class="table-inventory req_logs_ photog_wrapper" data-uid="<?=$food->vendorId?>" data-name="<?=$food->vendorN?>" data-fee="<?=number_format($food->serviceP)?>.00" data-vt="<?=$food->vType?>">						
+									<td class="tittle-id" valign="middle">
+										<h3><?=$food->vendorN?></h3>
+										<!-- <span>Chemical ID: 20190321341</span> -->
+									</td> 
+									<td class="item-cat" valign="middle">
+										<span id="serviceFee">P<?=number_format($food->serviceP)?>.00</span>	
+									</td>
+									<!-- <td class="item-cat">
+										<span>77.08</span>	
+									</td> -->
+									<td class="action-btn">
+										<i class="far fa-ellipsis-h-alt" style="font-size: 30px;color: #fe5894;"></i>
+									</td>
+								</tr>
+							<?php endforeach;?>
+						<?php endif; ?>
 					</tbody>
 				</table>
 			</div><!-- End of Table Design -->

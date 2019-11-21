@@ -67,7 +67,40 @@ class Admins
 
 	public function getPhotog()
 	{
-		$this->db->query("SELECT vendor.vendor_id AS vendorId, vendor.vendor_name AS vendorN, service.name AS serviceN, service.price AS serviceP FROM vendor LEFT JOIN service ON service.vendor_id = vendor.vendor_id");
+		$this->db->query("SELECT vendor.vendor_id AS vendorId, service.service_type AS vType, vendor.vendor_name AS vendorN, service.name AS serviceN, service.price AS serviceP FROM vendor LEFT JOIN service ON service.vendor_id = vendor.vendor_id WHERE service.service_type = 1");
+		$row = $this->db->resultSet();
+		if($row){
+			return $row;
+		}else{
+			return false;
+		}
+	}
+
+	public function getAttire()
+	{
+		$this->db->query("SELECT vendor.vendor_id AS vendorId, service.service_type AS vType, vendor.vendor_name AS vendorN, service.name AS serviceN, service.price AS serviceP FROM vendor LEFT JOIN service ON service.vendor_id = vendor.vendor_id WHERE service.service_type = 2");
+		$row = $this->db->resultSet();
+		if($row){
+			return $row;
+		}else{
+			return false;
+		}
+	}
+
+	public function getFoods()
+	{
+		$this->db->query("SELECT vendor.vendor_id AS vendorId, service.service_type AS vType, vendor.vendor_name AS vendorN, service.name AS serviceN, service.price AS serviceP FROM vendor LEFT JOIN service ON service.vendor_id = vendor.vendor_id WHERE service.service_type = 3");
+		$row = $this->db->resultSet();
+		if($row){
+			return $row;
+		}else{
+			return false;
+		}
+	}
+
+	public function getFlowers()
+	{
+		$this->db->query("SELECT vendor.vendor_id AS vendorId, service.service_type AS vType, vendor.vendor_name AS vendorN, service.name AS serviceN, service.price AS serviceP FROM vendor LEFT JOIN service ON service.vendor_id = vendor.vendor_id WHERE service.service_type = 4");
 		$row = $this->db->resultSet();
 		if($row){
 			return $row;
