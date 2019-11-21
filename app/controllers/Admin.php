@@ -157,13 +157,19 @@ class Admin extends Controller
 	}
 
 	public function messenger(){
-		
+		$listMsgUser = $this->adminModel->getUserMsg();
+		$iL = $this->adminModel->getLatestSender();
+		$latest = $this->adminModel->getLatestMessages(1,$iL[0]->rId);
+		$data = [
+			"users" => $listMsgUser,
+			"latestM" => $latest
+		];
 		// no other solution this is for the Left sidebar navigation
 		// the active state is dependent to this SESSION we are setting.
 		unset($_SESSION['menu_active']);
 		$_SESSION['menu_active'] = "messages";
 
-		$this->view('admin/messages');
+		$this->view('admin/messages', $data);
 	}
 	public function vendor(){
 		
@@ -222,6 +228,33 @@ class Admin extends Controller
 			// if($images){
 				$data['samples'] = $images;
 				$this->view("admin/templates/sampleSlider", $data);
+			// }else{
+			// 	echo 'dd';
+			// }
+
+		}
+	}
+	public function getSorted()
+	{
+		if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {		
+			$_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+			$service = trim($_POST['serviceId']);
+			$sort = trim($_POST['sortVal']);
+
+			$data = [
+				"data" => ""
+			];
+
+			if($sort == 1){
+				$rows = $this->adminModel->orderByTime($service);
+				$data['data'] = $rows;
+			}else if($sort == 2){
+				$rows = $this->adminModel->orderByPrice($service);
+				$data['data'] = $rows;
+			}
+			// if($images){
+				$this->view("admin/templates/sortTime", $data);
 			// }else{
 			// 	echo 'dd';
 			// }

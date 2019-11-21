@@ -181,7 +181,7 @@ CREATE TABLE `slide_image` (
 );
 
 CREATE TABLE `messages` (
-  `id` int(11) NOT NULL,
+  `id` int(11) PRIMARY KEY NOT NULL auto_increment,
   `user_receiver_id` int(11) DEFAULT NULL,
   `user_sender_id` int(11) DEFAULT NULL,
   `msg_content` text,

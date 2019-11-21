@@ -220,3 +220,44 @@ $(document).on("click", "#venCloser", function() {
 function venderRecordAdding(photographer) {
   window.location.href = URLL_ROOT + "/admin/" + photographer;
 }
+
+// This is for the sorting process
+
+$(document).on("change", "#sort-filter", function() {
+  var serviceId = $(this).attr("data-sId");
+  var sortVal = $(this).val();
+
+  if (sortVal == 1) {
+    $.ajax({
+      url: URLL_ROOT + "/admin/getSorted",
+      type: "POST",
+      data: {
+        serviceId: serviceId,
+        sortVal: sortVal
+      },
+      success: function(data) {
+        $(".resultTables").html(data);
+        console.log(data);
+      },
+      error: function(err) {
+        console.log(err);
+      }
+    });
+  } else if (sortVal == 2) {
+    $.ajax({
+      url: URLL_ROOT + "/admin/getSorted",
+      type: "POST",
+      data: {
+        serviceId: serviceId,
+        sortVal: sortVal
+      },
+      success: function(data) {
+        $(".resultTables").html(data);
+        console.log(data);
+      },
+      error: function(err) {
+        console.log(err);
+      }
+    });
+  }
+});

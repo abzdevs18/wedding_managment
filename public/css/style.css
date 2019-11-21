@@ -278,7 +278,7 @@ End amdin profile
  	padding: 12px;
  	padding-left: 17px;
  	/* border-bottom: 1px solid #495067; */
- 	border-left: 3px solid var(--dark-font);
+ 	border-left: 3px solid #323759;
  	box-sizing: border-box;
  	cursor: pointer;
  	transition: all .5s;

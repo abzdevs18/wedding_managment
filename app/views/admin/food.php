@@ -11,10 +11,10 @@
 			<div class="sortby filter-category">
 				<div id="sort-drop">
 					<span>Sort by:</span>
-					<select id="sort-filter">
+					<select id="sort-filter" data-sId="3">
 						<optgroup>
-							<option selected value="jobs.timestamp">Most Recent</option>
-							<option value="jobs.salary">Job Salary</option>
+							<option selected value="1">Recently added</option>
+							<option value="2">Service charge</option>
 						</optgroup>
 					</select>
 				</div>
@@ -36,7 +36,7 @@
 							<th>Actions</th>
 						</tr>
 					</thead>
-					<tbody>
+					<tbody class="resultTables">
 						<?php if($data['food']) : ?>
 							<?php foreach($data['food'] AS $food): ?>
 								<tr class="table-inventory req_logs_ photog_wrapper" data-uid="<?=$food->vendorId?>" data-name="<?=$food->vendorN?>" data-fee="<?=number_format($food->serviceP)?>.00" data-vt="<?=$food->vType?>">						
