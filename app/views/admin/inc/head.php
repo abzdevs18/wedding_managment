@@ -17,11 +17,22 @@
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>	
 	<script src="https://cdn.tiny.cloud/1/hhu3aczt7p034dcjnizjwnns5faj5u4s14e894midesztea0/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
    
-	<script src="<?=URL_ROOT;?>/js/calendar/dhtmlxscheduler.js?v=5.3.3" type="text/javascript" charset="utf-8"></script>
-   <link rel="stylesheet" href="<?=URL_ROOT;?>/js/calendar/dhtmlxscheduler_material.css?v=5.3.3" type="text/css" charset="utf-8">
+	<!-- <script src="<?=URL_ROOT;?>/js/calendar/dhtmlxscheduler.js?v=5.3.3" type="text/javascript" charset="utf-8"></script>
+   <link rel="stylesheet" href="<?=URL_ROOT;?>/js/calendar/dhtmlxscheduler_material.css?v=5.3.3" type="text/css" charset="utf-8"> -->
 
-	<script src="<?=URL_ROOT;?>/js/calendar/dhtmlxscheduler_minical.js?v=5.3.3" type="text/javascript" charset="utf-8"></script>
+	<!-- <script src="<?=URL_ROOT;?>/js/calendar/dhtmlxscheduler_minical.js?v=5.3.3" type="text/javascript" charset="utf-8"></script> -->
 	
+	<link rel="stylesheet" href="https://unpkg.com/@fullcalendar/core@4.3.1/main.min.css" />
+	<link rel="stylesheet" href="https://unpkg.com/@fullcalendar/daygrid@4.3.0/main.min.css" />
+	<link rel="stylesheet" href="https://unpkg.com/@fullcalendar/core@4.3.1/main.min.css" />
+	<link rel="stylesheet" href="https://unpkg.com/@fullcalendar/timegrid@4.3.0/main.min.css" />
+	
+    <script src="https://unpkg.com/@fullcalendar/core@4.3.1/main.min.js"></script>
+    <script src="https://unpkg.com/@fullcalendar/interaction@4.3.0/main.min.js"></script>
+    <script src="https://unpkg.com/@fullcalendar/daygrid@4.3.0/main.min.js"></script>
+    <script src="https://unpkg.com/@fullcalendar/timegrid@4.3.0/main.min.js"></script>
+
+
     
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -41,10 +52,13 @@
 			font: var(--font-quick-500-18);
 			font-size: 15px;
 		}
+		.messaging .mCSB_inside > .mCSB_container {
+			flex-direction: column-reverse !important;
+		}
 		.mCSB_inside > .mCSB_container {
 			margin-right: 0px !important;
 			display: flex;
-			flex-direction: column-reverse;
+			flex-direction: column;
 		}
 		.tox-statusbar__branding {
 			display: none !important;
@@ -93,34 +107,8 @@
 			$('i').tooltip();
 		});
 	</script>
-
-	<script type="text/javascript" charset="utf-8">
-		function init() {
-			scheduler.config.multi_day = true;
-			
-			scheduler.init('scheduler_here',new Date(),"week");
-			scheduler.load("<?=URL_ROOT;?>/js/calendar/events.json");
-
-		}
-		
-		function show_minical(){
-			if (scheduler.isCalendarVisible())
-				scheduler.destroyCalendar();
-			else
-				scheduler.renderCalendar({
-					position:"dhx_minical_icon",
-					date:scheduler.getState().date,
-					navigation:true,
-					handler:function(date,calendar){
-						scheduler.setCurrentView(date);
-						scheduler.destroyCalendar()
-					}
-				});
-		}
-		
-	</script>
 </head>
-<body style="position:relative;" onload="init();">
+<body style="position:relative;">
 <!-- Modal for confirmation in deleting Blog  -->
 <div class="slideModal" style="display:none;z-index:999999999;">
     <div class="confirmationMessage mCustomScrollbar content fluid light" data-mcs-theme="inset-2-dark" style="max-height:500px;margin-top:3%;">

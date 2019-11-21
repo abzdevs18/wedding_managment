@@ -274,10 +274,18 @@ $(document).on("click", "#clientM", function() {
     success: function(data) {
       $("#rightMessages").html(data);
       //For scrollBar
-      $(".messaging").mCustomScrollbar({
-        autoHideScrollbar: true,
-        setTop: "-100%"
-      });
+      // $(".messaging").mCustomScrollbar({
+      //   autoHideScrollbar: true,
+      //   setTop: "-100%"
+      // });
+      (function($) {
+        $(window).on("load", function() {
+          $(".messaging").mCustomScrollbar("scrollTo", "bottom", {
+            autoHideScrollbar: true,
+            scrollInertia: 3000
+          });
+        });
+      })(jQuery);
       // console.log(data);
     },
     error: function(err) {
@@ -299,9 +307,13 @@ $(document).on("click", "#messageSendingButton", function() {
       sessionId: sId,
       msgContent: msgCon
     },
+    dataType: "json",
     success: function(data) {
-      // $("#rightMessages").html(data);
+      // console.log(data);
       if (data["status"]) {
+        $(".msgCon").text("");
+        $(".container-of-msgs label").show(10);
+
         $.ajax({
           url: URLL_ROOT + "/admin/getMsgClick",
           type: "POST",
@@ -311,16 +323,20 @@ $(document).on("click", "#messageSendingButton", function() {
           success: function(data) {
             $("#rightMessages").html(data);
             //For scrollBar
-            $(".messaging").mCustomScrollbar({
-              autoHideScrollbar: true,
-              setTop: "-100%"
-            });
+            (function($) {
+              $(".messaging").mCustomScrollbar("scrollTo", "bottom", {
+                autoHideScrollbar: true
+              });
+            })(jQuery);
             // console.log(data);
           },
           error: function(err) {
             console.log(err);
           }
         });
+        console.log("ssss");
+      } else {
+        console.log("saaw");
       }
     },
     error: function(err) {

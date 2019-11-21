@@ -206,7 +206,7 @@ class Admin extends Controller
 			$time = date("h:i a");
 
 			$data = [
-				"status" => 0,
+				"status" => "",
 				"sender" => trim($_POST['sessionId']),
 				"receiver" => trim($_POST['clientId']),
 				"message" => trim($_POST['msgContent']),
@@ -214,7 +214,7 @@ class Admin extends Controller
 				"sendTime" => $time
 			];
 			if($this->adminModel->sendMessage($data)){
-				$data['status'] = 1;
+				$data["status"] = 1;
 				echo json_encode($data);
 			}
 		}
@@ -318,6 +318,50 @@ class Admin extends Controller
 		$_SESSION['menu_active'] = "privacy";
 
 		$this->view('admin/privacy');
+	}
+
+	public function loadEvent()
+	{
+		$row = $this->adminModel->getEvents();
+		echo json_encode($row);
+	}
+	public function inserEvent()
+	{
+		if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {		
+			$_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+
+			$data = [
+				"title" => trim($_POST['title']),
+				"start" => trim($_POST['start']),
+				"end" => trim($_POST['end'])
+			];
+
+			if($this->adminModel->insertEvent($data)){
+				return true;
+			}else{
+				return false;
+			}
+		}			
+	}
+	public function updateTimeEvent()
+	{
+		if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {		
+			$_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+
+			$data = [
+				"title" => trim($_POST['title']),
+				"start" => trim($_POST['start']),
+				"end" => trim($_POST['end'])
+			];
+
+			if($this->adminModel->insertEvent($data)){
+				return true;
+			}else{
+				return false;
+			}
+		}			
 	}
 
 	public function logout(){

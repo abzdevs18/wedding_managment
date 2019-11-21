@@ -11,10 +11,14 @@ $(".content").mCustomScrollbar({
   autoHideScrollbar: true
 });
 //For scrollBar
-$(".messaging").mCustomScrollbar({
-  autoHideScrollbar: true,
-  setTop: "-100%"
-});
+(function($) {
+  $(window).on("load", function() {
+    $(".messaging").mCustomScrollbar("scrollTo", "bottom", {
+      autoHideScrollbar: true,
+      scrollInertia: 3000
+    });
+  });
+})(jQuery);
 /*ENd ScrollBar*/
 var URL_ROOT = "/wedding_cms";
 $(document).on("click", ".save-btn", function(e) {
@@ -436,64 +440,64 @@ $("#tinymce").submit(function(e) {
   console.log($("#chemicalFormula").val());
 });
 
-// Precaution Selection
-$(document).on("change", "#pre_warning_label", function() {
-  var option = $(this).val();
-  var content =
-    "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptas commodi incidunt similique";
-  $(".caution_note_label").show(100);
-  if (option == 1) {
-    precaution(
-      "/img/icons/safety/sprout.png",
-      "Nature Friendly",
-      "var(--nature-friendly-label)",
-      content,
-      "var(--nature-friendly-label)"
-    );
-  } else if (option == 2) {
-    precaution(
-      "/img/icons/safety/precaution.png",
-      "Proceed with caution",
-      "var(--proceed-with-caution-label)",
-      content,
-      "var(--proceed-with-caution-label)"
-    );
-  } else if (option == 3) {
-    precaution(
-      "/img/icons/safety/biohazard.png",
-      "Dispose properly",
-      "var(--dispose-properly-label)",
-      content,
-      "var(--dispose-properly)"
-    );
-  } else if (option == 4) {
-    precaution(
-      "/img/icons/safety/danger.png",
-      "Biohazard",
-      "var(--biohazard-label)",
-      content,
-      "var(--biohazard)"
-    );
-  } else {
-    $(".caution_note_label").hide(100);
-  }
-});
+document.addEventListener("DOMContentLoaded", function() {
+  var calendarEl = document.getElementById("calendar");
 
-function precaution(
-  icon,
-  label_text,
-  label_background,
-  content,
-  content_background
-) {
-  $("#precaution_icon").attr("src", URL_ROOT + icon);
-  $("#precaution_label").text(label_text);
-  $("#precaution_label").css("background-color", label_background);
-  $("#precaution_content").text(content);
-  $(".warning_content").css("background-color", content_background);
-}
-// End of Precaution Selection
+  var calendar = new FullCalendar.Calendar(calendarEl, {
+    plugins: ["interaction", "dayGrid", "timeGrid"],
+    defaultView: "dayGridMonth",
+    defaultDate: "2019-11-07",
+    editable: true,
+    header: {
+      left: "prev,next today",
+      center: "title",
+      right: "dayGridMonth,timeGridWeek,timeGridDay"
+    },
+    events: URL_ROOT + "/admin/loadEvent",
+    selectable: true,
+    selectHelper: true,
+    select: function(info) {
+      var title = prompt("Enter Event Title");
+      if (title) {
+        $.ajax({
+          url: URL_ROOT + "/admin/inserEvent",
+          type: "POST",
+          data: { title: title, start: info.startStr, end: info.endStr },
+          success: function() {
+            calendar.refetchEvents();
+            // alert("Added Successfully");
+          }
+        });
+      }
+    },
+    eventResize: function(info) {
+      $.ajax({
+        url: URL_ROOT + "/admin/updateTimeEvent",
+        type: "POST",
+        data: { id: info.id, start: info.startStr, end: info.endStr },
+        success: function() {
+          calendar.refetchEvents();
+          // alert("Added Successfully");
+        }
+      });
+    },
+    eventAfterRender: function(event, element, view) {
+      $(element).attr("id", "event_id_" + event._id);
+    }
+  });
 
-$(document).on("click", ".open_file_ex", function() {
-  $(".new_user_photo_set").show(50);
+  calendar.render();
 });
+$(
+  (function() {
+    $.ajax({
+      url: URL_ROOT + "/admin/loadEvent",
+      type: "POST",
+      success: function(data) {
+        // calendar.refetchEvents();
+        console.log(data);
+        // alert("Added Successfully");
+      }
+    });
+  })()
+);
