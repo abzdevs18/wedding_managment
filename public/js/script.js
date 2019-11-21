@@ -261,3 +261,78 @@ $(document).on("change", "#sort-filter", function() {
     });
   }
 });
+// Loading messages and go to bottom
+$(document).on("click", "#clientM", function() {
+  var uid = $(this).attr("data-uid");
+  $("#messageSendingButton").attr("data-uid", uid);
+  $.ajax({
+    url: URLL_ROOT + "/admin/getMsgClick",
+    type: "POST",
+    data: {
+      clientId: uid
+    },
+    success: function(data) {
+      $("#rightMessages").html(data);
+      //For scrollBar
+      $(".messaging").mCustomScrollbar({
+        autoHideScrollbar: true,
+        setTop: "-100%"
+      });
+      // console.log(data);
+    },
+    error: function(err) {
+      console.log(err);
+    }
+  });
+});
+// sending message
+$(document).on("click", "#messageSendingButton", function() {
+  var uid = $(this).attr("data-uid");
+  var sId = $(this).attr("data-sId");
+  var msgCon = $(".msgCon").text();
+
+  $.ajax({
+    url: URLL_ROOT + "/admin/setMessage",
+    type: "POST",
+    data: {
+      clientId: uid,
+      sessionId: sId,
+      msgContent: msgCon
+    },
+    success: function(data) {
+      // $("#rightMessages").html(data);
+      if (data["status"]) {
+        $.ajax({
+          url: URLL_ROOT + "/admin/getMsgClick",
+          type: "POST",
+          data: {
+            clientId: uid
+          },
+          success: function(data) {
+            $("#rightMessages").html(data);
+            //For scrollBar
+            $(".messaging").mCustomScrollbar({
+              autoHideScrollbar: true,
+              setTop: "-100%"
+            });
+            // console.log(data);
+          },
+          error: function(err) {
+            console.log(err);
+          }
+        });
+      }
+    },
+    error: function(err) {
+      console.log(err);
+    }
+  });
+});
+$(document).on("keyup", ".msgCon", function() {
+  var msgCon = $(this).text();
+  if (msgCon != "") {
+    $(".container-of-msgs label").hide(10);
+  } else {
+    $(".container-of-msgs label").show(10);
+  }
+});

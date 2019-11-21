@@ -43,6 +43,8 @@
 		}
 		.mCSB_inside > .mCSB_container {
 			margin-right: 0px !important;
+			display: flex;
+			flex-direction: column-reverse;
 		}
 		.tox-statusbar__branding {
 			display: none !important;

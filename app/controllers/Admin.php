@@ -159,10 +159,13 @@ class Admin extends Controller
 	public function messenger(){
 		$listMsgUser = $this->adminModel->getUserMsg();
 		$iL = $this->adminModel->getLatestSender();
+		$head = $this->adminModel->latestMsgUser($iL[0]->rId);
 		$latest = $this->adminModel->getLatestMessages(1,$iL[0]->rId);
 		$data = [
 			"users" => $listMsgUser,
-			"latestM" => $latest
+			"latestM" => $latest,
+			"header" => $head,
+			"usr" => $iL[0]->rId
 		];
 		// no other solution this is for the Left sidebar navigation
 		// the active state is dependent to this SESSION we are setting.
@@ -171,6 +174,52 @@ class Admin extends Controller
 
 		$this->view('admin/messages', $data);
 	}
+
+	public function getMsgClick(){
+		if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {		
+			$_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+			 $id = trim($_POST['clientId']);
+
+			//  $iL = $this->adminModel->getLatestSender();
+			 $head = $this->adminModel->latestMsgUser($id);
+			 $latest = $this->adminModel->getLatestMessages(1,$id);
+			 $data = [
+				 "users" => $listMsgUser,
+				 "latestM" => $latest,
+				 "header" => $head
+			 ];
+			 $this->view("admin/templates/cusMessages", $data);
+		}
+
+	}
+
+	public function setMessage()
+	{
+		if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {		
+
+			//timezone is set to manila
+			date_default_timezone_set('Asia/Manila');
+  			// echo date("h:i a");
+			$_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+			// $time = date("D, M d, g:i A");
+			$date = date("M. d, Y");
+			$time = date("h:i a");
+
+			$data = [
+				"status" => 0,
+				"sender" => trim($_POST['sessionId']),
+				"receiver" => trim($_POST['clientId']),
+				"message" => trim($_POST['msgContent']),
+				"sendDate" => $date,
+				"sendTime" => $time
+			];
+			if($this->adminModel->sendMessage($data)){
+				$data['status'] = 1;
+				echo json_encode($data);
+			}
+		}
+	}
+
 	public function vendor(){
 		
 		if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {		
@@ -261,7 +310,6 @@ class Admin extends Controller
 
 		}
 	}
-
 	public function privacy(){
 		
 		// no other solution this is for the Left sidebar navigation
