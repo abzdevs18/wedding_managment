@@ -352,3 +352,19 @@ $(document).on("keyup", ".msgCon", function() {
     $(".container-of-msgs label").show(10);
   }
 });
+// realtime Messaging
+setInterval(function() {
+  var uid = $("#messageSendingButton").attr("data-uid");
+  var sid = $("#messageSendingButton").attr("data-sid");
+  $.ajax({
+    url: URL_ROOT + "/admin/realtimeMsg",
+    type: "POST",
+    data: {
+      uid: uid,
+      sid: sid
+    },
+    success: function(data) {
+      $(".messaging").html(data);
+    }
+  });
+}, 3000);

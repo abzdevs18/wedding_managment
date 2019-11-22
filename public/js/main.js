@@ -440,14 +440,15 @@ $("#tinymce").submit(function(e) {
   console.log($("#chemicalFormula").val());
 });
 
+// Calendar of Events Script
 document.addEventListener("DOMContentLoaded", function() {
   var calendarEl = document.getElementById("calendar");
 
   var calendar = new FullCalendar.Calendar(calendarEl, {
-    plugins: ["interaction", "dayGrid", "timeGrid"],
+    plugins: ["interaction", "dayGrid", "timeGrid", "dayGridPlugin"],
+    timeZone: "local",
+    locale: "us",
     defaultView: "dayGridMonth",
-    defaultDate: "2019-11-07",
-    editable: true,
     header: {
       left: "prev,next today",
       center: "title",
@@ -465,39 +466,65 @@ document.addEventListener("DOMContentLoaded", function() {
           data: { title: title, start: info.startStr, end: info.endStr },
           success: function() {
             calendar.refetchEvents();
-            // alert("Added Successfully");
           }
         });
       }
     },
+    editable: true,
     eventResize: function(info) {
       $.ajax({
         url: URL_ROOT + "/admin/updateTimeEvent",
         type: "POST",
-        data: { id: info.id, start: info.startStr, end: info.endStr },
-        success: function() {
+        data: {
+          id: info.event.id,
+          start: calendar.formatIso(info.event.start),
+          end: calendar.formatIso(info.event.end)
+        },
+        success: function(data) {
           calendar.refetchEvents();
-          // alert("Added Successfully");
+          // alert(data);
+        },
+        error: function(err) {
+          // alert(err);
         }
       });
     },
-    eventAfterRender: function(event, element, view) {
-      $(element).attr("id", "event_id_" + event._id);
+    eventDrop: function(info) {
+      $.ajax({
+        url: URL_ROOT + "/admin/updateTimeEvent",
+        type: "POST",
+        data: {
+          id: info.event.id,
+          start: calendar.formatIso(info.event.start),
+          end: calendar.formatIso(info.event.end)
+        },
+        success: function(data) {
+          calendar.refetchEvents();
+          // alert(data);
+        },
+        error: function(err) {
+          // alert(err);
+        }
+      });
+    },
+    eventClick: function(info) {
+      if (confirm("Delete this event?")) {
+        $.ajax({
+          url: URL_ROOT + "/admin/deleteEvent",
+          type: "POST",
+          data: {
+            id: info.event.id
+          },
+          success: function(data) {
+            calendar.refetchEvents();
+            // alert(data);
+          },
+          error: function(err) {
+            // alert(err);
+          }
+        });
+      }
     }
   });
-
   calendar.render();
 });
-$(
-  (function() {
-    $.ajax({
-      url: URL_ROOT + "/admin/loadEvent",
-      type: "POST",
-      success: function(data) {
-        // calendar.refetchEvents();
-        console.log(data);
-        // alert("Added Successfully");
-      }
-    });
-  })()
-);

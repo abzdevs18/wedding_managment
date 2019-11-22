@@ -16,22 +16,17 @@
 	<link rel="stylesheet" type="text/css" href="<?=URL_ROOT;?>/css/jquery.mCustomScrollbar.css">
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>	
 	<script src="https://cdn.tiny.cloud/1/hhu3aczt7p034dcjnizjwnns5faj5u4s14e894midesztea0/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-   
-	<!-- <script src="<?=URL_ROOT;?>/js/calendar/dhtmlxscheduler.js?v=5.3.3" type="text/javascript" charset="utf-8"></script>
-   <link rel="stylesheet" href="<?=URL_ROOT;?>/js/calendar/dhtmlxscheduler_material.css?v=5.3.3" type="text/css" charset="utf-8"> -->
-
-	<!-- <script src="<?=URL_ROOT;?>/js/calendar/dhtmlxscheduler_minical.js?v=5.3.3" type="text/javascript" charset="utf-8"></script> -->
-	
+   	
+	<!-- Links for the Calendar of events -->
 	<link rel="stylesheet" href="https://unpkg.com/@fullcalendar/core@4.3.1/main.min.css" />
 	<link rel="stylesheet" href="https://unpkg.com/@fullcalendar/daygrid@4.3.0/main.min.css" />
 	<link rel="stylesheet" href="https://unpkg.com/@fullcalendar/core@4.3.1/main.min.css" />
-	<link rel="stylesheet" href="https://unpkg.com/@fullcalendar/timegrid@4.3.0/main.min.css" />
-	
+	<link rel="stylesheet" href="https://unpkg.com/@fullcalendar/timegrid@4.3.0/main.min.css" />	
     <script src="https://unpkg.com/@fullcalendar/core@4.3.1/main.min.js"></script>
     <script src="https://unpkg.com/@fullcalendar/interaction@4.3.0/main.min.js"></script>
     <script src="https://unpkg.com/@fullcalendar/daygrid@4.3.0/main.min.js"></script>
     <script src="https://unpkg.com/@fullcalendar/timegrid@4.3.0/main.min.js"></script>
-
+	<!-- End of Calendar of events -->
 
     
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>

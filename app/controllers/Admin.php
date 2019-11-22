@@ -174,6 +174,22 @@ class Admin extends Controller
 
 		$this->view('admin/messages', $data);
 	}
+	public function realtimeMsg()
+	{
+		if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {		
+			$_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+			$data = [
+				"uid" => trim($_POST['uid']),
+				"sid" => trim($_POST['sid'])
+			];
+			$latest = $this->adminModel->getLatestMessages($data['sid'],$data['uid']);
+			$data = [
+				"latestM" => $latest
+			];
+			$this->view("admin/templates/msgNodes", $data);
+		}
+		
+	}
 
 	public function getMsgClick(){
 		if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {		
@@ -351,18 +367,35 @@ class Admin extends Controller
 
 
 			$data = [
-				"title" => trim($_POST['title']),
+				"id" => trim($_POST['id']),
 				"start" => trim($_POST['start']),
 				"end" => trim($_POST['end'])
 			];
 
-			if($this->adminModel->insertEvent($data)){
+			if($this->adminModel->updateEventTime($data)){
 				return true;
 			}else{
 				return false;
 			}
 		}			
 	}
+	 public function deleteEvent()
+	 {
+		if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {		
+			$_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+
+			$data = [
+				"id" => trim($_POST['id'])
+			];
+
+			if($this->adminModel->deleteEvent($data)){
+				return true;
+			}else{
+				return false;
+			}
+		}
+	 }
 
 	public function logout(){
 		

@@ -202,12 +202,21 @@ class Admins
 			return false;
 		}
 	}
-	public function updateEvent($data)
+	public function updateEventTime($data)
 	{
-		$this->db->query("UPDATE `event` SET `title`= :title, `start`= :start, `end`= :end WHERE id = :id");
-		$this->db->bind(":title", $data['title']);
+		$this->db->query("UPDATE `event` SET `start`= :start, `end`= :end WHERE `id` = :id");
 		$this->db->bind(":start", $data['start']);
 		$this->db->bind(":end", $data['end']);
+		$this->db->bind(":id", $data['id']);
+		if ($this->db->execute()) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	public function deleteEvent($data)
+	{
+		$this->db->query("DELETE FROM `event` WHERE `id` = :id");
 		$this->db->bind(":id", $data['id']);
 		if ($this->db->execute()) {
 			return true;

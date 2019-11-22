@@ -23,7 +23,7 @@
     <?php endforeach;?>
 </div>
 
-<div class="message-container mCustomScrollbar messaging fluid light" data-mcs-theme="inset-2-dark" style="flex-direction:column-reverse;max-height:100% !important;">
+<div class="message-container mCustomScrollbar messaging fluid light" data-mcs-theme="inset-2-dark" style="flex-direction:column-reverse;max-height:100% !important;overflow:hidden;overflow-y:scroll !important;">
     <?php if($data['latestM']): ?>
         <?php foreach($data['latestM'] AS $msg): ?>
             <?php if($msg->receiverId == $_SESSION['uId']) : ?>
