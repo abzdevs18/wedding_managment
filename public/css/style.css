@@ -1551,7 +1551,7 @@ TODO working the event countdown
 	/* height: 300px; */
 	background-color: steelblue;
 	position: absolute;
-	z-index: 99999;
+	z-index: 999;
 	top: 150px;
 	left: 0;
 	right: 0;
@@ -1603,4 +1603,35 @@ TODO working the event countdown
 	margin: 10px;
 	font-size: 40px;
 	color: #fff;
+}
+
+.action-request {
+	display: flex;
+	flex-direction: column;
+	position: absolute;
+	width: 125px;
+	top: -50px;
+	background:#323759;
+	padding: 5px;
+	border-radius: 2px;
+	visibility: hidden;
+	transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+.action-request > button {
+	padding: 3px;
+	border: none;
+	margin: 3px 0;
+	color:#ffff;
+	border-radius: 3px;
+	font: var(--font-quick-400-13);
+	cursor: pointer;
+}
+.action-request > button:first-child {
+	background: #f91942 !important;
+}
+.action-request > button:last-child {
+	background: #00cc67 !important;
+}
+.action-btn:hover .action-request {
+	visibility: visible !important;
 }

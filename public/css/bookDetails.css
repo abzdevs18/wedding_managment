@@ -1,0 +1,209 @@
+.profile-dash {
+  width: 80%;
+  /* height: 90vh; */
+  margin: 20px auto;
+  display: flex;
+  flex-direction: row;
+  box-shadow: var(--box-shadow);
+}
+.prof-con {
+  width: 25%;
+  min-height: 100%;
+  background-color: #191623;
+}
+#prof-pic {
+  width: calc(100% - 50px);
+  height: 200px;
+  position: relative;
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 25px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 4px solid #fff;
+}
+.update-bio-prof {
+  width: 100%;
+  height: 60px;
+  background-color: #333333db;
+  bottom: -100px;
+  position: absolute;
+  transition: all 0.5s ease-in-out;
+}
+#prof-pic:hover .update-bio-prof {
+  bottom: 0px;
+}
+#prof-pic > img {
+  width: 100%;
+}
+
+.bio {
+  position: relative;
+  padding: 10px 0px;
+  overflow: hidden;
+  margin: 10px;
+}
+.bio-head {
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 12px;
+  margin-bottom: 15px;
+  font-weight: 600;
+  font-family: "Poppins";
+}
+
+.bio-head:after {
+  content: "";
+  width: 100%;
+  height: 1px;
+  position: absolute;
+  top: 19px;
+  margin-left: 5px;
+  background-color: #fff;
+  font-family: "Poppins";
+}
+
+.work {
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+  margin: 5px auto 15px;
+}
+.w-head {
+  font-weight: 500;
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+.work > p {
+  color: #999;
+  font-size: 14px;
+}
+.bio-skills > a {
+  color: #fff !important;
+}
+
+/* Prof-info  Start */
+.prof-info {
+  width: 75%;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.prof-wall {
+  width: 100%;
+  background-color: #333;
+  height: 225px;
+  background-blend-mode: overlay;
+  position: relative;
+  background-size: cover;
+  background-position: top;
+  background-repeat: no-repeat;
+}
+.prf {
+  width: calc(100% - 30px);
+  margin: 15px;
+}
+.name-con {
+  display: flex;
+  flex-direction: row;
+  line-height: 25px;
+  vertical-align: middle;
+}
+#prof-loc {
+  color: #666;
+  font-size: 14px;
+}
+.name-con h4 {
+  font-size: 25px;
+  text-transform: capitalize;
+  margin-right: 15px;
+}
+.prof-position {
+  text-transform: capitalize;
+  font-weight: 500;
+  font-size: 16px;
+  color: green;
+}
+
+.prof-rank {
+  margin: 20px auto !important;
+}
+.rate-s i {
+  color: #191623;
+}
+.prof-rank h4 {
+  text-transform: uppercase;
+  font-size: 16px;
+}
+
+/* PRofile Tabs */
+#profile-timeline {
+  display: flex;
+  flex-direction: column;
+}
+.prof-data ul {
+  display: flex;
+  flex-direction: row;
+  /* border-bottom: 1px solid #999; */
+}
+.prof-data > ul li {
+  font: var(--font-quick-500-14);
+  line-height: 2;
+  list-style-type: none;
+  padding: 5px 10px;
+  color: #191623;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.5s ease-in-out;
+}
+.prof-data > ul li:not(:last-child):after {
+  content: "";
+  border-right: 1px solid #2b2f3e;
+  height: 60%;
+  position: absolute;
+  right: -1px;
+}
+.prof-data ul li:hover {
+  background-color: #2b2f3e;
+  color: #fff;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+.prof-data ul li i {
+  margin-right: 5px;
+}
+.active-prof-tab {
+  background-color: #2b2f3e;
+  color: #fff !important;
+  border-bottom: 2px solid #2b2f3e;
+  border-bottom-left-radius: 19px;
+  border-bottom-right-radius: 20px;
+}
+
+.bio-info > .bio > p {
+  color: #666;
+}
+
+.bio-d {
+  display: flex;
+  flex-direction: row;
+  margin: 10px auto;
+}
+
+.bio-d > p {
+  width: 100px;
+  font-weight: 600;
+  color: #191623;
+  font-size: 14px;
+  font-family: "Poppins";
+}
+
+.bio-d > span {
+  font-size: 14px;
+  font-family: "Poppins";
+}
+
+.security-c > .bio-d > p {
+  width: 150px;
+}

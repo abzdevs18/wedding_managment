@@ -387,3 +387,44 @@ $(document).on("click", ".addEvent", function() {
     }
   });
 });
+
+// Book Event
+$(document).on("click", ".bookEvent", function() {
+  var eventId = $(this).attr("data-eId");
+
+  $.ajax({
+    url: URL_ROOT + "/admin/bookEvent",
+    type: "POST",
+    data: {
+      eventId: eventId
+    },
+    dataType: "json",
+    success: function(data) {
+      if (data["status"] == 1) {
+        $(".bookEvent").text("Pending Request");
+        $(".bookEvent").css("background-color", "#f91942");
+      } else if (data["status"] == 2) {
+        if (confirm("Cancel booking request?")) {
+          $.ajax({
+            url: URL_ROOT + "/admin/deleteBookEvent",
+            type: "POST",
+            data: {
+              eventId: eventId
+            },
+            success: function(data) {
+              alert("Booking request is cancelled!");
+              window.location.href = URLL_ROOT + "/admin/event";
+            },
+            error: function(err) {}
+          });
+        }
+      } else {
+        alert("Something went wrong!!!" + data);
+      }
+      console.log(data);
+    },
+    error: function(err) {
+      console.log(err);
+    }
+  });
+});

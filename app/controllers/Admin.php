@@ -112,13 +112,15 @@ class Admin extends Controller
 
 	public function event(){
 		$userExistEvent = $this->eventModel->checkEvent($_SESSION['uId']);
+		$bookStatus = $this->eventModel->bookStatus($_SESSION['uId']);
 		// no other solution this is for the Left sidebar navigation
 		// the active state is dependent to this SESSION we are setting.
 		unset($_SESSION['menu_active']);
 		$_SESSION['menu_active'] = "event";
 
 		$data = [
-			"eventData" => $userExistEvent
+			"eventData" => $userExistEvent,
+			"bookStatus" => $bookStatus
 		];
 
 		$this->view('client/event',$data);
@@ -133,12 +135,54 @@ class Admin extends Controller
 				"location" => trim($_POST['location']),
 				"budget" => trim($_POST['budget']),
 				"title" => $title,
+				"bride" => trim($_POST['bride']),
+				"groom" => trim($_POST['groom']),
 				"start" => trim($_POST['date']),
 				"forCount" => trim($_POST['forCount']),
 				"sId" => $_SESSION['uId']
 			];
 			$event = $this->eventModel->addEvent($data);
 			if($event){
+				return true;
+			}else{
+				return false;
+			}
+		}
+		
+	}
+
+	public function bookEvent(){
+
+		if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {		
+			$_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+			$data = [
+				"status" => "",
+				"eventId" => trim($_POST['eventId'])
+			];
+			if($this->eventModel->bookCheck($data['eventId'])){
+				$data['status'] = 2;
+				echo json_encode($data);
+			}else if($this->eventModel->bookEvent($data['eventId'])){
+				$data['status'] = 1;
+				echo json_encode($data);
+			}else{
+				$data['status'] = 0;
+				echo json_encode($data);
+			}
+		}
+		
+	}
+
+	public function deleteBookEvent(){
+
+		if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {		
+			$_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+			$data = [
+				"eventId" => trim($_POST['eventId'])
+			];
+			if($this->eventModel->deleteBookEvent($data['eventId'])){
 				return true;
 			}else{
 				return false;
@@ -175,8 +219,10 @@ class Admin extends Controller
 	}
 
 	public function posted(){
+		$book = $this->eventModel->fullBookRequest();
 		$data = [
-			"one" => $this->breadcrump()
+			"one" => $this->breadcrump(),
+			"bookings" => $book
 		];
 		// no other solution this is for the Left sidebar navigation
 		// the active state is dependent to this SESSION we are setting.
@@ -187,16 +233,23 @@ class Admin extends Controller
 	}
 
 	public function messenger(){
-		$listMsgUser = $this->adminModel->getUserMsg();
-		$iL = $this->adminModel->getLatestSender();
-		$head = $this->adminModel->latestMsgUser($iL[0]->rId);
-		$latest = $this->adminModel->getLatestMessages(1,$iL[0]->rId);
-		$data = [
-			"users" => $listMsgUser,
-			"latestM" => $latest,
-			"header" => $head,
-			"usr" => $iL[0]->rId
-		];
+		$listMsgUser = $this->adminModel->getUserMsg($_SESSION['uId']);
+		$iL = $this->adminModel->getLatestSender($_SESSION['uId']);
+		if($iL){
+			$head = $this->adminModel->latestMsgUser($iL[0]->rId);
+			$latest = $this->adminModel->getLatestMessages($_SESSION['uId'],$iL[0]->rId);
+			$data = [
+				"users" => $listMsgUser,
+				"latestM" => $latest,
+				"header" => $head,
+				"usr" => $iL[0]->rId
+			];
+		}else{
+			$data = [
+
+			];
+		}
+	
 		// no other solution this is for the Left sidebar navigation
 		// the active state is dependent to this SESSION we are setting.
 		unset($_SESSION['menu_active']);
@@ -228,7 +281,7 @@ class Admin extends Controller
 
 			//  $iL = $this->adminModel->getLatestSender();
 			 $head = $this->adminModel->latestMsgUser($id);
-			 $latest = $this->adminModel->getLatestMessages(1,$id);
+			 $latest = $this->adminModel->getLatestMessages($_SESSION['uId'],$id);
 			 $data = [
 				 "users" => $listMsgUser,
 				 "latestM" => $latest,

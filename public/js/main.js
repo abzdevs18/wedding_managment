@@ -532,3 +532,47 @@ $(document).on("click", ".login", function() {
 $(document).on("click", ".sign-p-btn", function() {
   window.location.href = URL_ROOT + "/pages/signup";
 });
+// Profile tabs
+
+/* PROFILE TABS SCRIPT*/
+$(document).on("click", ".prof-data > ul li", function() {
+  $(".prof-data > ul li").removeClass("active-prof-tab");
+  $(this).addClass("active-prof-tab");
+  var tab = $(this).attr("data-tab");
+
+  if (tab == "about") {
+    $(".flower").hide(100);
+    $(".photog").hide(100);
+    $(".food").hide(100);
+    $(".attire").hide(100);
+    $(".bio-info").show(100);
+  }
+  if (tab == "photog") {
+    $(".flower").hide(100);
+    $(".photog").show(100);
+    $(".food").hide(100);
+    $(".attire").hide(100);
+    $(".bio-info").hide(100);
+  }
+  if (tab == "attire") {
+    $(".flower").hide(100);
+    $(".photog").hide(100);
+    $(".food").hide(100);
+    $(".attire").show(100);
+    $(".bio-info").hide(100);
+  }
+  if (tab == "food") {
+    $(".flower").hide(100);
+    $(".photog").hide(100);
+    $(".food").show(100);
+    $(".attire").hide(100);
+    $(".bio-info").hide(100);
+  }
+  if (tab == "flower") {
+    $(".flower").show(100);
+    $(".photog").hide(100);
+    $(".food").hide(100);
+    $(".attire").hide(100);
+    $(".bio-info").hide(100);
+  }
+});

@@ -6,10 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title><?=SITE_NAME;?></title>
 	<link rel="icon" type="image/x-icon" href="<?=URL_ROOT;?>/img/logo_icon/lab.ico">
-	<link href="https://fonts.googleapis.com/css?family=Quicksand:400,500&display=swap" rel="stylesheet"> 
+	<link href="https://fonts.googleapis.com/css?family=Quicksand:400,500|Poppins&display=swap" rel="stylesheet"> 
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet"> 
 	<link rel="stylesheet" type="text/css" href="https://cdndevelopment.blob.core.windows.net/cdn/fa/css/all.min.css">
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<link rel="stylesheet" type="text/css" href="<?=URL_ROOT;?>/css/bookDetails.css">
 	<link rel="stylesheet" type="text/css" href="<?=URL_ROOT;?>/css/style.css">
 	<link rel="stylesheet" type="text/css" href="<?=URL_ROOT;?>/css/main.css">
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -362,7 +363,11 @@
 						</div>
 					</div>
 					<div id="admin-profile">
-						<a href="#" id="check-couple" title="Create modal to and select all the clients to view the data of their events.">Check Couples <i class="far fa-rings-wedding" style="color:#fe5894;"></i></a>
+						<?php if($_SESSION['is_admin']) : ?>
+							<a href="#" id="check-couple" title="Create modal to and select all the clients to view the data of their events.">Check Couples <i class="far fa-rings-wedding" style="color:#fe5894;"></i></a>
+						<?php else : ?>
+							<a href="<?=URL_ROOT . '/frontend/' . $_SESSION['uId'];?>" target="_blank" id="check-frontEnd" title="Check the front end version of your website.." style="border-radius: 5px;background: #f05690;">View FrontEnd</a>
+						<?php endif;?>
 						<div id="profile-container" class="adm-prof">
 							<div id="admin-icon">
 								<img src="<?=URL_ROOT;?>/img/prof.png">
@@ -399,6 +404,7 @@
 								<i class="fal fa-cog"></i>
 								<a href="#"> Profile settings</a>
 							</li>
+							<?php if($_SESSION['is_admin']):?>
 							<li data-link="<?=URL_ROOT;?>/admin/posted" class="<?=($_SESSION['menu_active']=="request") ? 'menu-active' : ''; ?>">
 								<i class="fal fa-cubes"></i>
 								<a href="#"> Bookings</a>
@@ -407,6 +413,7 @@
 								<i class="fal fa-calendar-alt"></i>
 								<a href="#"> Calendar of Events</a>
 							</li>
+							<?php endif;?>
 						</ul>
 						<div id="admin-details" class="menu-head">
 							<h3>Vendors</h3>

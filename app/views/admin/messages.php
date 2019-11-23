@@ -116,7 +116,7 @@
 								<div class="cta-buttons">
 									<i class="fal fa-thumbs-up"></i>
 									<i class="fal fa-thumbs-down"></i>
-									<span id="messageSendingButton" data-uid="<?=$data['usr'];?>" data-sid="<?=$_SESSION['uId'];?>">Send</span>
+									<span id="messageSendingButton" data-uid="<?=($_SESSION['is_admin']) ? $data['usr'] : 1;?>" data-sid="<?=$_SESSION['uId'];?>">Send</span>
 								</div>
 							</div>
 						</div>
