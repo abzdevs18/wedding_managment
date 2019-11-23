@@ -31,4 +31,20 @@ class Pages extends Controller
 		$this->view('pages/about', $data);
 	}
 
+	public function signup(){
+		$data = [
+			'title' => 'Signup'
+		];
+
+		$this->view('pages/signup', $data);
+	}
+
+	public function login(){
+		$data = [
+			'title' => 'Login'
+		];
+
+		$this->view('pages/login', $data);
+	}
+
 }

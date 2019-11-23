@@ -382,7 +382,7 @@
 							<h3>Menu</h3>
 						</div>
 						<ul id="menus-nav" style="padding-left: 20px;">
-							<li data-link="<?=URL_ROOT;?>/<?=($_SESSION['is_admin'] && $_SESSION['is_client'] == 0) ? 'admin' : 'client'; ?>" class="<?=($_SESSION['menu_active']=="home") ? 'menu-active' : ''; ?>">
+							<li data-link="<?=URL_ROOT;?>/<?=($_SESSION['is_admin']) ? 'admin' : 'client'; ?>" class="<?=($_SESSION['menu_active']=="home") ? 'menu-active' : ''; ?>">
 								<i class="fal fa-chart-bar"></i>
 								<a href="#"> Dashboard</a>
 							</li>

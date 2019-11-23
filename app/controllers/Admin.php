@@ -126,7 +126,9 @@ class Admin extends Controller
 			// redirect("dashboard/index");			
 			$this->view('admin/index');
 		}else{
-			$this->view('admin/login');
+			$this->view('pages/login');
+			//below login for the Supper Admin during the first execution
+			// $this->view('admin/login');
 		}
 	}
 

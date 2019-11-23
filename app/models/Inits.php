@@ -70,4 +70,36 @@ class Inits
 		// return json_encode($response);
 		// print_r($this->db->query("SELECT * FROM sf_site"));
 	}
+
+	public function clientSignUp($data){		
+		$genNum = date("Ymdhi");
+		try {
+			$this->db->beginTransaction();
+			$this->db->query("INSERT INTO `user` (`firstname`, `lastname`, `user_pass`, `is_client`) VALUES (:firstname, :lastname, :user_pass, :is_client)");
+			$this->db->bind(':firstname', $data['fName']);
+			$this->db->bind(':lastname', $data['lName']);
+			$this->db->bind(':user_pass', $data['password']);
+			$this->db->bind(':is_client', 1);
+			$this->db->execute();
+
+			$lastInsertId = $this->db->lastInsert();
+			$this->db->query("UPDATE `user` SET user_cus_id = :cusId WHERE id = $lastInsertId");
+			$this->db->bind(":cusId", $genNum + $lastInsertId);
+			$this->db->execute();
+
+			$this->db->query("INSERT INTO `user_email`(`user_id`, `email_add`, `email_status`) VALUES ($lastInsertId, :email_add, 1)");
+			$this->db->bind(':email_add', $data['email']);
+			$this->db->execute();
+
+			$this->db->commit();
+
+			return true;
+
+		} catch (Exception $e) {
+			$this->db->rollBack();
+			return false;
+		}
+		// return json_encode($response);
+		// print_r($this->db->query("SELECT * FROM sf_site"));
+	}
 }

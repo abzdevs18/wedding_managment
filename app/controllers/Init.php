@@ -201,6 +201,72 @@ class Init extends Controller
 		}
 	}
 
+	public function clientSignup(){
+		if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {		
+			$_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+			$salted_pass = $this->salt . trim($_POST['password']);
+			$data = [
+				'status' =>'',
+				'fName'=>trim($_POST['fName']),
+				'lName'=>trim($_POST['lName']),
+				'email'=>trim($_POST['email']),
+				'password'=>trim($_POST['password']),
+				'cpass'=>trim($_POST['cpass']),
+				'fName_err'=>'',
+				'lName_err'=>'',
+				'email_err'=>'',
+				'adminEmail_err'=>'',
+				'password_err'=>'',
+				'cpass_err'=>'',
+			];
+
+
+			// fName validation
+			if (empty($data['fName'])) {
+				$data['fName_err'] = 'Please enter your Your Name';
+			}
+			
+			// lName validation
+			if (empty($data['lName'])) {
+				$data['lName_err'] = 'Please enter your Last Name';
+			}
+			// adminEmail validation
+			if (empty($data['email'])) {
+				$data['email_err'] = 'Please enter your Email address';
+			}else {
+				if ($this->userModel->findUserEmail($data['email'])) {
+					$data['email_err'] = 'Email is already taken';
+				}
+			}
+			// Password validation
+			if (empty($data['password'])) {
+				$data['password_err'] = 'Please enter your Password';
+			}elseif ( strlen($data['password']) < 8 ) {
+				$data['password_err'] = 'Password must be atleast 8 characters';
+			}
+
+			if (empty($data['cpass'])) {
+				$data['cpass_err'] = 'Please confirm your password';
+			}else {
+				if ($data['password'] != $data['cpass']) {
+					$data['cpass_err'] = 'Passwords do not match';
+				}
+			}
+
+			if (empty($data['fName_err']) && empty($data['lName_err']) && empty($data['email_err']) && empty($data['password_err']) && empty($data['cpass_err'])) {
+				$data['password'] = password_hash($salted_pass, PASSWORD_DEFAULT);
+				if($this->initModel->clientSignUp($data)){
+					$data['status'] = 1;
+					echo json_encode($data);
+				}
+			} else {
+				$data['status'] = 0;
+				echo json_encode($data);
+			}
+		}	
+	}
+
 	public function adminLogin(){
 		if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {		
 			$_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);

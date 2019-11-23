@@ -23,7 +23,7 @@
 				</div>
 				<div class="add">
 					<h3>Site/Admin Login</h3>
-					<form id="loginCredentials">
+					<form class="loginCredentials">
 						<div class="group-control adminUVal">
 							<div class="form-group">
 								<input type="text" name="adminUserName" class="form-control">

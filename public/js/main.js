@@ -21,23 +21,6 @@ $(".content").mCustomScrollbar({
 })(jQuery);
 /*ENd ScrollBar*/
 var URL_ROOT = "/wedding_cms";
-$(document).on("click", ".save-btn", function(e) {
-  e.preventDefault();
-  var data = $("#chemicalAdd").serializeArray();
-
-  $.ajax({
-    url: URL_ROOT + "/admin/add",
-    type: "POST",
-    data: $.param(data),
-    success: function(e) {
-      console.log(e);
-    },
-    error: function(_e) {
-      console.log("l");
-    }
-  });
-  console.log(data);
-});
 
 $(document).on("click", ".setup-btn", function() {
   var form = $(this).attr("data-form");
@@ -280,13 +263,16 @@ $(document).on("click", ".login-admin", function() {
   login();
 });
 
-$("#loginCredentials").keypress(function(e) {
+$(document).on("click", ".login-p-btn", function() {
+  login();
+});
+$(".loginCredentials").keypress(function(e) {
   if (e.keyCode == 13) {
     login();
   }
 });
 function login() {
-  var adminData = $("#loginCredentials").serializeArray();
+  var adminData = $(".loginCredentials").serializeArray();
 
   $.ajax({
     url: URL_ROOT + "/init/adminLogin",
@@ -325,6 +311,69 @@ function login() {
   });
 }
 
+$(document).on("click", ".signupNow", function() {
+  var clientData = $("#signUser").serializeArray();
+
+  $.ajax({
+    url: URL_ROOT + "/init/clientSignup",
+    type: "POST",
+    dataType: "json",
+    data: $.param(clientData),
+    success: function(data) {
+      if (data["status"]) {
+        $("#flash-msgs").show(100);
+        $("#flash-msgs").css("border-color", "#00cc67");
+        $("#flash-msgs p").css({
+          background: "#00cc670f",
+          color: "#00cc67"
+        });
+        $("#flash-msgs p").text("Registration successful!!");
+
+        setTimeout(function() {
+          window.location.href = URL_ROOT + "/pages/login";
+        }, 4000);
+      } else {
+        if (data["fName_err"]) {
+          /* Get the parent/container of the input field for firstname and */
+          feedbackShow("fSval", data["fName_err"]);
+        } else {
+          feedbackHide("fSval");
+        }
+
+        if (data["lName_err"]) {
+          /* Get the parent/container of the input field for firstname and */
+          feedbackShow("lSval", data["lName_err"]);
+        } else {
+          feedbackHide("lSval");
+        }
+
+        if (data["email_err"]) {
+          /* Get the parent/container of the input field for firstname and */
+          feedbackShow("eSval", data["email_err"]);
+        } else {
+          feedbackHide("eSval");
+        }
+
+        if (data["password_err"]) {
+          /* Get the parent/container of the input field for firstname and */
+          feedbackShow("pSval", data["password_err"]);
+        } else {
+          feedbackHide("pSval");
+        }
+
+        if (data["cpass_err"]) {
+          /* Get the parent/container of the input field for firstname and */
+          feedbackShow("cpSval", data["cpass_err"]);
+        } else {
+          feedbackHide("cpSval");
+        }
+      }
+    },
+    error: function(err) {
+      console.log(err);
+    }
+  });
+});
 function animate(current, next) {
   var left, opacity, scale;
   current.animate(
@@ -527,4 +576,11 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   });
   calendar.render();
+});
+// Signup
+$(document).on("click", ".login", function() {
+  window.location.href = URL_ROOT + "/pages/login";
+});
+$(document).on("click", ".sign-p-btn", function() {
+  window.location.href = URL_ROOT + "/pages/signup";
 });
