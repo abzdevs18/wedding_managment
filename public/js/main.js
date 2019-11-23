@@ -1,11 +1,5 @@
 /* FIeld form design*/
 
-// $(document).ready(function(){
-// 	$('.form-group input').focus(function(){
-// 		$('.form-group label').addClass('focus-label');
-// 	});
-// });
-
 //For scrollBar
 $(".content").mCustomScrollbar({
   autoHideScrollbar: true
@@ -441,53 +435,6 @@ $(window).scroll(function() {
 $(document).on("click", "#notif-icon", function() {
   $(".m_notification").toggleClass("m_notif_show");
 });
-$(document).on("click", "#add_record", function() {
-  $(".m_add_hidden").toggleClass("add_m");
-  // Push.Permission.request(onGranted, onDenied);
-  Push.Permission.DENIED; // 'denied'
-
-  console.log(Push.Permission.has());
-  demo();
-  $(".m_notification").print();
-  return false;
-});
-// setInterval(function(){demo()},5000);
-
-var notif = new Audio(URL_ROOT + "/media/audio/notif.mp3");
-function demo() {
-  Push.create("New request received!", {
-    body: "Some data show in here.",
-    icon: URL_ROOT + "/img/icons/clock.png",
-    link: "/#",
-    // timeout: 4000,
-    requireInteraction: true,
-    onClick: function() {
-      console.log("Fired!");
-      window.focus();
-      this.close();
-    },
-    vibrate: [200, 100, 200, 100, 200, 100, 200]
-  });
-  // notif.play();
-  // playSound(URL_ROOT + '/media/audio/notif');
-}
-// callback For Push Notification if Granted
-function onGranted() {}
-// callback For Push Notification if Denied
-function onDenied() {}
-
-// function playSound(filename){
-//   var mp3Source = '<source src="' + filename + '.mp3" type="audio/mpeg">';
-//   var oggSource = '<source src="' + filename + '.ogg" type="audio/ogg">';
-//   var embedSource = '<embed hidden="true" autostart="true" loop="false" src="' + filename +'.mp3">';
-//   document.getElementById("sound").innerHTML='<audio autoplay="autoplay">' + mp3Source + oggSource + embedSource + '</audio>';
-// }
-$("#tinymce").submit(function(e) {
-  e.preventDefault();
-  // var name = $('#mytextarea').val();
-
-  console.log($("#chemicalFormula").val());
-});
 
 // Calendar of Events Script
 document.addEventListener("DOMContentLoaded", function() {
@@ -518,6 +465,7 @@ document.addEventListener("DOMContentLoaded", function() {
           }
         });
       }
+      console.log(info.start);
     },
     editable: true,
     eventResize: function(info) {

@@ -12,6 +12,7 @@ class Admin extends Controller
 		if (file_exists( dirname(__FILE__) . '/../configs/config.php')) {
 			$this->Chem = $this->model('Chem');
 			$this->adminModel = $this->model('admins');
+			$this->eventModel = $this->model('event');
 			// $this->userModel = $this->model('user');
 			if (!isLoggedIn()) {
 				if (!$this->adminModel->isAdminFound() || $this->adminModel->connError()) {
@@ -110,13 +111,40 @@ class Admin extends Controller
 	}
 
 	public function event(){
-		
+		$userExistEvent = $this->eventModel->checkEvent($_SESSION['uId']);
 		// no other solution this is for the Left sidebar navigation
 		// the active state is dependent to this SESSION we are setting.
 		unset($_SESSION['menu_active']);
 		$_SESSION['menu_active'] = "event";
 
-		$this->view('client/event');
+		$data = [
+			"eventData" => $userExistEvent
+		];
+
+		$this->view('client/event',$data);
+	}
+
+	public function addEvent(){
+
+		if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {		
+			$_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+			$title = trim($_POST['bride']) . ' & ' . trim($_POST['groom']);
+			$data = [
+				"location" => trim($_POST['location']),
+				"budget" => trim($_POST['budget']),
+				"title" => $title,
+				"start" => trim($_POST['date']),
+				"forCount" => trim($_POST['forCount']),
+				"sId" => $_SESSION['uId']
+			];
+			$event = $this->eventModel->addEvent($data);
+			if($event){
+				return true;
+			}else{
+				return false;
+			}
+		}
+		
 	}
 
 	public function login(){

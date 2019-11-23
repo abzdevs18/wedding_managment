@@ -11,10 +11,6 @@
 
   <p id="demo"></p>
   <?=$data['id']?>
-	<!-- <div id="add_record">
-		<p><i class="far fa-plus"></i></p>
-	</div> -->
-	<!-- <div id="sound"></div> -->
 	<script src="<?=URL_ROOT;?>/js/jquery.mCustomScrollbar.concat.min.js"></script>
 	<script src="<?=URL_ROOT;?>/js/push.min.js"></script>
 	<script src="<?=URL_ROOT;?>/js/main.js"></script>
@@ -26,32 +22,23 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/rome/2.1.22/rome.standalone.js"></script>
   <script src="<?=URL_ROOT;?>/js/datePicker/material-datetime-picker.js" charset="utf-8"></script>
-
+  <!-- Slider -->
   <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
   <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+  <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 	<script src="<?=URL_ROOT;?>/js/script.js"></script>
-  <!-- <script type="text/javascript">
-    $(document).ready(function(){
-      $('.sampleModal').slick({
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        autoplay: true,
-        arrows: false,
-        autoplaySpeed: 1000,
-      });
-    });
-  </script> -->
 
 <script>
-
+// input.addEventListener('focus', () => picker.open());  
     var picker = new MaterialDatetimePicker({})
       .on('submit', function(d) {
-        output.innerText = d;
-        setDate(d);
+        // output.innerText = d;
+        $('.eventdate').val(d.format("YYYY-MM-DD"));
+        $('.forCounter').val(d);
+        setDate("2019-11-29T19:30:00+08:00");
       });
 
-    var el = document.querySelector('.c-datepicker-btn');
+    var el = document.querySelector('.eventdate');
     el.addEventListener('click', function() {
       picker.open();
     }, false);
@@ -59,6 +46,8 @@
 </script>
 
 <script>
+  // Result from the database query
+  setDate("<?=$data['eventData']->forCountDown;?>");
   function setDate(date){
       // Set the date we're counting down to
       var countDownDate = new Date(date).getTime();

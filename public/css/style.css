@@ -453,7 +453,7 @@ offices Messages
 	overflow: hidden;
 }
 .alert-content:hover {
-	box-shadow: var(--box-shadow);
+	/* box-shadow: var(--box-shadow); */
 }
 .content-head {
 	text-align: left;

@@ -100,7 +100,10 @@ CREATE TABLE `event` (
   `user_id` int(11),
   `location` varchar(250),
   `budget` varchar(250),
-  `date` varchar(250),
+  `title` varchar(250),
+  `forCountDown` varchar(250),
+  `start` varchar(250),
+  `end` varchar(250),
   PRIMARY KEY (`id`),
   KEY `FK` (`user_id`)
 );

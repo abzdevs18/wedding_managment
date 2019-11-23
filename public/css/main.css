@@ -128,3 +128,17 @@
   background: #ff000014;
   color: red;
 }
+
+/**
+ * INFO event details
+ */
+.eventDetails {
+  width: 100%;
+  height: 100vh;
+}
+.eventWrap {
+  width: 90%;
+  margin: 0 auto;
+  height: 100vh;
+  background-color: #fff;
+}

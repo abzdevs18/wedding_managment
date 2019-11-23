@@ -368,3 +368,22 @@ $(document).on("keyup", ".msgCon", function() {
 //     }
 //   });
 // }, 3000);
+
+// Event Adding
+$(document).on("click", ".addEvent", function() {
+  var eventData = $("#eventForm").serializeArray();
+
+  $.ajax({
+    url: URL_ROOT + "/admin/addEvent",
+    type: "POST",
+    data: $.param(eventData),
+    success: function(data) {
+      if (data) {
+        window.location.href = URLL_ROOT + "/admin/event";
+      }
+    },
+    error: function(err) {
+      console.log(err);
+    }
+  });
+});

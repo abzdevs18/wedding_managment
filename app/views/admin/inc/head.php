@@ -31,8 +31,7 @@
     
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="<?=URL_ROOT;?>/js/datePicker/material-datetime-picker.css">
-
+	<link rel="stylesheet" href="<?=URL_ROOT;?>/js/datePicker/material-datetime-picker.css">
 	<style>
 		@import url("<?=URL_ROOT;?>/css/static-style.css");
 
