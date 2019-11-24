@@ -1,31 +1,4 @@
-
-<section class="main-tbl-container">
-    <div class="tbl-wrap" style="height: 80vh;border: var(--border);background-image:url('<?=URL_ROOT;?>/img/default/event_back.jpg');background-size: cover;background-repeat: no-repeat;background-position: center;">
-    </div>
-    <div class="wrap_time">
-        <div class="time_date">
-        <h2 id="days_counter">00</h2>
-        <p>Days</p>
-        </div>
-        <div class="time_date">
-        <h2 id="hour_counter">00</h2>
-        <p>hours</p>
-        </div>
-        <div class="time_date">
-        <h2 id="min_counter">00</h2>
-        <p>minutes</p>
-        </div>
-        <div class="time_date">
-        <h2 id="seconds_counter">00</h2>
-        <p>seconds</p>
-        </div>
-    </div>
-    <div class="counter_text" style="background: #33333363;margin: 0;padding: 10px;border-radius: 5px;">
-        <span style="font-size: 25px;"><?=date("D. F j Y", strtotime($data['eventData']->forCountDown));?></span>
-        <p>Wedding Day</p>
-    </div>
-</section>
-<section class="main-tbl-container eventDetails">
+<section class="main-tbl-container eventDetails" style="height: auto;">
     <section class="offices-msgs" style="display:flex;flex-direction:column;width:90%;">												
         <div class="request_icon_wrapper message_header_chat">
             <?php if($data['eventData']->imgProf): ?>
@@ -69,30 +42,40 @@
                             </ul>
                         </div>
                         <div class="bio-info">
-                            <div class="bio">
-                                <p class="bio-head">Event information <i class="far fa-pencil-alt"></i></p>	
-                                <div class="bio-d-list">
-                                    <div class="bio-d">
-                                        <p>Groom:</p>
-                                        <span><?=$data['eventData']->groom?></span>
+                            <div class="headEvent" style="display:flex;flex-direction:row;">
+                                <div class="bio">
+                                    <p class="bio-head">Event information</p>	
+                                    <div class="bio-d-list">
+                                        <div class="bio-d">
+                                            <p>Groom:</p>
+                                            <span><?=$data['eventData']->groom?></span>
+                                        </div>
+                                        <div class="bio-d">
+                                            <p>Bride:</p>
+                                            <span><?=$data['eventData']->bride?></span>
+                                        </div>
+                                        <div class="bio-d">
+                                            <p>Budget:</p>
+                                            <span>P<?=number_format($data['eventData']->budget);?>.00</span>
+                                        </div>
+                                        <div class="bio-d">
+                                            <p>Location:</p>
+                                            <span><?=$data['eventData']->location;?></span>
+                                        </div>
+                                        <div class="bio-d">
+                                            <p>Site:</p>
+                                            <span class="f-site-link"><?=URL_ROOT . '/frontend/' . $data['eventData']->user_id;?></span>
+                                        </div>
+                                    </div>					
+                                </div>  
+                                <div class="datepicker">
+                                    <div class="datepicker-header" style="position: relative;">                                        
+                                        <div class="counter_text" style="background: #33333363;margin: 0;padding: 25px;border-radius: 5px;padding-top: 0;left: 0;margin-bottom: -10px;">
+                                            <span style="font-size: 15px;"><?=date("D. F j Y", strtotime($data['eventData']->forCountDown));?></span>
+                                            <p style="font-size: 30px;line-height: 0;">Wedding Day</p>
+                                        </div>
                                     </div>
-                                    <div class="bio-d">
-                                        <p>Bride:</p>
-                                        <span><?=$data['eventData']->bride?></span>
-                                    </div>
-                                    <div class="bio-d">
-                                        <p>Budget:</p>
-                                        <span>P<?=number_format($data['eventData']->budget);?>.00</span>
-                                    </div>
-                                    <div class="bio-d">
-                                        <p>Location:</p>
-                                        <span><?=$data['eventData']->location;?></span>
-                                    </div>
-                                    <div class="bio-d">
-                                        <p>Site:</p>
-                                        <span class="f-site-link"><?=URL_ROOT . '/frontend/' . $_SESSION['uId'];?></span>
-                                    </div>
-                                </div>					
+                                </div>                                                                   
                             </div>
                             <div class="bio">
                                 <p class="bio-head">Reception information</p>

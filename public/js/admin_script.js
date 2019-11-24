@@ -42,34 +42,53 @@ $(document).on("click", "#filter-all", function() {
   $("#job-filters li").removeAttr("class");
   $(this).addClass("active-filter");
   $.ajax({
-    url: URL_ROOT + "/admin/getAllJob",
+    url: URL_ROOT + "/admin/getAll",
     success: function(data) {
       $("#filter-job-container").html(data);
-      console.log(data);
     }
   });
 });
-/* Feature filter*/
-$(document).on("click", "#filter-featured", function() {
+/* All pending book*/
+$(document).on("click", "#filter-pending", function() {
   $("#job-filters li").removeAttr("class");
   $(this).addClass("active-filter");
   $.ajax({
-    url: URL_ROOT + "/admin/getFeaturedJob",
+    url: URL_ROOT + "/admin/getPending",
     success: function(data) {
       $("#filter-job-container").html(data);
-      console.log(data);
     }
   });
 });
-/* Open Job filter*/
-$(document).on("click", "#filter-open", function() {
+/* All confirmed book*/
+$(document).on("click", "#filter-confirmed", function() {
   $("#job-filters li").removeAttr("class");
   $(this).addClass("active-filter");
   $.ajax({
-    url: URL_ROOT + "/admin/getOpenJob",
+    url: URL_ROOT + "/admin/getConfirmed",
     success: function(data) {
       $("#filter-job-container").html(data);
-      console.log(data);
+    }
+  });
+});
+/* All cancelled book*/
+$(document).on("click", "#filter-cancelled", function() {
+  $("#job-filters li").removeAttr("class");
+  $(this).addClass("active-filter");
+  $.ajax({
+    url: URL_ROOT + "/admin/getCancelled",
+    success: function(data) {
+      $("#filter-job-container").html(data);
+    }
+  });
+});
+/* All deleted book*/
+$(document).on("click", "#filter-deleted", function() {
+  $("#job-filters li").removeAttr("class");
+  $(this).addClass("active-filter");
+  $.ajax({
+    url: URL_ROOT + "/admin/getDeleted",
+    success: function(data) {
+      $("#filter-job-container").html(data);
     }
   });
 });

@@ -428,3 +428,37 @@ $(document).on("click", ".bookEvent", function() {
     }
   });
 });
+
+//Confirm Book event
+$(document).on("click", "#confirmBook", function() {
+  var bookingId = $(this).attr("data-bId");
+  $.ajax({
+    url: URL_ROOT + "/admin/confirmBookEvent",
+    type: "POST",
+    data: {
+      bookingId: bookingId
+    },
+    success: function(data) {
+      if (data) {
+        alert("Yeeahh");
+      }
+    },
+    error: function(err) {}
+  });
+});
+
+// Check details of client Event
+$(document).on("click", ".bookingD", function() {
+  var eventId = $(this).attr("data-bId");
+  $.ajax({
+    url: URL_ROOT + "/admin/clientEventDetails",
+    type: "POST",
+    data: {
+      eventId: eventId
+    },
+    success: function(data) {
+      $(".dash_container").html(data);
+    },
+    error: function(err) {}
+  });
+});

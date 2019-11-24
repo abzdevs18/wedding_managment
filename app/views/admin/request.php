@@ -12,11 +12,11 @@
 			</div>
 			<div class="filter-category">
 				<ul id="job-filters">
-					<li class="active-filter" id="filter-all">All <span>(10)</span></li>
-					<li id="filter-featured">Pending <span>(10)</span></li>
-					<li id="filter-open">Confirmed <span>(10)</span></li>
-					<li>Cancelled <span>(10)</span></li>
-					<li>Deleted <span>(10)</span></li>
+					<li class="active-filter" id="filter-all">All <span>(<?=($data['all']) ? ($data['all']) : '0'; ?>)</span></li>
+					<li id="filter-pending">Pending <span>(<?=($data['pending']) ? ($data['pending']) : '0'; ?>)</span></li>
+					<li id="filter-confirmed">Confirmed <span>(<?=($data['confirm']) ? ($data['confirm']) : '0'; ?>)</span></li>
+					<li id="filter-cancelled">Cancelled <span>(<?=($data['cancelled']) ? ($data['cancelled']) : '0'; ?>)</span></li>
+					<li id="filter-deleted">Deleted <span>(<?=($data['deleted']) ? ($data['deleted']) : '0'; ?>)</span></li>
 				</ul>
 			</div><!-- End of filter tabs -->
 			<div class="sortby filter-category">
@@ -50,7 +50,7 @@
 						<!-- if job is close add row with class name "sold" -->
 						<?php if($data['bookings']) : ?>
 							<?php foreach($data['bookings'] AS $bookings) : ?>
-								<tr class="req_logs_">
+								<tr class="req_logs_ bookingD" data-bId="<?=$bookings->user_id?>">
 									
 									<td>
 										<div class="request_icon_wrapper">
@@ -78,14 +78,20 @@
 									<td>
 										<span class="budgetForWedding"><i class="far fa-ruble-sign"></i> P<?=number_format($bookings->budget);?>.00</span>
 									</td>
+									<!-- pendin #f91942 -->
+									<!-- confirm #00cc67 -->
 									<td class="status-job booking-status">
-										<span>Pending</span>
+										<?php if($bookings->bookingStatus):?>
+											<span style="background-color:#00cc67;">Confirm</span>
+										<?php else:?>
+											<span style="background-color:#f91942;">Pending</span>
+										<?php endif;?>
 									</td>
 									<td class="action-btn" style="position:relative;">
 										<i class="far fa-ellipsis-h-alt" style="font-size: 30px;color: #fe5894;"></i>
 										<div class="action-request" style="display:flex;flex-direction:column;position:absolute;">
-											<button>Confirm</button>
-											<button>Delete</button>
+											<button id="deleteBook" data-bId="<?=$bookings->bookingId?>">Delete</button>
+											<button id="confirmBook" data-bId="<?=$bookings->bookingId?>">Confirm</button>
 										</div>
 									</td>
 								</tr>

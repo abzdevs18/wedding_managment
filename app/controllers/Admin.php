@@ -110,6 +110,22 @@ class Admin extends Controller
 		$this->view('admin/photographer', $data);
 	}
 
+	public function clientEventDetails(){
+
+		if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {		
+			$_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+			$userExistEvent = $this->eventModel->checkEvent(trim($_POST['eventId']));
+			$bookStatus = $this->eventModel->bookStatus(trim($_POST['eventId']));
+
+			$data = [
+				"eventData" => $userExistEvent,
+				"bookStatus" => $bookStatus
+			];
+
+			$this->view("client/template/checkEventDetails", $data);
+		}
+	}
+
 	public function event(){
 		$userExistEvent = $this->eventModel->checkEvent($_SESSION['uId']);
 		$bookStatus = $this->eventModel->bookStatus($_SESSION['uId']);
@@ -174,6 +190,23 @@ class Admin extends Controller
 		
 	}
 
+	public function confirmBookEvent(){
+
+		if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {		
+			$_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+			$data = [
+				"bookingId" => trim($_POST['bookingId'])
+			];
+			if($this->eventModel->confirmBookEvent($data['bookingId'])){
+				return true;
+			}else{
+				return false;
+			}
+		}
+		
+	}
+
 	public function deleteBookEvent(){
 
 		if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {		
@@ -221,8 +254,12 @@ class Admin extends Controller
 	public function posted(){
 		$book = $this->eventModel->fullBookRequest();
 		$data = [
-			"one" => $this->breadcrump(),
-			"bookings" => $book
+			"bookings" => $book,
+			"all" => $book[0]->numberRow,
+			"pending" => $book[0]->pending,
+			"confirm" => $book[0]->confirm,
+			"cancelled" => $book[0]->cancelled,
+			"deleted" => $book[0]->deleted,
 		];
 		// no other solution this is for the Left sidebar navigation
 		// the active state is dependent to this SESSION we are setting.
@@ -409,6 +446,56 @@ class Admin extends Controller
 
 		}
 	}
+	// Booking filters start here
+	public function getAll()
+	{
+		$book = $this->eventModel->fullBookRequest();
+		$data = [
+			"bookings" => $book
+		];
+		$this->view("client/template/filterTemplate", $data);
+
+	}
+	public function getConfirmed()
+	{
+		$book = $this->eventModel->confirmBookRequest();
+		$data = [
+			"bookings" => $book
+		];
+		$this->view("client/template/filterTemplate", $data);
+
+	}
+
+	public function getPending()
+	{
+		$book = $this->eventModel->pendingBookRequest();
+		$data = [
+			"bookings" => $book
+		];
+		$this->view("client/template/filterTemplate", $data);
+
+	}
+
+	public function getCancelled()
+	{
+		$book = $this->eventModel->cancelledBookRequest();
+		$data = [
+			"bookings" => $book
+		];
+		$this->view("client/template/filterTemplate", $data);
+
+	}
+
+	public function getDeleted()
+	{
+		$book = $this->eventModel->deletedBookRequest();
+		$data = [
+			"bookings" => $book
+		];
+		$this->view("client/template/filterTemplate", $data);
+
+	}
+	// End of booking filters is here.
 	public function privacy(){
 		
 		// no other solution this is for the Left sidebar navigation

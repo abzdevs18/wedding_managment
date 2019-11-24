@@ -7,7 +7,7 @@
     <span class="material-icon">Open date picker</span>
   </a>
 
-  <pre id="output"></pre>
+  
 
   <p id="demo"></p>
   <?=$data['id']?>
@@ -35,7 +35,7 @@
         // output.innerText = d;
         $('.eventdate').val(d.format("YYYY-MM-DD"));
         $('.forCounter').val(d);
-        setDate("2019-11-29T19:30:00+08:00");
+        // setDate("2019-11-29T19:30:00+08:00");
       });
 
     var el = document.querySelector('.eventdate');
@@ -44,7 +44,6 @@
     }, false);
 
 </script>
-
 <script>
   // Result from the database query
   setDate("<?=$data['eventData']->forCountDown;?>");
