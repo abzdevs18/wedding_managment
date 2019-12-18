@@ -17,13 +17,13 @@
                 <form class="loginCredentials">
                     <div class="changepass-holder half-row">
                         <div class="form-group">
-                            <input type="text" name="adminUserName" class="form-control s">
+                            <input type="text" value="root" name="adminUserName" class="form-control s">
                             <label for="adminUserName">Email</label>
                         </div>
                     </div>
                     <div class="changepass-holder half-row">
                         <div class="form-group">
-                            <input type="password" name="adminUserPass" class="form-control">
+                            <input type="password" value="AbuevZ091095?" name="adminUserPass" class="form-control">
                             <label for="adminUserPass">Password</label>
                         </div>
                     </div>
