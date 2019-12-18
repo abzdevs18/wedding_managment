@@ -1,6 +1,6 @@
 <?php
 
-	$http_host = "http://" . $_SERVER['HTTP_HOST'] . "/wedding_cms";
+	$http_host = "http://" . $_SERVER['HTTP_HOST'] . "";
 
 ?>
 

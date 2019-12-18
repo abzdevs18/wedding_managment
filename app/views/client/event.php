@@ -22,6 +22,8 @@
       }
     </script>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_8v3WbYWBZU47_VZ7DXYZwgiHirVfNnI&callback=initMap"
-    async defer></script>
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDSamYnuba7Fgg8kNNb5MohkcSfryA3nsc&callback=initMap">
+    </script>
+<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4dt1YA1uR7QHxQXmtJ154i3t_5WtXIgA&callback=initMap" async defer></!--> -->
 <?php require_once APP_ROOT . '/views/admin/inc/footer.php'; ?>

@@ -90,6 +90,17 @@ class Event extends Controller{
 		// print_r($this->db->query("SELECT * FROM sf_site"));
 	}
 	
+	public function bookVendor($data){		
+		$this->db->query("INSERT INTO `vendor_booking` (`vendor_id`, `user_id`, `status`) VALUES (:vendorId, :userId, 0)");
+		$this->db->bind(':vendorId', $data['vendorId']);
+		$this->db->bind(':userId', $data['userId']);
+		if($this->db->execute()){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
 	public function fullBookRequest()
 	{
 		$this->db->query("SELECT COUNT(booking.id) AS numberRow,

@@ -2,7 +2,7 @@
 //     e.preventDefault();
 //     $('.confirmationModal').show(100);
 // });
-var URLL_ROOT = "/wedding_cms";
+var URLL_ROOT = "";
 // Delete Blog
 $(document).on("click", ".addVendor", function() {
   var vendorType = $(this).attr("data-ven");
@@ -144,6 +144,7 @@ $(document).on("click", ".photog_wrapper", function() {
 
   //  else {
   $(".m_icon_req").attr("data-uid", vendor_id);
+  $("#hireVendor").attr("data-vendorId", vendor_id);
   $(".m_icon_req").attr("data-vt", vendorType);
   $(".request_side").attr("data-status", "open");
   $(".request_side").css("right", "0");
@@ -221,6 +222,36 @@ function venderRecordAdding(photographer) {
   window.location.href = URLL_ROOT + "/admin/" + photographer;
 }
 
+// hire vendor
+$(document).on("click", "#hireVendor", function() {
+  var vendorId = $(this).attr("data-vendorId");
+  $.ajax({
+    url: URLL_ROOT + "/admin/hireVendor",
+    type: "POST",
+    data: {
+      vendorId: vendorId
+    },
+    dataType: "json",
+    success: function(data) {
+      if (data["status"] == 2) {
+        if (confirm("Delete booked with the vendor?")) {
+          $.ajax({
+            url: URLL_ROOT + "/admin/deleteVendor",
+            type: "POST",
+            data: {
+              vendorId: vendorId
+            },
+            success: function(data) {
+              window.location.href = URLL_ROOT + "/admin/event";
+            },
+            error: function() {}
+          });
+        }
+      }
+    },
+    error: function(err) {}
+  });
+});
 // This is for the sorting process
 
 $(document).on("change", "#sort-filter", function() {
@@ -458,6 +489,21 @@ $(document).on("click", ".bookingD", function() {
     },
     success: function(data) {
       $(".dash_container").html(data);
+    },
+    error: function(err) {}
+  });
+});
+// Check details of client Event
+$(document).on("click", "#vendorBookConfirm", function() {
+  var eventId = $(this).attr("data-bId");
+  $.ajax({
+    url: URL_ROOT + "/admin/confirmBookingVendor",
+    type: "POST",
+    data: {
+      eventId: eventId
+    },
+    success: function(data) {
+      alert("Confirmed!!");
     },
     error: function(err) {}
   });

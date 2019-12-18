@@ -1,4 +1,4 @@
-var URL_ROOT = "/wedding_cms";
+var URL_ROOT = "";
 
 $(document).on("click", ".clip-path", function() {
   $("#side-navigation").toggleClass("sideNav-full");

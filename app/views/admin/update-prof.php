@@ -1,81 +1,55 @@
 <?php require_once APP_ROOT . '/views/admin/inc/head.php'; ?>
 
 
-	<section class="tg-dash">
+<div class="dash_container">
+
+	<!-- <section class="tg-dash">
 		<h1>Update Settings</h1>
-	</section>
+	</section> -->
 	<section class="offices-msgs">
-		<div class="alerts-notif">
-			<div class="alert-content no-fixed-height">
-				<div class="content-head">
-					<h2>Profile Photo</h2>
-				</div>
-				<div class="prof-container admin-prof" style="display:none;">
-					<div style="margin-bottom:0px;background:url('<?=URL_ROOT?>/img/default/kalen-emsley-Bkci_8qcdvQ-unsplash.jpg');background-position: center;background-size: cover;background-repeat: no-repeat;border: none;box-shadow: var(--box-shadow);">
-					</div>
-				</div>
-				<div class="prof-container admin-prof">
-					<div>
-						<p>Drop files anywhere to upload</p>
-						<p>Or</p>
-						<button class="tg-btn" type="button">Select Files</button>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="alerts-notif">
+		<div class="alerts-notif" style="width:66.666%;box-shadow: var(--box-shadow);padding:0px;">
 			<div class="alert-content no-fixed-height">
 				<div class="content-head">
 					<h2>Profile Details</h2>
 				</div>
 				<div class="changepass-holder">
-					<!-- <div class="form-group">
-						<strong>I’m a:</strong>
-						<div class="tg-selectgroup">
-							<span class="tg-radio">
-								<input id="tg-mail" type="radio" name="gender" value="mail" checked="">
-								<label for="tg-mail">mail</label>
-							</span>
-							<span class="tg-radio">
-								<input id="tg-femail" type="radio" name="gender" value="femail">
-								<label for="tg-femail">femail</label>
-							</span>
-							<span class="tg-radio">
-								<input id="tg-company" type="radio" name="gender" value="company">
-								<label for="tg-company">Company</label>
-							</span>
+					<div style="width:200px;height:200px;background:red;margin-bottom: 25px;border-radius: 5px;background-size: cover;background-position: center;box-shadow: var(--box-shadow);">
+
+					</div>
+					<div class="form-group">
+						<input type="file" name="profilePic" placeholder="Username" class="form-control">
+					</div>
+					<div class="changepass-holder half-row" style="padding-left:1px;padding-right:0px;">
+						<div class="form-group half-form-group">
+							<select style="width: 100%;" name="gender">
+								<optgroup>
+									<?php foreach ($data['brand'] as $brand) : ?>
+										<option value="<?=$brand->id;?>"><?=$brand->name;?></option>
+									<?php endforeach; ?>
+								</optgroup>
+							</select>
+							<label for="gender">Gender</label>
 						</div>
-					</div> -->
-					<div class="form-group">
-						<select style="width: 100%;" name="chemBrand">
-							<optgroup>
-								<?php foreach ($data['brand'] as $brand) : ?>
-									<option value="<?=$brand->id;?>"><?=$brand->name;?></option>
-								<?php endforeach; ?>
-							</optgroup>
-						</select>
-						<label for="chemBrand">Gender</label>
+						<div class="form-group half-form-group">
+							<input type="text" name="username" placeholder="Username" class="form-control">
+						</div>
+					</div>
+					<div class="changepass-holder half-row" style="padding-left:1px;padding-right:0px;">
+						<div class="form-group half-form-group">
+							<input type="text" name="fname" placeholder="First name" class="form-control" value="<?=$data['userData']->firstname;?>">
+						</div>
+						<div class="form-group half-form-group">
+							<input type="text" name="lname" placeholder="Last Name*" class="form-control">
+						</div>
 					</div>
 					<div class="form-group">
-						<input type="text" name="password" placeholder="Username" class="form-control">
-					</div>
-					<div class="form-group">
-						<input type="email" name="password" placeholder="Email*" class="form-control">
-					</div>
-					<div class="form-group">
-						<input type="text" name="password" placeholder="Last Name*" class="form-control">
-					</div>
-					<div class="form-group">
-						<input type="text" name="password" placeholder="Phone Number*" class="form-control">
-					</div>
-					<div class="form-group">
-						<input type="text" name="password" placeholder="First Name*" class="form-control">
+						<input type="email" name="email" placeholder="Email Address" class="form-control">
 					</div>
 					<button class="tg-btn" type="button">Update Now</button>
 				</div>
 			</div>
 		</div>
-		<div class="alerts-notif">
+		<div class="alerts-notif" style="display:none;">
 			<div class="alert-content no-fixed-height">
 				<div class="content-head">
 					<h2>Change Password</h2>
@@ -96,5 +70,5 @@
 			</div>	
 		</div>
 	</section>
-
+</div>
 <?php require_once APP_ROOT . '/views/admin/inc/footer.php'; ?>

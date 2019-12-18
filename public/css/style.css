@@ -462,8 +462,10 @@ offices Messages
 .content-head h2 {
 	padding: 20px 16px;
 	font: var(--font-quick-500-20);
-	color: var(--light-dark);
+	color: #fff;
+	background: #323759;
 }
+
 #log {
 	padding: 15px;
 }
@@ -592,6 +594,7 @@ Ads Log
 	font: var(--font-quick-400-13);
 }
 .tg-adverified {
+	display: none !important;
 	color: #666;
 	width: max-content;
 	display: block;
@@ -1446,6 +1449,7 @@ transition: all .5s;
 	border-radius: 10px;
 	display: none;
 	transition: all .6s ease-in-out;
+	overflow: hidden;
 }
 
 .m_notif_show {

@@ -17,7 +17,10 @@
                 <h3 style="margin-bottom:2px;"><?=$data['eventData']->title?></h3>
                 <time datetime="2017-08-08">Client ID: <span><?=$data['eventData']->cusId?></span></time>	
             </div>
-            <div class="prof-container" style="position:relative;">
+            <div class="prof-container" style="position:relative;display: flex;justify-content: right;">
+                <div style="height:20px;margin-right: 200px;font-size: 30px;margin-top: 11px;">
+                    <i class="fal fa-envelope"></i>
+                </div>
                 <div>
                     <?php if(($data['bookStatus']) && ($data['bookStatus']->bookStat == 0)) : ?>
                         <span class="tg-btn save-btn bookEvent" type="button" style="background:#f91942;text-transform:capitalize;position: absolute;right: 0;margin: 7px 7px;padding: 0 30px;line-height: 3;" data-eId="<?=$data['eventData']->id?>">Pending request</span>
@@ -54,10 +57,10 @@
                                             <p>Bride:</p>
                                             <span><?=$data['eventData']->bride?></span>
                                         </div>
-                                        <div class="bio-d">
+                                        <!-- <div class="bio-d">
                                             <p>Budget:</p>
                                             <span>P<?=number_format($data['eventData']->budget);?>.00</span>
-                                        </div>
+                                        </div> -->
                                         <div class="bio-d">
                                             <p>Location:</p>
                                             <span><?=$data['eventData']->location;?></span>
@@ -91,13 +94,13 @@
                                         <tr>
                                             <th>Photographer <sup><i class="fal fa-question-circle" style="font-size:12px;" title="Click the photo of photographer to see sample work."></i></sup></th>
                                             <th>Service Fee</th>
-                                            <!-- <th>Floral Image</th> -->
+                                            <th>Status</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody class="resultTables">
-                                        <?php if($data['photog']) : ?>
-                                            <?php foreach($data['photog'] AS $photographer): ?>
+                                        <?php if($data['bookedPhotogVendor']) : ?>
+                                            <?php foreach($data['bookedPhotogVendor'] AS $photographer): ?>
                                                 <tr class="table-inventory req_logs_ photog_wrapper" data-uid="<?=$photographer->vendorId?>" data-name="<?=$photographer->vendorN?>" data-fee="<?=number_format($photographer->serviceP)?>.00" data-vt="<?=$photographer->vType?>">						
                                                     <td class="tittle-id" valign="middle">
                                                         <h3><?=$photographer->vendorN?></h3>
@@ -106,11 +109,20 @@
                                                     <td class="item-cat" valign="middle">
                                                         <span id="serviceFee">P<?=number_format($photographer->serviceP)?>.00</span>	
                                                     </td>
-                                                    <!-- <td class="item-cat">
-                                                        <span>77.08</span>	
-                                                    </td> -->
-                                                    <td class="action-btn">
+                                                    <!-- pendin #f91942 -->
+                                                    <!-- confirm #00cc67 -->
+                                                    <td class="status-job booking-status">
+                                                        <?php if($photographer->vendorStatus):?>
+                                                            <span style="background-color:#00cc67;">Confirm</span>
+                                                        <?php else:?>
+                                                            <span style="background-color:#f91942;">Pending</span>
+                                                        <?php endif;?>
+                                                    </td>
+                                                    <td class="action-btn" style="position:relative;">
                                                         <i class="far fa-ellipsis-h-alt" style="font-size: 30px;color: #fe5894;"></i>
+                                                        <div class="action-request" style="display:flex;flex-direction:column;position:absolute;top:-20px;">
+                                                            <button id="vendorBookConfirm" data-bId="<?=$photographer->venBId?>">Confirm</button>
+                                                        </div>
                                                     </td>
                                                 </tr>
                                             <?php endforeach;?>
@@ -127,13 +139,13 @@
                                         <tr>
                                             <th>Name of Beauty Shop</th>
                                             <th>Price</th>
-                                            <!-- <th>Floral Image</th> -->
+                                            <th>Status</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody class="resultTables">
-                                        <?php if($data['attire']) : ?>
-                                            <?php foreach($data['attire'] AS $attire): ?>
+                                        <?php if($data['bookedAttireVendor']) : ?>
+                                            <?php foreach($data['bookedAttireVendor'] AS $attire): ?>
                                                 <tr class="table-inventory req_logs_ photog_wrapper" data-uid="<?=$attire->vendorId?>" data-name="<?=$attire->vendorN?>" data-fee="<?=number_format($attire->serviceP)?>.00" data-vt="<?=$attire->vType?>">						
                                                     <td class="tittle-id" valign="middle">
                                                         <h3><?=$attire->vendorN?></h3>
@@ -142,11 +154,20 @@
                                                     <td class="item-cat" valign="middle">
                                                         <span id="serviceFee">P<?=number_format($attire->serviceP)?>.00</span>	
                                                     </td>
-                                                    <!-- <td class="item-cat">
-                                                        <span>77.08</span>	
-                                                    </td> -->
-                                                    <td class="action-btn">
+                                                    <!-- pendin #f91942 -->
+                                                    <!-- confirm #00cc67 -->
+                                                    <td class="status-job booking-status">
+                                                        <?php if($attire->vendorStatus):?>
+                                                            <span style="background-color:#00cc67;">Confirm</span>
+                                                        <?php else:?>
+                                                            <span style="background-color:#f91942;">Pending</span>
+                                                        <?php endif;?>
+                                                    </td>
+                                                    <td class="action-btn" style="position:relative;">
                                                         <i class="far fa-ellipsis-h-alt" style="font-size: 30px;color: #fe5894;"></i>
+                                                        <div class="action-request" style="display:flex;flex-direction:column;position:absolute;top:-20px;">
+                                                            <button id="vendorBookConfirm" data-bId="<?=$attire->venBId?>">Confirm</button>
+                                                        </div>
                                                     </td>
                                                 </tr>
                                             <?php endforeach;?>
@@ -162,26 +183,35 @@
                                         <tr>
                                             <th>Florist</th>
                                             <th>Flower</th>
-                                            <!-- <th>Floral Image</th> -->
+                                            <th>Status</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody class="resultTables">
-                                        <?php if($data['flower']) : ?>
-                                            <?php foreach($data['flower'] AS $flower): ?>
-                                                <tr class="table-inventory req_logs_ photog_wrapper" data-uid="<?=$flower->vendorId?>" data-name="<?=$flower->vendorN?>" data-fee="<?=number_format($flower->serviceP)?>.00" data-vt="<?=$flower->vType?>">						
+                                        <?php if($data['bookedFoodVendor']) : ?>
+                                            <?php foreach($data['bookedFoodVendor'] AS $food): ?>
+                                                <tr class="table-inventory req_logs_ photog_wrapper" data-uid="<?=$food->vendorId?>" data-name="<?=$flower->vendorN?>" data-fee="<?=number_format($flower->serviceP)?>.00" data-vt="<?=$flower->vType?>">						
                                                     <td class="tittle-id" valign="middle">
-                                                        <h3><?=$flower->vendorN?></h3>
+                                                        <h3><?=$food->vendorN?></h3>
                                                         <!-- <span>Chemical ID: 20190321341</span> -->
                                                     </td> 
                                                     <td class="item-cat" valign="middle">
-                                                        <span id="serviceFee">P<?=number_format($flower->serviceP)?>.00</span>	
+                                                        <span id="serviceFee">P<?=number_format($food->serviceP)?>.00</span>	
                                                     </td>
-                                                    <!-- <td class="item-cat">
-                                                        <span>77.08</span>	
-                                                    </td> -->
-                                                    <td class="action-btn">
+                                                    <!-- pendin #f91942 -->
+                                                    <!-- confirm #00cc67 -->
+                                                    <td class="status-job booking-status">
+                                                        <?php if($food->vendorStatus):?>
+                                                            <span style="background-color:#00cc67;">Confirm</span>
+                                                        <?php else:?>
+                                                            <span style="background-color:#f91942;">Pending</span>
+                                                        <?php endif;?>
+                                                    </td>
+                                                    <td class="action-btn" style="position:relative;">
                                                         <i class="far fa-ellipsis-h-alt" style="font-size: 30px;color: #fe5894;"></i>
+                                                        <div class="action-request" style="display:flex;flex-direction:column;position:absolute;top:-20px;">
+                                                            <button id="vendorBookConfirm" data-bId="<?=$food->venBId?>">Confirm</button>
+                                                        </div>
                                                     </td>
                                                 </tr>
                                             <?php endforeach;?>
@@ -195,15 +225,15 @@
                                 <table class="table-custom">
                                     <thead>
                                         <tr>
-                                            <th>Catering Service Provider</th>
+                                            <th>Flower shop</th>
                                             <th>Price</th>
-                                            <!-- <th>Floral Image</th> -->
+                                            <th>Status</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody class="resultTables">
-                                        <?php if($data['food']) : ?>
-                                            <?php foreach($data['food'] AS $food): ?>
+                                        <?php if($data['bookedFlowerVendor']) : ?>
+                                            <?php foreach($data['bookedFlowerVendor'] AS $food): ?>
                                                 <tr class="table-inventory req_logs_ photog_wrapper" data-uid="<?=$food->vendorId?>" data-name="<?=$food->vendorN?>" data-fee="<?=number_format($food->serviceP)?>.00" data-vt="<?=$food->vType?>">						
                                                     <td class="tittle-id" valign="middle">
                                                         <h3><?=$food->vendorN?></h3>
@@ -212,11 +242,20 @@
                                                     <td class="item-cat" valign="middle">
                                                         <span id="serviceFee">P<?=number_format($food->serviceP)?>.00</span>	
                                                     </td>
-                                                    <!-- <td class="item-cat">
-                                                        <span>77.08</span>	
-                                                    </td> -->
-                                                    <td class="action-btn">
+                                                    <!-- pendin #f91942 -->
+                                                    <!-- confirm #00cc67 -->
+                                                    <td class="status-job booking-status">
+                                                        <?php if($food->vendorStatus):?>
+                                                            <span style="background-color:#00cc67;">Confirm</span>
+                                                        <?php else:?>
+                                                            <span style="background-color:#f91942;">Pending</span>
+                                                        <?php endif;?>
+                                                    </td>
+                                                    <td class="action-btn" style="position:relative;">
                                                         <i class="far fa-ellipsis-h-alt" style="font-size: 30px;color: #fe5894;"></i>
+                                                        <div class="action-request" style="display:flex;flex-direction:column;position:absolute;top:-20px;">
+                                                            <button id="vendorBookConfirm" data-bId="<?=$food->venBId?>">Confirm</button>
+                                                        </div>
                                                     </td>
                                                 </tr>
                                             <?php endforeach;?>

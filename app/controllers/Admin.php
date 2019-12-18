@@ -1,6 +1,6 @@
 <?php
 
-define("ROOT", "/wedding_cms");
+define("ROOT", "");
 /**
  * Admin Account Controller
  */
@@ -10,10 +10,10 @@ class Admin extends Controller
 	{
 
 		if (file_exists( dirname(__FILE__) . '/../configs/config.php')) {
-			$this->Chem = $this->model('Chem');
+			$this->Chem = $this->model('chem');
 			$this->adminModel = $this->model('admins');
 			$this->eventModel = $this->model('event');
-			// $this->userModel = $this->model('user');
+			$this->userModel = $this->model('user');
 			if (!isLoggedIn()) {
 				if (!$this->adminModel->isAdminFound() || $this->adminModel->connError()) {
 					$this->setup();
@@ -35,6 +35,9 @@ class Admin extends Controller
 		];
 		// no other solution this is for the Left sidebar navigation
 		// the active state is dependent to this SESSION we are setting.
+		if($_SESSION['is_client']){
+			redirect('admin/event');
+		}
 		unset($_SESSION['menu_active']);
 		$_SESSION['menu_active'] = "home";
 
@@ -110,15 +113,36 @@ class Admin extends Controller
 		$this->view('admin/photographer', $data);
 	}
 
+	public function confirmBookingVendor(){
+
+		if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {		
+			$_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+			if($this->adminModel->confirmBookVendor(trim($_POST['eventId']))){
+				return true;
+			}else{
+				return false;
+			}
+		}
+	}
+
+
 	public function clientEventDetails(){
 
 		if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {		
 			$_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 			$userExistEvent = $this->eventModel->checkEvent(trim($_POST['eventId']));
 			$bookStatus = $this->eventModel->bookStatus(trim($_POST['eventId']));
+			$bookedPhotogVendor = $this->adminModel->bookedPhotogVendor(trim($_POST['eventId']));
+			$bookedAttireVendor = $this->adminModel->bookedAttireVendor(trim($_POST['eventId']));
+			$bookedFoodVendor = $this->adminModel->bookedFoodVendor(trim($_POST['eventId']));
+			$bookedFlowerVendor = $this->adminModel->bookedFlowerVendor(trim($_POST['eventId']));
 
 			$data = [
 				"eventData" => $userExistEvent,
+				"bookedPhotogVendor" => $bookedPhotogVendor,
+				"bookedAttireVendor" => $bookedAttireVendor,
+				"bookedFoodVendor" => $bookedFoodVendor,
+				"bookedFlowerVendor" => $bookedFlowerVendor,
 				"bookStatus" => $bookStatus
 			];
 
@@ -129,6 +153,10 @@ class Admin extends Controller
 	public function event(){
 		$userExistEvent = $this->eventModel->checkEvent($_SESSION['uId']);
 		$bookStatus = $this->eventModel->bookStatus($_SESSION['uId']);
+		$bookedPhotogVendor = $this->adminModel->bookedPhotogVendor($_SESSION['uId']);
+		$bookedAttireVendor = $this->adminModel->bookedAttireVendor($_SESSION['uId']);
+		$bookedFoodVendor = $this->adminModel->bookedFoodVendor($_SESSION['uId']);
+		$bookedFlowerVendor = $this->adminModel->bookedFlowerVendor($_SESSION['uId']);
 		// no other solution this is for the Left sidebar navigation
 		// the active state is dependent to this SESSION we are setting.
 		unset($_SESSION['menu_active']);
@@ -136,6 +164,10 @@ class Admin extends Controller
 
 		$data = [
 			"eventData" => $userExistEvent,
+			"bookedPhotogVendor" => $bookedPhotogVendor,
+			"bookedAttireVendor" => $bookedAttireVendor,
+			"bookedFoodVendor" => $bookedFoodVendor,
+			"bookedFlowerVendor" => $bookedFlowerVendor,
 			"bookStatus" => $bookStatus
 		];
 
@@ -229,7 +261,9 @@ class Admin extends Controller
 			$this->view('admin/index');
 		}else if(isLoggedIn() && $_SESSION['is_client'] == 1){
 			// redirect("dashboard/index");			
-			$this->view('admin/index');
+			unset($_SESSION['menu_active']);
+			$_SESSION['menu_active'] = "event";
+			$this->view('client/event');
 		}else{
 			$this->view('pages/login');
 			//below login for the Supper Admin during the first execution
@@ -242,13 +276,17 @@ class Admin extends Controller
 	}
 
 	public function profile(){
+		$userInfo = $this->userModel->userData($_SESSION['uId']);
 		
 		// no other solution this is for the Left sidebar navigation
 		// the active state is dependent to this SESSION we are setting.
 		unset($_SESSION['menu_active']);
 		$_SESSION['menu_active'] = "profile";
+		$data = [
+			"userData" => $userInfo
+		];
 
-		$this->view('admin/update-prof');
+		$this->view('admin/update-prof', $data);
 	}
 
 	public function posted(){
@@ -444,6 +482,47 @@ class Admin extends Controller
 			// 	echo 'dd';
 			// }
 
+		}
+	}
+	public function hireVendor()
+	{
+		if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {		
+			$_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+			$data = [
+				"status" => "",
+				"vendorId" => trim($_POST['vendorId']),
+				"userId" => $_SESSION['uId']
+			];
+
+			if($this->adminModel->checkBookedVendor($data)){
+				$data['status'] = 2;
+			}elseif($this->eventModel->bookVendor($data)){
+					$data['status'] = 1;
+					// echo json_encode($data);
+			}else{
+				$data['status'] = 0;
+				// echo json_encode($data);
+			}
+			echo json_encode($data);
+		}
+	}
+	public function deleteVendor()
+	{
+		if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {		
+			$_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+			$data = [
+				"status" => "",
+				"vendorId" => trim($_POST['vendorId']),
+				"userId" => $_SESSION['uId']
+			];
+
+			if($this->adminModel->deleteBookedVendor($data)){
+				return true;
+			}else{
+				return false;
+			}
 		}
 	}
 	// Booking filters start here

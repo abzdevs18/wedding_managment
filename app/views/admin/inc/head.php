@@ -267,17 +267,23 @@
 					</div>
 				</div>
 			</div>
+			<?php if($_SESSION['is_admin']):?>
 			<div class="actionButtonModal">
 				<button>Delete</button>
 				<button id="cancelDeletion">Update</button>
 			</div>
+			<?php else:?>
+			<div class="actionButtonModal">
+				<button id="hireVendor">Hire Vendor</button>
+			</div>
+			<?php endif;?>
 		</div>
 	</div>	
 	<!-- End Right Sidebar -->
 
 	<!-- Notification Modal -->
 	<div class="m_notification" style="position:fixed;">
-		<h3>Notification</h3>
+		<h3 style="background: #323759;color: #fff;text-align: left;">Notification</h3>
 		<div class="ad-log">
 			<ul class="mCustomScrollbar content fluid light" data-mcs-theme="inset-2-dark" style="height: 400px;width: 100%;">
 				<?php for($i = 0; $i <= 10; $i++) :?>
@@ -389,11 +395,13 @@
 							<h3>Menu</h3>
 						</div>
 						<ul id="menus-nav" style="padding-left: 20px;">
-							<li data-link="<?=URL_ROOT;?>/<?=($_SESSION['is_admin']) ? 'admin' : 'client'; ?>" class="<?=($_SESSION['menu_active']=="home") ? 'menu-active' : ''; ?>">
+							<?php if($_SESSION['is_admin']):?>
+							<li data-link="<?=URL_ROOT;?>/admin" class="<?=($_SESSION['menu_active']=="home") ? 'menu-active' : ''; ?>">
 								<i class="fal fa-chart-bar"></i>
 								<a href="#"> Dashboard</a>
 							</li>
-							<?php if($_SESSION['is_client']):?>
+							<?php endif;?>
+							<?php if($_SESSION['is_client']): ?>
 								<li data-link="<?=URL_ROOT;?>/admin/event" class="<?=($_SESSION['menu_active']=="event") ? 'menu-active' : ''; ?>">
 									<i class="far fa-rings-wedding" style="color:#fe5894;"></i>
 									<a href="#"> Event</a>

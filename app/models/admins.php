@@ -76,6 +76,87 @@ class Admins
 		}
 	}
 
+	public function bookedPhotogVendor($id)
+	{
+		$this->db->query("SELECT vendor.vendor_id AS vendorId, vendor_booking.id AS venBId, vendor_booking.status AS vendorStatus, service.service_type AS vType, vendor.vendor_name AS vendorN, service.name AS serviceN, service.price AS serviceP FROM vendor LEFT JOIN vendor_booking ON vendor_booking.vendor_id = vendor.vendor_id LEFT JOIN service ON service.vendor_id = vendor.vendor_id WHERE EXISTS(SELECT * FROM vendor_booking WHERE vendor_booking.vendor_id = vendor.vendor_id AND vendor_booking.user_id = $id) AND service.service_type = 1");
+		$row = $this->db->resultSet();
+		if($row){
+			return $row;
+		}else{
+			return false;
+		}	
+	}
+
+	public function checkBookedVendor($data)
+	{
+		$this->db->query("SELECT * FROM vendor_booking WHERE vendor_booking.vendor_id = :venId AND vendor_booking.user_id = :uId");
+		$this->db->bind(":venId",$data['vendorId']);
+		$this->db->bind(":uId",$data['userId']);
+
+		$row = $this->db->resultSet();
+		if($row){
+			return $row;
+		}else{
+			return false;
+		}	
+	}
+
+	public function confirmBookVendor($id)
+	{
+		$this->db->query("UPDATE `vendor_booking` SET `status` = 1 WHERE `id`= $id");
+		if($this->db->execute()){
+			return true;
+		}else{
+			return false;
+		}	
+	}
+
+	public function deleteBookedVendor($data)
+	{
+		$this->db->query("DELETE FROM `vendor_booking` WHERE vendor_id = :vId AND user_id = :uId");
+		$this->db->bind(":vId",$data['vendorId']);
+		$this->db->bind(":uId",$data['userId']);
+
+		if($this->db->execute()){
+			return true;
+		}else{
+			return false;
+		}	
+	}
+
+	public function bookedAttireVendor($id)
+	{
+		$this->db->query("SELECT vendor.vendor_id AS vendorId, vendor_booking.id AS venBId, vendor_booking.status AS vendorStatus, service.service_type AS vType, vendor.vendor_name AS vendorN, service.name AS serviceN, service.price AS serviceP FROM vendor LEFT JOIN vendor_booking ON vendor_booking.vendor_id = vendor.vendor_id LEFT JOIN service ON service.vendor_id = vendor.vendor_id WHERE EXISTS(SELECT * FROM vendor_booking WHERE vendor_booking.vendor_id = vendor.vendor_id AND vendor_booking.user_id = $id) AND service.service_type = 2");
+		$row = $this->db->resultSet();
+		if($row){
+			return $row;
+		}else{
+			return false;
+		}	
+	}
+
+	public function bookedFoodVendor($id)
+	{
+		$this->db->query("SELECT vendor.vendor_id AS vendorId, vendor_booking.id AS venBId, vendor_booking.status AS vendorStatus, service.service_type AS vType, vendor.vendor_name AS vendorN, service.name AS serviceN, service.price AS serviceP FROM vendor LEFT JOIN vendor_booking ON vendor_booking.vendor_id = vendor.vendor_id LEFT JOIN service ON service.vendor_id = vendor.vendor_id WHERE EXISTS(SELECT * FROM vendor_booking WHERE vendor_booking.vendor_id = vendor.vendor_id AND vendor_booking.user_id = $id) AND service.service_type = 3");
+		$row = $this->db->resultSet();
+		if($row){
+			return $row;
+		}else{
+			return false;
+		}	
+	}
+
+	public function bookedFlowerVendor($id)
+	{
+		$this->db->query("SELECT vendor.vendor_id AS vendorId, vendor_booking.id AS venBId, vendor_booking.status AS vendorStatus, service.service_type AS vType, vendor.vendor_name AS vendorN, service.name AS serviceN, service.price AS serviceP FROM vendor LEFT JOIN vendor_booking ON vendor_booking.vendor_id = vendor.vendor_id LEFT JOIN service ON service.vendor_id = vendor.vendor_id WHERE EXISTS(SELECT * FROM vendor_booking WHERE vendor_booking.vendor_id = vendor.vendor_id AND vendor_booking.user_id = $id) AND service.service_type = 4");
+		$row = $this->db->resultSet();
+		if($row){
+			return $row;
+		}else{
+			return false;
+		}	
+	}
+
 	public function getAttire()
 	{
 		$this->db->query("SELECT vendor.vendor_id AS vendorId, service.service_type AS vType, vendor.vendor_name AS vendorN, service.name AS serviceN, service.price AS serviceP FROM vendor LEFT JOIN service ON service.vendor_id = vendor.vendor_id WHERE service.service_type = 2");

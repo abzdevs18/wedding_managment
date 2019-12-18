@@ -14,7 +14,7 @@ $(".content").mCustomScrollbar({
   });
 })(jQuery);
 /*ENd ScrollBar*/
-var URL_ROOT = "/wedding_cms";
+var URL_ROOT = "";
 
 $(document).on("click", ".setup-btn", function() {
   var form = $(this).attr("data-form");

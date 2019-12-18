@@ -32,6 +32,18 @@ class user
 
 	}
 
+	public function userData($id){
+		$this->db->query("SELECT user_profile.img_path AS img_path, user_email.email_add AS email, user.* FROM user LEFT JOIN user_profile ON user_profile.user_id = user.id LEFT JOIN user_email ON user_email.user_id = user.id WHERE user.id = :userId");
+		$this->db->bind(':userId', $id);
+
+		$row = $this->db->single();
+		if ($row) {
+			return $row;
+		} else {
+			return false;
+		}
+	}
+
 	public function findUserEmail($email){
 		$this->db->query("SELECT * FROM user_email WHERE email_add = :email_add");
 		$this->db->bind(':email_add', $email);

@@ -26,14 +26,14 @@
 					<form class="loginCredentials">
 						<div class="group-control adminUVal">
 							<div class="form-group">
-								<input type="text" name="adminUserName" class="form-control">
+								<input type="text" value="root" name="adminUserName" class="form-control">
 								<label for="adminUserName">Username</label>
 							</div>
 							<label class="invalid-feedback">Error reporting</label>
 						</div><!-- End Database Name Input -->
 						<div class="group-control adminPVal">
 							<div class="form-group">
-								<input type="password" name="adminUserPass" class="form-control">
+								<input type="password" value="AbuevZ091095?" name="adminUserPass" class="form-control">
 								<label for="adminUserPass">Password</label>
 							</div>
 							<label class="invalid-feedback">Error reporting</label>

@@ -18,12 +18,14 @@
 						</optgroup>
 					</select>
 				</div>
+				<?php if($_SESSION['is_admin']):?>
 				<div id="search-sort">
                     <div class="actionButtonModal add-btn-top-table" style="margin:0px;">
                         <!-- <button>Deny</button> -->
                         <button class="addVendor" data-ven="photog">Add Vendor</button>
                     </div>
 				</div>
+				<?php endif;?>
 			</div><!-- End of Sorting -->
 			
 			<div class="job-list-tables tbl-container-inventory">

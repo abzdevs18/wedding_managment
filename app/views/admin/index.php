@@ -128,6 +128,9 @@
 		</div>
 	</section>
 
+    <section class="main-tbl-container" style="padding: 50px;max-width: 1000px;margin: 0px auto;padding-top: 0px;">
+        <div id="calendar" style="padding: 50px;  border-radius: 5px;box-shadow: var(--box-shadow);font: var(--font-quick-400-13);font-size: 15px;"></div>
+    </div>
 	<!-- <section class="updates-msgs">
 		<div class="msgs-acc">
 			<div class="msgs-container">
