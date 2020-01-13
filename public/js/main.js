@@ -450,14 +450,14 @@ document.addEventListener("DOMContentLoaded", function() {
       center: "title",
       right: "dayGridMonth,timeGridWeek,timeGridDay"
     },
-    events: URL_ROOT + "/admin/loadEvent",
+    events: URL_ROOT + "/Admin/loadEvent",
     selectable: true,
     selectHelper: true,
     select: function(info) {
       var title = prompt("Enter Event Title");
       if (title) {
         $.ajax({
-          url: URL_ROOT + "/Admin/inserEvent",
+          url: URL_ROOT + "/admin/insertEvent",
           type: "POST",
           data: { title: title, start: info.startStr, end: info.endStr },
           success: function() {
