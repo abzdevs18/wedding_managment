@@ -457,7 +457,7 @@ document.addEventListener("DOMContentLoaded", function() {
       var title = prompt("Enter Event Title");
       if (title) {
         $.ajax({
-          url: URL_ROOT + "/admin/inserEvent",
+          url: URL_ROOT + "/Admin/inserEvent",
           type: "POST",
           data: { title: title, start: info.startStr, end: info.endStr },
           success: function() {
