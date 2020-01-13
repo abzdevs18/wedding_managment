@@ -73,7 +73,7 @@ $(document).on("click", "#vendorSave", function() {
 
       return xhr;
     },
-    url: URLL_ROOT + "/admin/vendor",
+    url: URLL_ROOT + "/Admin/vendor",
     type: "POST",
     dataType: "json",
     cache: false,
@@ -169,7 +169,7 @@ $(document).on("click", ".m_icon_req", function() {
   var uid = $(".m_icon_req").attr("data-uid");
 
   $.ajax({
-    url: URLL_ROOT + "/admin/getSamples",
+    url: URLL_ROOT + "/Admin/getSamples",
     type: "POST",
     data: {
       uid: uid
@@ -219,14 +219,14 @@ $(document).on("click", "#venCloser", function() {
 
 // Using the function below close the modal slider and adding of vendor
 function venderRecordAdding(photographer) {
-  window.location.href = URLL_ROOT + "/admin/" + photographer;
+  window.location.href = URLL_ROOT + "/Admin/" + photographer;
 }
 
 // hire vendor
 $(document).on("click", "#hireVendor", function() {
   var vendorId = $(this).attr("data-vendorId");
   $.ajax({
-    url: URLL_ROOT + "/admin/hireVendor",
+    url: URLL_ROOT + "/Admin/hireVendor",
     type: "POST",
     data: {
       vendorId: vendorId
@@ -236,13 +236,13 @@ $(document).on("click", "#hireVendor", function() {
       if (data["status"] == 2) {
         if (confirm("Delete booked with the vendor?")) {
           $.ajax({
-            url: URLL_ROOT + "/admin/deleteVendor",
+            url: URLL_ROOT + "/Admin/deleteVendor",
             type: "POST",
             data: {
               vendorId: vendorId
             },
             success: function(data) {
-              window.location.href = URLL_ROOT + "/admin/event";
+              window.location.href = URLL_ROOT + "/Admin/event";
             },
             error: function() {}
           });
@@ -260,7 +260,7 @@ $(document).on("change", "#sort-filter", function() {
 
   if (sortVal == 1) {
     $.ajax({
-      url: URLL_ROOT + "/admin/getSorted",
+      url: URLL_ROOT + "/Admin/getSorted",
       type: "POST",
       data: {
         serviceId: serviceId,
@@ -276,7 +276,7 @@ $(document).on("change", "#sort-filter", function() {
     });
   } else if (sortVal == 2) {
     $.ajax({
-      url: URLL_ROOT + "/admin/getSorted",
+      url: URLL_ROOT + "/Admin/getSorted",
       type: "POST",
       data: {
         serviceId: serviceId,
@@ -297,7 +297,7 @@ $(document).on("click", "#clientM", function() {
   var uid = $(this).attr("data-uid");
   $("#messageSendingButton").attr("data-uid", uid);
   $.ajax({
-    url: URLL_ROOT + "/admin/getMsgClick",
+    url: URLL_ROOT + "/Admin/getMsgClick",
     type: "POST",
     data: {
       clientId: uid
@@ -331,7 +331,7 @@ $(document).on("click", "#messageSendingButton", function() {
   var msgCon = $(".msgCon").text();
 
   $.ajax({
-    url: URLL_ROOT + "/admin/setMessage",
+    url: URLL_ROOT + "/Admin/setMessage",
     type: "POST",
     data: {
       clientId: uid,
@@ -346,7 +346,7 @@ $(document).on("click", "#messageSendingButton", function() {
         $(".container-of-msgs label").show(10);
 
         $.ajax({
-          url: URLL_ROOT + "/admin/getMsgClick",
+          url: URLL_ROOT + "/Admin/getMsgClick",
           type: "POST",
           data: {
             clientId: uid
@@ -405,7 +405,7 @@ $(document).on("click", ".addEvent", function() {
   var eventData = $("#eventForm").serializeArray();
 
   $.ajax({
-    url: URL_ROOT + "/admin/addEvent",
+    url: URL_ROOT + "/Admin/addEvent",
     type: "POST",
     data: $.param(eventData),
     success: function(data) {
@@ -424,7 +424,7 @@ $(document).on("click", ".bookEvent", function() {
   var eventId = $(this).attr("data-eId");
 
   $.ajax({
-    url: URL_ROOT + "/admin/bookEvent",
+    url: URL_ROOT + "/Admin/bookEvent",
     type: "POST",
     data: {
       eventId: eventId
@@ -437,14 +437,14 @@ $(document).on("click", ".bookEvent", function() {
       } else if (data["status"] == 2) {
         if (confirm("Cancel booking request?")) {
           $.ajax({
-            url: URL_ROOT + "/admin/deleteBookEvent",
+            url: URL_ROOT + "/Admin/deleteBookEvent",
             type: "POST",
             data: {
               eventId: eventId
             },
             success: function(data) {
               alert("Booking request is cancelled!");
-              window.location.href = URLL_ROOT + "/admin/event";
+              window.location.href = URLL_ROOT + "/Admin/event";
             },
             error: function(err) {}
           });
@@ -464,7 +464,7 @@ $(document).on("click", ".bookEvent", function() {
 $(document).on("click", "#confirmBook", function() {
   var bookingId = $(this).attr("data-bId");
   $.ajax({
-    url: URL_ROOT + "/admin/confirmBookEvent",
+    url: URL_ROOT + "/Admin/confirmBookEvent",
     type: "POST",
     data: {
       bookingId: bookingId
@@ -482,7 +482,7 @@ $(document).on("click", "#confirmBook", function() {
 $(document).on("click", ".bookingD", function() {
   var eventId = $(this).attr("data-bId");
   $.ajax({
-    url: URL_ROOT + "/admin/clientEventDetails",
+    url: URL_ROOT + "/Admin/clientEventDetails",
     type: "POST",
     data: {
       eventId: eventId
@@ -497,7 +497,7 @@ $(document).on("click", ".bookingD", function() {
 $(document).on("click", "#vendorBookConfirm", function() {
   var eventId = $(this).attr("data-bId");
   $.ajax({
-    url: URL_ROOT + "/admin/confirmBookingVendor",
+    url: URL_ROOT + "/Admin/confirmBookingVendor",
     type: "POST",
     data: {
       eventId: eventId

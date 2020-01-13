@@ -1209,7 +1209,7 @@ transition: all .5s;
 	text-align: right;
 }
 .msg-content {
-	margin-left: 35px;
+	margin-left: 50px;
 	float: right;
 }
 .msg-content > p {

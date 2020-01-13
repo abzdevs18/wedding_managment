@@ -307,6 +307,39 @@ class Admin extends Controller
 		$this->view('admin/request',$data);
 	}
 
+	public function getLatestMessages($receiverId, $senderId){
+		$this->db->query("SELECT messages.user_receiver_id AS userId, user.firstname AS firstN, user.lastname AS lastN, messages.user_receiver_id AS receiverId, messages.user_sender_id AS senderId, messages.msg_content as msgContent, messages.msg_date AS msgDate, user_profile.img_path AS sendIconImage FROM messages LEFT JOIN user ON user.id = messages.user_sender_id LEFT JOIN user_profile ON user_profile.user_id = messages.user_sender_id AND user_profile.profile_status = 1 WHERE (messages.user_receiver_id = :userReceiverId AND messages.user_sender_id = :userSenderId) OR (messages.user_receiver_id = :userSenderId AND messages.user_sender_id = :userReceiverId) ORDER BY messages.timestamp DESC");
+		$this->db->bind(":userReceiverId", $receiverId);
+		$this->db->bind(":userSenderId", $senderId);
+		$row = $this->db->resultSet();
+	   if ($row) {
+		   return $row;
+	   } else {
+		   return false;
+	   }
+	}
+    
+	public function getUsersId($id) {
+		$this->db->query("SELECT user.id AS user_id, user.*,user_email.*,user_location.*,user_phone.*, user_profile.img_path AS img_path FROM user LEFT JOIN user_profile ON user_profile.user_id = user.id AND user_profile.profile_status = 1 LEFT JOIN user_email ON user_email.user_id = user.id LEFT JOIN user_location ON user_location.user_id = user.id LEFT JOIN user_phone ON user_phone.user_id = user.id WHERE NOT EXISTS (SELECT * FROM pending_application WHERE pending_application.user_id = user.id) AND user.id = $id");
+        $row = $this->db->resultSet();
+		return $row;
+	}
+
+	/*Inser Message*/
+	public function sendMessage($data){
+		$this->db->query("INSERT INTO `messages`(`user_receiver_id`, `user_sender_id`, `msg_content`,`msg_date`) VALUES (:receiver,:sender,:message, :sendDate)");
+		$this->db->bind(":receiver", $data['receiver']);
+		$this->db->bind(":sender", $data['sender']);
+		$this->db->bind(":message", $data['message']);
+		$this->db->bind(":sendDate", $data['sendDate']);
+
+		if ($this->db->execute()) {
+			return true;
+		}else{
+			return false;
+		}
+	}
+
 	public function messenger(){
 		$listMsgUser = $this->adminModel->getUserMsg($_SESSION['uId']);
 		$iL = $this->adminModel->getLatestSender($_SESSION['uId']);

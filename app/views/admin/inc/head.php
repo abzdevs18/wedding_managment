@@ -312,7 +312,7 @@
 	<main>
 		<header class="dashboard-nav">
 			<div id="add-post">
-				<div class="search-dash" style="margin-top: 5px;">
+				<div class="search-dash" style="margin-top: 5px;opacity:0;">
 					<div id="search-sort" style="width: 80%;">
 						<input type="text" name="search" placeholder="Search on couples...." style="width: 10%;" id="admin-search-field">
 						<i class="fal fa-search" style="left:0;"></i>
@@ -328,7 +328,7 @@
 						</div>
 					</div>				
 				</div>
-				<div>
+				<div style="opacity:0;">
 					<div id="notif-icon">
 						<button><i class="fal fa-envelope"></i></button>
 						<span id="notif-counter">2</span>
@@ -373,9 +373,9 @@
 					</div>
 					<div id="admin-profile">
 						<?php if($_SESSION['is_admin']) : ?>
-							<a href="#" id="check-couple" title="Create modal to and select all the clients to view the data of their events.">Check Couples <i class="far fa-rings-wedding" style="color:#fe5894;"></i></a>
+							<a href="#" id="check-couple" style="display:none;" title="Create modal to and select all the clients to view the data of their events.">Check Couples <i class="far fa-rings-wedding" style="color:#fe5894;"></i></a>
 						<?php else : ?>
-							<a href="<?=URL_ROOT . '/frontend/' . $_SESSION['uId'];?>" target="_blank" id="check-frontEnd" title="Check the front end version of your website.." style="border-radius: 5px;background: #f05690;">View FrontEnd</a>
+							<a href="<?=URL_ROOT . '/frontend/' . $_SESSION['uId'];?>" target="_blank" id="check-frontEnd" style="display:none;" title="Check the front end version of your website.." style="border-radius: 5px;background: #f05690;">View FrontEnd</a>
 						<?php endif;?>
 						<div id="profile-container" class="adm-prof">
 							<div id="admin-icon">
@@ -420,10 +420,10 @@
 								<i class="fal fa-cubes"></i>
 								<a href="#"> Bookings</a>
 							</li>
-							<li data-link="<?=URL_ROOT;?>/admin/calendar" class="<?=($_SESSION['menu_active']=="calendar") ? 'menu-active' : ''; ?>">
+							<!-- <li data-link="<?=URL_ROOT;?>/admin/calendar" class="<?=($_SESSION['menu_active']=="calendar") ? 'menu-active' : ''; ?>">
 								<i class="fal fa-calendar-alt"></i>
 								<a href="#"> Calendar of Events</a>
-							</li>
+							</li> -->
 							<?php endif;?>
 						</ul>
 						<div id="admin-details" class="menu-head">

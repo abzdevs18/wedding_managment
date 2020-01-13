@@ -89,20 +89,24 @@
 								<?php if($data['latestM']): ?>
 									<?php foreach($data['latestM'] AS $msg): ?>
 										<?php if($msg->receiverId == $_SESSION['uId']) : ?>
-										<div class="message-reciever">
-											<img src="<?=URL_ROOT?>/img/icons/small-prof.jpg" />
-											<div class="msg-content">
-												<p><?=$msg->msgContent?></p>
-												<span><?=$msg->msgDate?></span>
+											<div class="message-reciever">
+												<div class="req_icon m_notif_icon message_icon" style="position:absolute;margin-right:20px;">
+													<span><?=ucwords($data['header'][0]->firstN[0])?></span>
+												</div>
+												<!-- <img src="<?=URL_ROOT?>/img/icons/small-prof.jpg" /> -->
+												<div class="msg-content">
+													<p><?=$msg->msgContent?></p>
+													<span><?=$msg->msgDate?></span>
+												</div>
 											</div>
-										</div>
 										<?php else: ?>
 										<div class="current-user-sender" style="justify-content: right;">
 											<div class="msg-content">
 												<p><?=$msg->msgContent?></p>
-												<span><?=$msg->msgDate?> <i class="far fa-check"></i></span>
+												<span><?=$msg->msgDate?> </span>
+												<!-- <i class="far fa-check"></i> -->
 											</div>
-											<img src="<?=URL_ROOT?>/img/icons/small-prof.jpg" style="width:20px;height:20px;" />
+											<!-- <img src="<?=URL_ROOT?>/img/icons/small-prof.jpg" style="width:20px;height:20px;" /> -->
 										</div>
 										<?php endif;?>
 									<?php endforeach;?>
@@ -114,8 +118,8 @@
 								<div class="ctl-msg msgCon" contenteditable></div>
 								<label for="typing-msg">Type here your message</label>
 								<div class="cta-buttons">
-									<i class="fal fa-thumbs-up"></i>
-									<i class="fal fa-thumbs-down"></i>
+									<!-- <i class="fal fa-thumbs-up"></i>
+									<i class="fal fa-thumbs-down"></i> -->
 									<span id="messageSendingButton" data-uid="<?=($_SESSION['is_admin']) ? $data['usr'] : 1;?>" data-sid="<?=$_SESSION['uId'];?>">Send</span>
 								</div>
 							</div>

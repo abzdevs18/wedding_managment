@@ -49,7 +49,7 @@
         </div>
         <div class="alerts-notif">
         
-        <div id="map" style="width:100%;height:500px;"></>
+        <div id="map" style="width:100%;height:500px;display:none;"></>
         </div>
     </section>
 </section>

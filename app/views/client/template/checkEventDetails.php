@@ -19,7 +19,7 @@
             </div>
             <div class="prof-container" style="position:relative;display: flex;justify-content: right;">
                 <div style="height:20px;margin-right: 200px;font-size: 30px;margin-top: 11px;">
-                    <i class="fal fa-envelope"></i>
+                    <!-- <i class="fal fa-envelope"></i> -->
                 </div>
                 <div>
                     <?php if(($data['bookStatus']) && ($data['bookStatus']->bookStat == 0)) : ?>
@@ -80,7 +80,7 @@
                                     </div>
                                 </div>                                                                   
                             </div>
-                            <div class="bio">
+                            <div class="bio" style="display:none;">
                                 <p class="bio-head">Reception information</p>
                                 <div class="bio-d-list" style="height:500px;background:#333;border-radius:5px;">
                                     <h3>Map Here(MAybe)</h3>

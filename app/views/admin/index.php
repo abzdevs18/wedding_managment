@@ -2,11 +2,11 @@
 
 <div class="dash_container">
 
-	<section class="tg-dash">
+	<!-- <section class="tg-dash">
 		<h1>Dashboard</h1>
-	</section>
+	</section> -->
 
-	<section class="main-section mar-30">
+	<section class="main-section mar-30" style="display:none;">
 		<div class="row">
 			<div class="col-4">
 				<sup><i class="fal fa-question-circle" style="font-size:12px;" title="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eligendi est eaque laborum eum sit? Ipsa earum dolor velit non praesentium architecto hic cupiditate fugiat sed. Maiores quod repellendus aliquam commodi."></i></sup>
@@ -63,7 +63,7 @@
 		</div>
 	</section>
 
-	<section class="offices-msgs">
+	<section class="offices-msgs" style="display:none;">
 		<div class="alerts-notif">
 			<div class="alert-content">
 				<div class="content-head">
@@ -128,7 +128,7 @@
 		</div>
 	</section>
 
-    <section class="main-tbl-container" style="padding: 50px;max-width: 1000px;margin: 0px auto;padding-top: 0px;">
+    <section class="main-tbl-container mar-30" style="padding: 50px;max-width: 1000px;margin: 0px auto;padding-top: 0px;">
         <div id="calendar" style="padding: 50px;  border-radius: 5px;box-shadow: var(--box-shadow);font: var(--font-quick-400-13);font-size: 15px;"></div>
     </div>
 	<!-- <section class="updates-msgs">
