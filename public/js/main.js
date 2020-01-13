@@ -459,7 +459,11 @@ document.addEventListener("DOMContentLoaded", function() {
         $.ajax({
           url: URL_ROOT + "/admin/insertEvent",
           type: "POST",
-          data: { title: title, start: info.startStr, end: info.endStr },
+          data: {
+            title: title,
+            start: info.startStr,
+            end: info.endStr
+          },
           success: function() {
             calendar.refetchEvents();
           }
