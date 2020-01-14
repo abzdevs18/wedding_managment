@@ -1,6 +1,6 @@
 /* FIeld form design*/
 
-var URL_ROOT_FINAL = "/wedding_cms";
+var URL_ROOT_FINAL = "";
 //For scrollBar
 $(".content").mCustomScrollbar({
   autoHideScrollbar: true

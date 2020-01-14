@@ -1,6 +1,6 @@
 <?php
 
-define("ROOT", "/wedding_cms");
+define("ROOT", "");
 /**
  * Admin Account Controller
  */
