@@ -634,12 +634,6 @@ class Admin extends Controller
 				"start" => trim($_POST['start']),
 				"end" => trim($_POST['end'])
 			];
-
-			if($this->adminModel->add_event($data)){
-				return true;
-			}else{
-				return false;
-			}
 		}			
 	}
 	public function updateTimeEvent()
