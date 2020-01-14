@@ -1,5 +1,6 @@
 /* FIeld form design*/
 
+var URL_ROOT_FINAL = "/wedding_cms";
 //For scrollBar
 $(".content").mCustomScrollbar({
   autoHideScrollbar: true
@@ -14,7 +15,6 @@ $(".content").mCustomScrollbar({
   });
 })(jQuery);
 /*ENd ScrollBar*/
-var URL_ROOT = "";
 
 $(document).on("click", ".setup-btn", function() {
   var form = $(this).attr("data-form");
@@ -41,7 +41,7 @@ $(document).on("click", ".setup-btn", function() {
     var dbCon = $("#c-n").serializeArray();
     /* Check for the inputs if they are valid */
     $.ajax({
-      url: URL_ROOT + "/init/adminSetup",
+      url: URL_ROOT_FINAL + "/init/adminSetup",
       type: "POST",
       dataType: "json",
       data: $.param(dbCon),
@@ -56,21 +56,21 @@ $(document).on("click", ".setup-btn", function() {
             .show(100)
             .animate({ opacity: "1", "margin-right": "25%" }, 800);
           $.ajax({
-            url: URL_ROOT + "/init/configGen",
+            url: URL_ROOT_FINAL + "/init/configGen",
             type: "POST",
             dataType: "json",
             data: $.param(dbCon),
             success: function(data) {
               if (data["status"] == 1) {
                 $.ajax({
-                  url: URL_ROOT + "/init/err",
+                  url: URL_ROOT_FINAL + "/init/err",
                   type: "POST",
                   dataType: "json",
                   success: function(data) {
                     /* If this goes wrong error will throw up*/
                     if (data["error"] == 0) {
                       $.ajax({
-                        url: URL_ROOT + "/init/uploadTable",
+                        url: URL_ROOT_FINAL + "/init/uploadTable",
                         dataType: "json",
                         beforeSend: function() {
                           setTimeout(function() {
@@ -182,7 +182,7 @@ $(document).on("click", ".setup-btn", function() {
     fd.append("adminUserCPass", adminUserCPass);
 
     $.ajax({
-      url: URL_ROOT + "/init/chSetup",
+      url: URL_ROOT_FINAL + "/init/chSetup",
       type: "POST",
       dataType: "json",
       processData: false, // important
@@ -241,7 +241,7 @@ $(document).on("click", ".setup-btn", function() {
 
   /* if setup this is the link*/
   if (link == "login") {
-    window.location.href = URL_ROOT + "/admin/login";
+    window.location.href = URL_ROOT_FINAL + "/admin/login";
   }
 });
 /* Admin initialization*/
@@ -269,14 +269,14 @@ function login() {
   var adminData = $(".loginCredentials").serializeArray();
 
   $.ajax({
-    url: URL_ROOT + "/init/adminLogin",
+    url: URL_ROOT_FINAL + "/init/adminLogin",
     type: "POST",
     dataType: "json",
     data: $.param(adminData),
     success: function(data) {
       if (data["data"].status == 1 && data["row"].fId != "") {
         feedbackDefault("f-form");
-        window.location.href = URL_ROOT + "/admin";
+        window.location.href = URL_ROOT_FINAL + "/admin";
         console.log(data["row"].fId);
       } else if (data["data"].status == 2) {
         $("#flash-msgs")
@@ -309,7 +309,7 @@ $(document).on("click", ".signupNow", function() {
   var clientData = $("#signUser").serializeArray();
 
   $.ajax({
-    url: URL_ROOT + "/init/clientSignup",
+    url: URL_ROOT_FINAL + "/init/clientSignup",
     type: "POST",
     dataType: "json",
     data: $.param(clientData),
@@ -324,7 +324,7 @@ $(document).on("click", ".signupNow", function() {
         $("#flash-msgs p").text("Registration successful!!");
 
         setTimeout(function() {
-          window.location.href = URL_ROOT + "/pages/login";
+          window.location.href = URL_ROOT_FINAL + "/pages/login";
         }, 4000);
       } else {
         if (data["fName_err"]) {
@@ -450,14 +450,14 @@ document.addEventListener("DOMContentLoaded", function() {
       center: "title",
       right: "dayGridMonth,timeGridWeek,timeGridDay"
     },
-    events: URL_ROOT + "/Admin/loadEvent",
+    events: URL_ROOT_FINAL + "/Admin/loadEvent",
     selectable: true,
     selectHelper: true,
     select: function(info) {
       var title = prompt("Enter Event Title");
       if (title) {
         $.ajax({
-          url: URL_ROOT + "/admin/insertEvent",
+          url: URL_ROOT_FINAL + "/Admin/insertEvent",
           type: "POST",
           data: {
             title: title,
@@ -474,7 +474,7 @@ document.addEventListener("DOMContentLoaded", function() {
     editable: true,
     eventResize: function(info) {
       $.ajax({
-        url: URL_ROOT + "/admin/updateTimeEvent",
+        url: URL_ROOT_FINAL + "/admin/updateTimeEvent",
         type: "POST",
         data: {
           id: info.event.id,
@@ -492,7 +492,7 @@ document.addEventListener("DOMContentLoaded", function() {
     },
     eventDrop: function(info) {
       $.ajax({
-        url: URL_ROOT + "/admin/updateTimeEvent",
+        url: URL_ROOT_FINAL + "/admin/updateTimeEvent",
         type: "POST",
         data: {
           id: info.event.id,
@@ -511,7 +511,7 @@ document.addEventListener("DOMContentLoaded", function() {
     eventClick: function(info) {
       if (confirm("Delete this event?")) {
         $.ajax({
-          url: URL_ROOT + "/admin/deleteEvent",
+          url: URL_ROOT_FINAL + "/admin/deleteEvent",
           type: "POST",
           data: {
             id: info.event.id
@@ -531,10 +531,10 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 // Signup
 $(document).on("click", ".login", function() {
-  window.location.href = URL_ROOT + "/pages/login";
+  window.location.href = URL_ROOT_FINAL + "/pages/login";
 });
 $(document).on("click", ".sign-p-btn", function() {
-  window.location.href = URL_ROOT + "/pages/signup";
+  window.location.href = URL_ROOT_FINAL + "/pages/signup";
 });
 // Profile tabs
 

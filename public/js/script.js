@@ -2,7 +2,7 @@
 //     e.preventDefault();
 //     $('.confirmationModal').show(100);
 // });
-var URLL_ROOT = "";
+var URLL_ROOT = "/wedding_cms";
 // Delete Blog
 $(document).on("click", ".addVendor", function() {
   var vendorType = $(this).attr("data-ven");

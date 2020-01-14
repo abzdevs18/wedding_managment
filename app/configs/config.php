@@ -11,7 +11,7 @@
 			define('APP_ROOT', dirname(dirname(__FILE__)));
 
 			//URL ROOT
-			define('URL_ROOT', '');
+			define('URL_ROOT', 'http://192.168.0.16/wedding_cms');
 
 			//SITE NAME
 			define('SITE_NAME', 'Wedding Planner');

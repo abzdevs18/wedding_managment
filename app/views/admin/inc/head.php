@@ -411,10 +411,10 @@
 								<i class="fal fa-envelope"></i>
 								<a href="#"> Messages</a>
 							</li>
-							<li data-link="<?=URL_ROOT;?>/admin/profile" class="<?=($_SESSION['menu_active']=="profile") ? 'menu-active' : ''; ?>">
+							<!-- <li data-link="<?=URL_ROOT;?>/admin/profile" class="<?=($_SESSION['menu_active']=="profile") ? 'menu-active' : ''; ?>">
 								<i class="fal fa-cog"></i>
 								<a href="#"> Profile settings</a>
-							</li>
+							</li> -->
 							<?php if($_SESSION['is_admin']):?>
 							<li data-link="<?=URL_ROOT;?>/admin/posted" class="<?=($_SESSION['menu_active']=="request") ? 'menu-active' : ''; ?>">
 								<i class="fal fa-cubes"></i>
