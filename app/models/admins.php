@@ -273,14 +273,12 @@ class Admins
 	}
 	public function add_event($data)
 	{
-		$this->db->query("INSERT INTO `event`(`title`, `start`, `end`) VALUES (:title,:startE,:endE)");
-		$this->db->bind(":title", $data['title']);
-		$this->db->bind(":startE", $data['start']);
-		$this->db->bind(":endE", $data['end']);
+		$this->db->query("INSERT INTO `event`(`title`, `start`, `end`) VALUES ( " . $data['title'] . ', ' .  $data['title'] . ', ' . $data['end'] . " )");
+		// $this->db->bind(":title", );
+		// $this->db->bind(":startE", );
+		// $this->db->bind(":endE", );
 		if ($this->db->execute()) {
 			return true;
-		} else {
-			return false;
 		}
 	}
 	public function updateEventTime($data)
