@@ -32,7 +32,7 @@ $(document).ready(function() {
 
 $(document).on("click", "#menus-nav > li", function() {
   var link = $(this).attr("data-link");
-  window.location.href = link;
+  window.location.href = URL_ROOT + link;
   $("#menus-nav li").removeClass("menu-active");
   $(this).addClass("menu-active");
   console.log(link);
