@@ -453,11 +453,12 @@ document.addEventListener("DOMContentLoaded", function() {
     events: URL_ROOT_FINAL + "/Admin/loadEvent",
     selectable: true,
     selectHelper: true,
+    editable: true,
     select: function(info) {
       var title = prompt("Enter Event Title");
       if (title) {
         $.ajax({
-          url: URL_ROOT_FINAL + "/Admin/insertEvent",
+          url: URL_ROOT_FINAL + "/admin/insertEvent",
           type: "POST",
           data: {
             title: title,
@@ -471,7 +472,6 @@ document.addEventListener("DOMContentLoaded", function() {
       }
       console.log(info.start);
     },
-    editable: true,
     eventResize: function(info) {
       $.ajax({
         url: URL_ROOT_FINAL + "/admin/updateTimeEvent",
