@@ -625,7 +625,22 @@ class Admin extends Controller
 	}
 	public function insertEvent()
 	{
-			
+		if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {		
+			$_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+
+			$data = [
+				"title" => trim($_POST['title']),
+				"start" => trim($_POST['start']),
+				"end" => trim($_POST['end'])
+			];
+
+			if($this->adminModel->add_event($data)){
+				return true;
+			}else{
+				return false;
+			}
+		}			
 	}
 	public function updateTimeEvent()
 	{

@@ -271,7 +271,7 @@ class Admins
 			return false;
 		}
 	}
-	public function insertEvent($data)
+	public function add_event($data)
 	{
 		$this->db->query("INSERT INTO `event`(`title`, `start`, `end`) VALUES (:title,:start,:end)");
 		$this->db->bind(":title", $data['title']);
