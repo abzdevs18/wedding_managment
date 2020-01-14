@@ -103,11 +103,7 @@ class Event extends Controller{
 	
 	public function fullBookRequest()
 	{
-		$this->db->query("SELECT COUNT(booking.id) AS numberRow,
-		(SELECT COUNT(*) FROM booking WHERE booking.admin_stat = 0) AS pending,
-		(SELECT COUNT(*) FROM booking WHERE booking.admin_stat = 1) AS confirm,
-		(SELECT COUNT(*) FROM booking WHERE booking.admin_stat = 2) AS cancelled,
-		(SELECT COUNT(*) FROM booking WHERE booking.admin_stat = 3) AS deleted, event.*, booking.id AS bookingId, user.user_cus_id AS cusId, user.firstname AS fName, profile_photo.image_path AS imgProf, booking.status AS bookingStatus FROM `event` LEFT JOIN user ON user.id = event.user_id LEFT JOIN booking ON booking.event_id = event.id LEFT JOIN profile_photo ON profile_photo.user_id = event.id AND profile_photo.image_status = 1 WHERE EXISTS(SELECT * FROM booking WHERE booking.event_id = event.id)");
+		$this->db->query("SELECT COUNT(booking.id) AS numberRow,(SELECT COUNT(*) FROM booking WHERE booking.admin_stat = 0) AS pending,(SELECT COUNT(*) FROM booking WHERE booking.admin_stat = 1) AS confirm,(SELECT COUNT(*) FROM booking WHERE booking.admin_stat = 2) AS cancelled,(SELECT COUNT(*) FROM booking WHERE booking.admin_stat = 3) AS deleted, event.*, booking.id AS bookingId, user.user_cus_id AS cusId, user.firstname AS fName, profile_photo.image_path AS imgProf, booking.status AS bookingStatus FROM `event` LEFT JOIN user ON user.id = event.user_id LEFT JOIN booking ON booking.event_id = event.id LEFT JOIN profile_photo ON profile_photo.user_id = event.id AND profile_photo.image_status = 1 WHERE EXISTS(SELECT * FROM booking WHERE booking.event_id = event.id)");
 		$row = $this->db->resultSet();
 		if($row){
 			return $row;
