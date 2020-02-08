@@ -127,7 +127,7 @@
 			</div>	
 		</div>
 	</section>
-
+							
     <section class="main-tbl-container mar-30" style="padding: 50px;max-width: 1000px;margin: 0px auto;padding-top: 0px;">
         <div id="calendar" style="padding: 50px;  border-radius: 5px;box-shadow: var(--box-shadow);font: var(--font-quick-400-13);font-size: 15px;"></div>
     </div>

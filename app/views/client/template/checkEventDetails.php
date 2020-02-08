@@ -57,18 +57,19 @@
                                             <p>Bride:</p>
                                             <span><?=$data['eventData']->bride?></span>
                                         </div>
-                                        <!-- <div class="bio-d">
+                                        <div class="bio-d">
                                             <p>Budget:</p>
-                                            <span>P<?=number_format($data['eventData']->budget);?>.00</span>
-                                        </div> -->
+                                            <!-- <span><?=$data['eventData']->budget;?>.00</span> -->
+                                             <span><?$data['eventData']?></span> 
+                                        </div>
                                         <div class="bio-d">
                                             <p>Location:</p>
                                             <span><?=$data['eventData']->location;?></span>
                                         </div>
-                                        <div class="bio-d">
+                                        <!-- <div class="bio-d">
                                             <p>Site:</p>
                                             <span class="f-site-link"><?=URL_ROOT . '/frontend/' . $data['eventData']->user_id;?></span>
-                                        </div>
+                                        </div> -->
                                     </div>					
                                 </div>  
                                 <div class="datepicker">

@@ -17,7 +17,7 @@
                 <form class="loginCredentials">
                     <div class="changepass-holder half-row">
                         <div class="form-group">
-                            <input type="text" value="root" name="adminUserName" class="form-control s">
+                            <input type="text" value="Planner" name="adminUserName" class="form-control s">
                             <label for="adminUserName">Email</label>
                         </div>
                     </div>

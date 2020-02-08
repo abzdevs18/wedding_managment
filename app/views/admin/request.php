@@ -76,7 +76,7 @@
 										<h3><?=$bookings->location?></h3>
 									</td>
 									<td>
-										<span class="budgetForWedding"><i class="far fa-ruble-sign"></i> P<?=number_format($bookings->budget);?>.00</span>
+										<span class="budgetForWedding"><i class="far fa-ruble-sign"></i> <?=$bookings->budget;?></span>
 									</td>
 									<!-- pendin #f91942 -->
 									<!-- confirm #00cc67 -->

@@ -1,5 +1,6 @@
 <?php
-error_reporting(0);
+session_start();
+ error_reporting(0);
 // loading from config folder
 // loading from config folder
 	if (file_exists(dirname(__FILE__).'/configs/config.php')) {

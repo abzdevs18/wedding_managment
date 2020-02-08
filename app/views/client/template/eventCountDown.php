@@ -88,18 +88,18 @@
                                         <p>Location:</p>
                                         <span><?=$data['eventData']->location;?></span>
                                     </div>
-                                    <div class="bio-d">
+                                    <!-- <div class="bio-d">
                                         <p>Site:</p>
                                         <span class="f-site-link"><?=URL_ROOT . '/frontend/' . $_SESSION['uId'];?></span>
-                                    </div>
+                                    </div> -->
                                 </div>					
                             </div>
-                            <div class="bio">
+                            <!-- <div class="bio">
                                 <p class="bio-head">Reception information</p>
                                 <div class="bio-d-list" style="height:500px;background:#333;border-radius:5px;">
                                     <h3>Map Here(MAybe)</h3>
                                 </div>							
-                            </div>					
+                            </div>					 -->
                         </div>
                         <div class="photog" style="display: none;">
                             <div class="job-list-tables tbl-container-inventory">

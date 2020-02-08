@@ -9,6 +9,29 @@ class Event extends Controller{
         $this->db = Database::getInstance();
     }
 
+	public function addEventApp($data){
+		try {
+			$this->db->beginTransaction();
+			$this->db->query("INSERT INTO `event`(`user_id`, `location`, `budget`, `groom`, `bride`, `title`, `forCountDown`, `start`) VALUES (:user_id,:location,:budget,:groom, :bride, :title,:forCount,:start)");
+			$this->db->bind(":user_id", $data['sId']);
+			$this->db->bind(":bride", $data['bride']);
+			$this->db->bind(":groom", $data['groom']);
+			$this->db->bind(":location", $data['location']);
+			$this->db->bind(":budget", $data['budget']);
+			$this->db->bind(":title", $data['title']);
+			$this->db->bind(":forCount", $data['forCount']);
+			$this->db->bind(":start", $data['start']);
+            $this->db->execute();
+			$lastInsertId = $this->db->lastInsert();
+
+            $this->db->commit();
+			return $lastInsertId;
+        } catch (Exception $e) {
+			$this->db->rollBack();
+			return false;
+		}
+    }
+
 	public function addEvent($data){
 		try {
 			$this->db->beginTransaction();
@@ -30,6 +53,17 @@ class Event extends Controller{
 			return false;
 		}
     }
+
+    public function getEventUser($id){
+       $this->db->query("SELECT event.user_id AS uId FROM event WHERE event.id = :uId");
+       $this->db->bind(":uId", $id);
+       $row = $this->db->single();
+       if($row){
+           return $row;
+       }else{
+           return false;
+       }
+	}
 
     public function checkEvent($id){
        $this->db->query("SELECT event.*, user.user_cus_id AS cusId, user.firstname AS fName, profile_photo.image_path AS imgProf, booking.status AS bookingStatus FROM `event` LEFT JOIN user ON user.id = event.user_id LEFT JOIN booking ON booking.event_id = event.id LEFT JOIN profile_photo ON profile_photo.user_id = event.id AND profile_photo.image_status = 1 WHERE event.user_id = :uId");

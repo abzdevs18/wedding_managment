@@ -21,7 +21,12 @@
 				<div id="search-sort">
                     <div class="actionButtonModal add-btn-top-table" style="margin:0px;">
                         <!-- <button>Deny</button> -->
+                        
+
+                        <?php if($_SESSION['is_admin']) : ?>
                         <button class="addVendor" data-ven="attire">Add Vendor</button>
+                    <?php endif;?>
+
                     </div>
 				</div>
 			</div><!-- End of Sorting -->

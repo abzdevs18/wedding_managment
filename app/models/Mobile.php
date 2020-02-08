@@ -21,7 +21,7 @@ class Mobile
 
 	/*Inser Message*/
 	public function getMessagesForCurrentUser($userSessionId){
-		$this->db->query("SELECT DISTINCT user.username AS name, user.work_cat AS work_cat, user.firstname AS fname, user.lastname AS lname, user_profile.img_path AS img_path, user.id AS id, 
+		$this->db->query("SELECT DISTINCT user.username AS name, user.firstname AS fname, user.lastname AS lname, user_profile.img_path AS img_path, user.id AS id, 
 (SELECT messages.msg_date FROM messages WHERE (messages.user_sender_id = user.id AND messages.user_receiver_id = :currentSessionUserId) OR (messages.user_sender_id = :currentSessionUserId AND messages.user_receiver_id = user.id) ORDER BY messages.timestamp DESC LIMIT 1) AS dateM,
 (SELECT messages.msg_content FROM messages WHERE (messages.user_sender_id = user.id AND messages.user_receiver_id = :currentSessionUserId) OR (messages.user_sender_id = :currentSessionUserId AND messages.user_receiver_id = user.id) ORDER BY messages.timestamp DESC LIMIT 1) AS latestM
 FROM user LEFT JOIN user_profile ON user.id = user_profile.user_id AND user_profile.profile_status = 1 LEFT JOIN messages on (messages.user_receiver_id = :currentSessionUserId AND messages.user_sender_id = user.id) OR (messages.user_receiver_id = user.id AND messages.user_sender_id = :currentSessionUserId) WHERE EXISTS(SELECT * FROM messages WHERE (messages.user_receiver_id = :currentSessionUserId AND messages.user_sender_id = user.id) OR (messages.user_receiver_id = user.id AND messages.user_sender_id = :currentSessionUserId)) ORDER BY latestM DESC");

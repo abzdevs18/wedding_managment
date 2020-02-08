@@ -8,7 +8,7 @@
 	<link rel="icon" type="image/x-icon" href="<?=URL_ROOT;?>/img/logo_icon/lab.ico">
 	<link href="https://fonts.googleapis.com/css?family=Quicksand:400,500|Poppins&display=swap" rel="stylesheet"> 
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet"> 
-	<link rel="stylesheet" type="text/css" href="https://cdndevelopment.blob.core.windows.net/cdn/fa/css/all.min.css">
+	<link rel="stylesheet" type="text/css" href="https://1968350126.rsc.cdn77.org/css/all.min.css">
 	<link rel="stylesheet" type="text/css" href="<?=URL_ROOT;?>/css/bookDetails.css">
 	<link rel="stylesheet" type="text/css" href="<?=URL_ROOT;?>/css/style.css">
 	<link rel="stylesheet" type="text/css" href="<?=URL_ROOT;?>/css/main.css">
@@ -126,6 +126,9 @@
             <button>Close</button>
         </div>
     </div>
+</div>
+<div class="confirmationModal eventModal" style="display:none;">
+
 </div>
 <!-- End of modal blog Deletion -->
 	<!-- Modal for confirmation in deleting Blog  -->
@@ -268,13 +271,14 @@
 				</div>
 			</div>
 			<?php if($_SESSION['is_admin']):?>
-			<div class="actionButtonModal">
+			<!-- <div class="actionButtonModal" >
 				<button>Delete</button>
 				<button id="cancelDeletion">Update</button>
-			</div>
+			</div> -->
 			<?php else:?>
 			<div class="actionButtonModal">
-				<button id="hireVendor">Hire Vendor</button>
+				<button id="hireVendor">Delete</button>
+				<button id="hireVendor">Hire</button>
 			</div>
 			<?php endif;?>
 		</div>
@@ -373,9 +377,9 @@
 					</div>
 					<div id="admin-profile">
 						<?php if($_SESSION['is_admin']) : ?>
-							<a href="#" id="check-couple" style="display:none;" title="Create modal to and select all the clients to view the data of their events.">Check Couples <i class="far fa-rings-wedding" style="color:#fe5894;"></i></a>
+							<a href="#" title="Create modal to and select all the clients to view the data of their events.">Admin Account<i class="far fa-rings-wedding" style="color:#fe5894;"></i></a>
 						<?php else : ?>
-							<a href="<?=URL_ROOT . '/frontend/' . $_SESSION['uId'];?>" target="_blank" id="check-frontEnd" style="display:none;" title="Check the front end version of your website.." style="border-radius: 5px;background: #f05690;">View FrontEnd</a>
+							<a href="#" target="_blank" style="border-radius: 5px;background: #f05690;">Client Account</a>
 						<?php endif;?>
 						<div id="profile-container" class="adm-prof">
 							<div id="admin-icon">
@@ -436,7 +440,7 @@
 							</li>
 							<li data-link="<?=URL_ROOT;?>/admin/attire" class="<?=($_SESSION['menu_active']=="attire") ? 'menu-active' : ''; ?>">
 								<i class="fal fa-tshirt"></i>
-								<a href="#"> Attire & Beauty</a>
+								<a href="#"> Attire(Packages)</a>
 							</li>
 							<li data-link="<?=URL_ROOT;?>/admin/food" class="<?=($_SESSION['menu_active']=="food") ? 'menu-active' : ''; ?>">
 								<i class="fas fa-burger-soda"></i>

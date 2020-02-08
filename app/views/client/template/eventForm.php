@@ -29,7 +29,15 @@
             </div>
             <div class="changepass-holder half-row">
                 <div class="form-group">
-                <input type="text" name="budget" class="form-control">
+                <!-- <input type="text" name="budget" class="form-control"> -->
+                
+                <select id="sort-filter" name="budget">
+                    <optgroup>
+                        <option selected value="P20,000-P50,000">P20,000-P50,000</option>
+                        <option value="P50,000-P100,000">P50,000-P100,000</option>
+                        <option value="P100,0000-Above">P100,0000-Above</option>
+                    </optgroup>
+                </select>
                 <label for="budget">Event Budget</label>
                 </div>
             </div>

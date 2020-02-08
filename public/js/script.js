@@ -247,6 +247,8 @@ $(document).on("click", "#hireVendor", function() {
             error: function() {}
           });
         }
+      }else{
+        alert("Vendor Hire.");
       }
     },
     error: function(err) {}

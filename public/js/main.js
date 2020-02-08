@@ -509,25 +509,65 @@ document.addEventListener("DOMContentLoaded", function() {
       });
     },
     eventClick: function(info) {
-      if (confirm("Delete this event?")) {
-        $.ajax({
-          url: URL_ROOT_FINAL + "/admin/deleteEvent",
-          type: "POST",
-          data: {
-            id: info.event.id
-          },
-          success: function(data) {
-            calendar.refetchEvents();
-            // alert(data);
-          },
-          error: function(err) {
-            // alert(err);
-          }
-        });
-      }
+      // alert(info.event.id);
+      // $(".confirmationModal").show(100);
+      $("body").css({
+        overflow: "hidden",
+        position: "relative"
+      });
+
+      $.ajax({
+        url: URL_ROOT_FINAL + "/admin/eventModal",
+        type: "POST",
+        data: {
+          eventId: info.event.id
+        },
+        success: function(data) {
+          // console.log(info.event.id);
+          console.log(data);
+          // calendar.refetchEvents();
+          $(".eventModal")
+            .show(100)
+            .html(data);
+          // alert(data);
+          (function($) {
+            $(window).on("load", function() {
+              $(".eventContainer").mCustomScrollbar();
+            });
+          })(jQuery);
+        },
+
+        error: function(err) {
+          // alert(err);
+        }
+      });
+
+      // if (confirm("Delete this event?")) {
+      //   $.ajax({
+      //     url: URL_ROOT_FINAL + "/admin/deleteEvent",
+      //     type: "POST",
+      //     data: {
+      //       id: info.event.id
+      //     },
+      //     success: function(data) {
+      //       calendar.refetchEvents();
+      //       // alert(data);
+      //     },
+      //     error: function(err) {
+      //       // alert(err);
+      //     }
+      //   });
+      // }
     }
   });
   calendar.render();
+});
+$(document).on("click", "#closeEventDetails", function() {
+  $("body").css({
+    overflow: "auto",
+    position: "relative"
+  });
+  $(".eventModal").hide(100);
 });
 // Signup
 $(document).on("click", ".login", function() {

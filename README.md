@@ -17,3 +17,9 @@
 # 4. Change the URL_ROOT in init.php in controller's folder to point in your project.
 
 # 5. In setup's folder in your views the ch_admin.php file, change your src to point in correct project folder.
+
+
+AwardSpace Account
+
+usrName: mikis44975@hiwave.org
+usrPass: mikis44975

@@ -150,6 +150,34 @@ class Admin extends Controller
 		}
 	}
 
+	public function eventModal()
+	{	
+
+		if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {	
+			$_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+			$usr = $this->eventModel->getEventUser(trim($_POST['eventId']));
+
+			$userExistEvent = $this->eventModel->checkEvent($usr->uId);
+			$bookStatus = $this->eventModel->bookStatus($usr->uId);
+			$bookedPhotogVendor = $this->adminModel->bookedPhotogVendor($usr->uId);
+			$bookedAttireVendor = $this->adminModel->bookedAttireVendor($usr->uId);
+			$bookedFoodVendor = $this->adminModel->bookedFoodVendor($usr->uId);
+			$bookedFlowerVendor = $this->adminModel->bookedFlowerVendor($usr->uId);
+
+			$data = [
+				"eventData" => $userExistEvent,
+				"bookedPhotogVendor" => $bookedPhotogVendor,
+				"bookedAttireVendor" => $bookedAttireVendor,
+				"bookedFoodVendor" => $bookedFoodVendor,
+				"bookedFlowerVendor" => $bookedFlowerVendor,
+				"bookStatus" => $bookStatus
+			];
+			// echo json_encode($data);
+			$this->view("admin/templates/eventModal",$data);
+		}
+	}
+
 	public function event(){
 		$userExistEvent = $this->eventModel->checkEvent($_SESSION['uId']);
 		$bookStatus = $this->eventModel->bookStatus($_SESSION['uId']);
@@ -196,7 +224,6 @@ class Admin extends Controller
 				return false;
 			}
 		}
-		
 	}
 
 	public function bookEvent(){
@@ -434,7 +461,7 @@ class Admin extends Controller
 
 			$data = [
 				"status" => "",
-				"fee" => trim($_POST['fee']),
+				"fee" => "P" . number_format(trim($_POST['fee'])) . ".00",
 				"serviceType" => trim($_POST['serviceType']),
 				"name" => trim($_POST['name'])
 			];
